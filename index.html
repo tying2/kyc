@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wait — Copilot can do that?</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;background:#0F2B5B;overflow:hidden}
+
+/* ── PAGES ── */
+.page{display:none;width:100%;height:100vh;height:100dvh;overflow-y:auto}
+.page.active{display:flex;flex-direction:column}
+
+/* ── SHARED ── */
+.accent-bar{height:6px;background:linear-gradient(90deg,#378ADD 0%,#1D9E75 33%,#7F77DD 66%,#D85A30 100%);flex-shrink:0}
+.btn{display:inline-block;cursor:pointer;border:none;font-family:'Segoe UI',Arial,sans-serif;font-weight:700;border-radius:999px;transition:opacity .15s,transform .1s}
+.btn:hover{opacity:.88}
+.btn:active{transform:scale(.97)}
+.back-btn{background:rgba(255,255,255,0.12);color:#fff;font-size:14px;padding:8px 22px;border-radius:999px;border:1.5px solid rgba(255,255,255,0.3);cursor:pointer;font-family:'Segoe UI',Arial,sans-serif;font-weight:600;transition:opacity .15s}
+.back-btn:hover{opacity:.8}
+
+/* ══════════════════════════════
+   LANDING PAGE
+══════════════════════════════ */
+#landing{background:#0F2B5B;}
+.hero{background:#0F2B5B;padding:clamp(1rem,2vh,1.75rem) clamp(2rem,5vw,6rem) clamp(0.75rem,1.5vh,1.25rem);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:0 0 auto}
+.hero-dots{display:flex;justify-content:center;gap:14px;margin-bottom:clamp(1rem,2vh,1.75rem)}
+.dot{width:16px;height:16px;border-radius:50%}
+.eyebrow{font-size:clamp(11px,0.9vw,13px);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:clamp(1rem,2vh,1.75rem)}
+.pre-title{font-size:clamp(14px,1.4vw,19px);color:rgba(255,255,255,0.8);max-width:920px;margin:0 auto clamp(1rem,2vh,1.75rem);line-height:1.7;text-align:center}
+.pre-title em{font-style:normal;color:#7EC8F4;font-weight:500}
+.landing-title{font-size:clamp(36px,4.5vw,62px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:1.25rem;letter-spacing:-0.5px;text-align:center}
+.landing-title em{font-style:normal;color:#7EC8F4;text-decoration:underline;text-decoration-style:wavy;text-underline-offset:8px}
+.fine-print{font-size:clamp(14px,1.4vw,19px);color:rgba(255,255,255,0.8);font-style:italic;margin-bottom:clamp(1.75rem,3vh,2.5rem);text-align:center}
+.start-btn{background:#7EC8F4;color:#0F2B5B;font-size:clamp(16px,1.4vw,20px);padding:clamp(12px,1.2vh,16px) clamp(32px,3.5vw,52px);border-radius:999px;border:none;font-family:'Segoe UI',Arial,sans-serif;font-weight:700;cursor:pointer;transition:opacity .15s,transform .1s;margin-bottom:0.5rem}
+.start-btn:hover{opacity:.88}
+.start-btn:active{transform:scale(.97)}
+.start-sub{font-size:13px;color:rgba(255,255,255,0.4);font-style:italic}
+
+.wave{display:block;width:100%;height:32px;background:#0F2B5B;clip-path:ellipse(55% 100% at 50% 0%);flex-shrink:0}
+.landing-body{background:#EBF4FF;padding:0 clamp(1.5rem,4vw,5rem);display:flex;flex-direction:column;align-items:center;flex:1;justify-content:space-evenly;min-height:0;overflow-y:auto}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;width:100%;max-width:1400px;margin:0 auto}
+.step{background:#fff;border-radius:14px;padding:clamp(1.25rem,1.8vh,2rem) 1.4rem clamp(1.1rem,1.5vh,1.75rem);text-align:left;border-top:5px solid #ccc}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.steps{grid-template-columns:1fr}}
+.step.s1{border-color:#378ADD}.step.s2{border-color:#1D9E75}.step.s3{border-color:#7F77DD}
+.step-num{font-size:12px;font-weight:700;color:#888;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px}
+.step.s1 .step-num{color:#185FA5}.step.s2 .step-num{color:#0F6E56}.step.s3 .step-num{color:#534AB7}
+.step-text{font-size:17px;color:#1f1f1f;line-height:1.6}
+.apps-section{width:100%;max-width:1000px;text-align:center}
+.apps-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#555;margin-bottom:10px}
+.apps{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:0.4rem}
+.app{font-size:15px;font-weight:600;padding:6px 20px;border-radius:999px;border:2px solid;cursor:default;transition:opacity .15s,transform .1s}
+.app[onclick]{cursor:pointer}
+.app[onclick]:hover{opacity:.8;transform:scale(1.04)}
+.app.word{border-color:#185FA5;color:#185FA5;background:#E6F1FB}
+.app.excel{border-color:#0F6E56;color:#0F6E56;background:#E1F5EE}
+.app.ppt{border-color:#C43E1C;color:#C43E1C;background:#FAECE7}
+.app.teams{border-color:#534AB7;color:#534AB7;background:#EEEDFE}
+.app.outlook{border-color:#0072C6;color:#0C447C;background:#E6F1FB}
+.app.notebook{border-color:#7719AA;color:#7719AA;background:#FBEAF0}
+.hint{font-size:14px;color:#888;font-style:italic;margin-top:6px}
+
+/* ══════════════════════════════
+   LANDING — TABLET (≤900px)
+══════════════════════════════ */
+@media(max-width:900px){
+  .pre-title{display:none}
+  .eyebrow{display:none}
+  .hero{padding:0.85rem 2rem 0.6rem}
+  .hero-dots{margin-bottom:0.5rem}
+  .landing-title{font-size:clamp(28px,4vw,48px);margin-bottom:0.5rem}
+  .fine-print{font-size:15px;margin-bottom:0.85rem}
+  .start-btn{margin-bottom:0.4rem}
+  .wave{height:28px}
+  .landing-body{justify-content:flex-start;padding:1.25rem clamp(1.25rem,4vw,5rem) 1.75rem;gap:1.1rem}
+  .step{padding:1rem 1.1rem}
+  .step-text{font-size:15px}
+  .apps-section{padding:0.5rem 0 0.25rem}
+  .apps-label{margin-bottom:8px}
+}
+
+/* ══════════════════════════════
+   LANDING — PHONE (≤600px)
+══════════════════════════════ */
+@media(max-width:600px){
+  .hero{padding:0.85rem 1.25rem 0.6rem}
+  .hero-dots{gap:10px;margin-bottom:0.5rem}
+  .dot{width:12px;height:12px}
+  .landing-title{font-size:clamp(26px,7vw,36px);margin-bottom:0.5rem}
+  .fine-print{font-size:13px;margin-bottom:0.9rem}
+  .start-btn{font-size:15px;padding:11px 32px;margin-bottom:0.35rem}
+  .start-sub{font-size:12px}
+  .wave{height:24px}
+  .landing-body{padding:1rem 1rem 1.5rem;gap:0.85rem}
+  .steps{gap:8px}
+  .step{padding:0.85rem 1rem}
+  .step-text{font-size:14px;line-height:1.5}
+  .apps-section{padding:0.35rem 0 0.25rem}
+  .app{font-size:13px;padding:5px 14px}
+  .hint{font-size:12px}
+}
+
+/* ══════════════════════════════
+   CHALLENGE PAGES
+══════════════════════════════ */
+.challenge-page{background:#0F2B5B;flex-direction:column}
+.challenge-topbar{background:#0F2B5B;padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.challenge-topbar-dots{display:flex;gap:8px}
+.challenge-topbar-dots .dot{width:10px;height:10px}
+.challenge-badge{font-size:12px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.5)}
+
+.challenge-hero{background:#0F2B5B;padding:1.25rem 4rem 1rem;text-align:center}
+.challenge-num{font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.4rem}
+.challenge-title{font-size:32px;font-weight:700;color:#fff;margin-bottom:0.3rem}
+.challenge-sub{font-size:15px;color:rgba(255,255,255,0.55);font-style:italic}
+
+.challenge-wave{display:block;width:100%;height:24px;background:#0F2B5B;clip-path:ellipse(55% 100% at 50% 0%);flex-shrink:0}
+
+.challenge-body{background:#EBF4FF;flex:1;padding:1.5rem 3rem 2rem;overflow-y:auto}
+
+/* output card */
+.output-card{background:#fff;border-radius:16px;border:0.5px solid #d0d8e8;margin-bottom:1.5rem;overflow:hidden}
+.output-card-titlebar{background:#e8edf5;border-bottom:0.5px solid #d0d8e8;padding:8px 16px;display:flex;align-items:center;gap:8px}
+.oc-dot{width:10px;height:10px;border-radius:50%;background:#d0d8e8}
+.oc-fname{font-size:12px;color:#666;margin-left:6px}
+
+/* ref files */
+.ref-bar{background:#f0f4fa;border:0.5px solid #d0d8e8;border-radius:12px;padding:0.9rem 1.1rem;margin-bottom:1.5rem}
+.ref-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#666;margin-bottom:8px}
+.ref-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:5px}
+.ref-item:last-child{margin-bottom:0}
+.ref-icon{font-size:10px;font-weight:700;color:#fff;background:#666;border-radius:3px;padding:1px 5px;flex-shrink:0;margin-top:1px}
+.ref-text{font-size:12px;color:#333;line-height:1.5;font-weight:600}
+.ref-desc{font-size:11px;color:#666}
+
+/* multiple choice */
+.mc-section{background:#fff;border-radius:16px;border:0.5px solid #d0d8e8;padding:1.4rem 1.6rem;margin-bottom:1.5rem}
+.mc-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#7719AA;margin-bottom:0.3rem}
+.mc-title{font-size:17px;font-weight:700;color:#1f1f1f;margin-bottom:0.25rem}
+.mc-sub{font-size:13px;color:#666;margin-bottom:1.1rem}
+.mc-question{font-size:14px;font-weight:600;color:#333;margin-bottom:0.75rem}
+.mc-options{display:flex;flex-direction:column;gap:8px;margin-bottom:1rem}
+.mc-opt{background:#f5f7fa;border:1.5px solid #d0d8e8;border-radius:10px;padding:0.7rem 1rem;font-size:14px;color:#1f1f1f;cursor:pointer;text-align:left;font-family:'Segoe UI',Arial,sans-serif;transition:border-color .15s,background .15s;line-height:1.5}
+.mc-opt:hover{border-color:#7719AA;background:#faf5ff}
+.mc-opt.correct{border-color:#0F6E56;background:#E1F5EE;color:#085041;pointer-events:none}
+.mc-opt.wrong{border-color:#A32D2D;background:#FCEBEB;color:#501313;pointer-events:none}
+.mc-opt.disabled{pointer-events:none;opacity:.6}
+.mc-feedback{display:none;border-radius:10px;padding:0.85rem 1rem;font-size:13px;line-height:1.65;margin-top:0.25rem}
+.mc-feedback.show{display:block}
+.mc-feedback.correct-fb{background:#E1F5EE;border:1px solid #1D9E75;color:#085041}
+.mc-feedback.wrong-fb{background:#FCEBEB;border:1px solid #E24B4A;color:#501313}
+.mc-reset{display:none;margin-top:0.75rem;background:#7719AA;color:#fff;font-size:13px;padding:7px 20px;border-radius:999px;border:none;font-family:'Segoe UI',Arial,sans-serif;font-weight:600;cursor:pointer}
+.mc-reset.show{display:inline-block}
+
+/* reveal */
+.reveal-section{background:#0F2B5B;border-radius:16px;padding:1.4rem 1.6rem;margin-bottom:1rem;display:none}
+.copy-btn{background:none;border:1px solid rgba(255,255,255,0.25);border-radius:6px;padding:2px 10px;cursor:pointer;color:rgba(255,255,255,0.6);font-size:11px;font-weight:600;font-family:'Segoe UI',Arial,sans-serif;transition:all .15s;flex-shrink:0}
+.copy-btn:hover{background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.5)}
+.copy-btn.copied{color:#1D9E75;border-color:#1D9E75}
+.reveal-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#7EC8F4;margin-bottom:0.3rem}
+.reveal-title{font-size:17px;font-weight:700;color:#fff;margin-bottom:1rem}
+.reveal-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.1rem}
+.reveal-card{background:rgba(255,255,255,0.07);border-radius:10px;padding:0.85rem 1rem}
+.reveal-card-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.45);margin-bottom:5px}
+.reveal-card-val{font-size:13px;color:#fff;line-height:1.55;font-style:italic}
+.reveal-points-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.45);margin-bottom:8px}
+.reveal-point{font-size:13px;color:rgba(255,255,255,0.85);line-height:1.65;padding-left:16px;position:relative;margin-bottom:5px}
+.reveal-point::before{content:"→";position:absolute;left:0;color:#7EC8F4;font-size:11px;top:2px}
+.lesson-box{background:#EBF4FF;border-left:4px solid #378ADD;border-radius:0 10px 10px 0;padding:0.85rem 1rem;margin-top:1rem}
+.lesson-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#185FA5;margin-bottom:5px}
+.lesson-text{font-size:13px;color:#0C447C;line-height:1.65}
+
+/* doc styles for output #1 */
+.doc-body{padding:2rem 2.5rem;background:#fff}
+.doc-title{font-size:20px;font-weight:600;color:#1f1f1f;margin-bottom:0.2rem;font-family:Georgia,serif}
+.doc-sub{font-size:12px;color:#666;margin-bottom:1.25rem;padding-bottom:0.85rem;border-bottom:1px solid #e0e0e0}
+.doc-h2{font-size:14px;font-weight:600;color:#1a1a1a;margin:1rem 0 0.4rem}
+.doc-text{font-size:12px;color:#1f1f1f;line-height:1.75;margin-bottom:0.6rem}
+.doc-bullet{font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.25rem}
+.doc-bullet::before{content:"•";position:absolute;left:0;color:#555}
+.doc-table{width:100%;border-collapse:collapse;font-size:11px;margin:0.6rem 0}
+.doc-table th{background:#404040;color:#fff;padding:5px 8px;text-align:left;font-weight:600}
+.doc-table td{padding:5px 8px;border-bottom:0.5px solid #e0e0e0;color:#1f1f1f}
+.doc-table tr:nth-child(even) td{background:#f9f9f9}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ LANDING ══════════════ -->
+<div id="landing" class="page active">
+  <div class="hero">
+    <div class="hero-dots">
+      <div class="dot" style="background:#378ADD"></div>
+      <div class="dot" style="background:#1D9E75"></div>
+      <div class="dot" style="background:#7F77DD"></div>
+      <div class="dot" style="background:#D85A30"></div>
+    </div>
+    <div class="eyebrow">Transformation Day 2026 &nbsp;·&nbsp; Microsoft Copilot</div>
+    <p class="pre-title">You bring the judgement. Copilot handles the rest — synthesising research into a deck, summarising the meeting you were running late for, turning a messy transcript into action items, drafting an email reply from three different documents. It does more than most people know.</p>
+    <h1 class="landing-title">Wait — Copilot can do <em>that</em>?</h1>
+    <p class="fine-print">Spoiler: yes. Yes it can. All of it. Come try and see for yourself.</p>
+    <button class="start-btn" onclick="startChallenge()">Start Challenge</button>
+    <div class="start-sub">You'll be randomly assigned one of 8 mystery outputs.</div>
+  </div>
+  <div class="wave"></div>
+  <div class="landing-body">
+    <div class="steps">
+      <div class="step s1">
+        <div class="step-num">Your mission</div>
+        <div class="step-text">Pick up a mystery output — something Copilot quietly made while you were in yet another meeting.</div>
+      </div>
+      <div class="step s2">
+        <div class="step-num">Make your case</div>
+        <div class="step-text">Figure out which app produced it and what prompt you think got it there.</div>
+      </div>
+      <div class="step s3">
+        <div class="step-num">Face the truth</div>
+        <div class="step-text">Type your prompt into Copilot and see what comes out. Not quite right? Tweak and try again — you might just unlock a new superpower.</div>
+      </div>
+    </div>
+    <div class="apps-section">
+      <div class="apps-label">The suspects</div>
+      <div class="apps">
+        <div class="app word" onclick="goToApp([1])" style="cursor:pointer" title="Try the Word challenge">Word</div>
+        <div class="app excel" onclick="goToApp([2,3])" style="cursor:pointer" title="Try an Excel challenge">Excel</div>
+        <div class="app ppt" onclick="goToApp([4,5])" style="cursor:pointer" title="Try a PowerPoint challenge">PowerPoint</div>
+        <div class="app teams" onclick="goToApp([6])" style="cursor:pointer" title="Try the Teams challenge">Teams</div>
+        <div class="app outlook" onclick="goToApp([7])" style="cursor:pointer" title="Try the Outlook challenge">Outlook</div>
+        <div class="app notebook" onclick="goToApp([8])" style="cursor:pointer" title="Try the Copilot Notebook challenge">Copilot Notebook</div>
+      </div>
+      <div class="hint">One of these did it. Your job is to figure out which one — or pick your favourite app to start.</div>
+    </div>
+  </div>
+  <div class="accent-bar"></div>
+</div>
+
+<!-- ══════════════ CHALLENGE 1 ══════════════ -->
+<div id="challenge-1" class="page challenge-page">
+  <div class="challenge-topbar">
+    <div class="challenge-topbar-dots">
+      <div class="dot" style="background:#378ADD"></div>
+      <div class="dot" style="background:#1D9E75"></div>
+      <div class="dot" style="background:#7F77DD"></div>
+      <div class="dot" style="background:#D85A30"></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px"><div class="challenge-badge">Challenge 1 of 8</div><div style="display:flex;gap:5px"><div class="prog-dot prog-dot-active" style="width:8px;height:8px;border-radius:50%;background:rgba(126,200,244,0.9);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div></div></div>
+  </div>
+  <div class="challenge-hero">
+    <div class="challenge-num">Challenge #1 &nbsp;·&nbsp; Difficulty: Easy</div>
+    <div class="challenge-title">Which app made this? What was the prompt?</div>
+    <div class="challenge-sub">Study the output below, then try to recreate it in Copilot using the reference files provided.</div>
+    <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
+  </div>
+  <div class="challenge-wave"></div>
+  <div class="challenge-body">
+
+    <!-- OUTPUT -->
+    <div class="output-card">
+      <div class="output-card-titlebar">
+        <div class="oc-dot"></div><div class="oc-dot"></div><div class="oc-dot"></div>
+        <span class="oc-fname">Apex_Onboarding_Guide</span>
+      </div>
+      <div class="doc-body">
+        <div class="doc-title">Welcome to Apex Corporate Solutions</div>
+        <div class="doc-sub">New Employee Onboarding Guide &nbsp;·&nbsp; People &amp; Culture &nbsp;·&nbsp; Q1 2025</div>
+        <div class="doc-h2">About our culture</div>
+        <div class="doc-text">Apex is built on three values: Integrity, Collaboration, and a Growth Mindset. We work in a hybrid model — three days in the office, two at home. Core hours are 10am–4pm. Dress code is business casual Monday–Thursday; casual on Fridays.</div>
+        <div class="doc-h2">IT setup — your first three days</div>
+        <div class="doc-bullet">Collect your laptop from IT Services, Level 2, Room 204 — bring your staff pass</div>
+        <div class="doc-bullet">Activate your Microsoft 365 account at portal.office.com</div>
+        <div class="doc-bullet">Set up Multi-Factor Authentication using the Authenticator app</div>
+        <div class="doc-bullet">Install the GlobalConnect VPN before your first home working day</div>
+        <div class="doc-bullet">Submit software access requests via the IT Service Portal — allow 2 working days</div>
+        <div class="doc-h2">Key contacts</div>
+        <table class="doc-table">
+          <thead><tr><th>Name</th><th>Role</th><th>Email</th><th>Ext.</th></tr></thead>
+          <tbody>
+            <tr><td>Sandra Lim</td><td>HR Business Partner</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ee9d8f808a9c8fc0828783ae8f9e8b968d819c9ec08d8183">[email&#160;protected]</a></td><td>2201</td></tr>
+            <tr><td>Derek Tan</td><td>IT Services Lead</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bdd9d8cfd8d693c9dcd3fddccdd8c5ded2cfcd93ded2d0">[email&#160;protected]</a></td><td>1801</td></tr>
+            <tr><td>Priya Menon</td><td>Payroll &amp; Benefits</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f585879c8c94db98909b9a9bb59485908d969a8785db969a98">[email&#160;protected]</a></td><td>2305</td></tr>
+            <tr><td>James Chew</td><td>Facilities Manager</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="442e252921376a272c2133042534213c272b36346a272b29">[email&#160;protected]</a></td><td>3101</td></tr>
+          </tbody>
+        </table>
+        <div class="doc-h2">Tips for your first week</div>
+        <div class="doc-bullet">Day 1: Collect your laptop, meet your buddy, attend the New Joiner Briefing at 10am in Conference Room B</div>
+        <div class="doc-bullet">Days 2–3: Complete mandatory e-learning — Information Security, Data Protection, AI Tools Acceptable Use</div>
+        <div class="doc-bullet">Days 4–5: Introduce yourself in the #introductions group and schedule your first 1-on-1 with your manager</div>
+        <div class="doc-bullet">Best coffee is on Level 4. Subsidised lunch 12–2pm in the Level 1 canteen</div>
+      </div>
+    </div>
+
+    <!-- REF FILES -->
+    <div class="ref-bar">
+      <div class="ref-label">Reference files provided</div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">Welcome_Letter.docx</div><div class="ref-desc">A letter from HR welcoming a new joiner, covering culture, values, and first-day logistics</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">IT_Setup_Quickstart_Guide.pdf</div><div class="ref-desc">Step-by-step IT setup checklist covering device collection, account activation, MFA, VPN, and security training</div></div></div>
+      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">Culture_Deck_Talking_Points.pptx</div><div class="ref-desc">Talking points from the new joiner orientation covering values, working norms, facilities, and support networks</div></div></div>
+    </div>
+
+    <!-- MULTIPLE CHOICE -->
+    <div class="mc-section">
+      <div class="mc-eyebrow">Not near a Copilot device?</div>
+      <div class="mc-title">Try the multiple choice challenge instead</div>
+      <div class="mc-sub">Two questions — one about the app, one about the prompt. See if you can crack it.</div>
+
+      <div class="mc-question">Q1: Which Microsoft app do you think was used to generate this output?</div>
+      <div class="mc-options" id="q1c1">
+        <button class="mc-opt" onclick="answer(this,'q1c1',true,'q1c1-fb-correct','q1c1-fb-wrong')">Microsoft Word — Copilot in Word can synthesise content from multiple uploaded files into a single structured document</button>
+        <button class="mc-opt" onclick="answer(this,'q1c1',false,'q1c1-fb-correct','q1c1-fb-wrong')">Microsoft OneNote — Copilot in OneNote is ideal for compiling notes from different sources into a single page</button>
+      </div>
+      <div class="mc-feedback correct-fb" id="q1c1-fb-correct">Correct! This is a Word document — you can tell from the structured heading hierarchy, table formatting, and document-style layout. Word's Copilot can accept multiple uploaded files and synthesise them into a single coherent document, even when those files are in different formats.</div>
+      <div class="mc-feedback wrong-fb" id="q1c1-fb-wrong">Not quite — while OneNote can organise notes, this output has the structure of a formal Word document: section headings, a formatted contacts table, and a professional tone. The giveaway is the document layout and the way information from three very different source files has been unified into one polished piece.</div>
+      <button class="mc-reset" id="reset-q1c1" onclick="resetQ('q1c1','q1c1-fb-correct','q1c1-fb-wrong','reset-q1c1')">Try again</button>
+
+      <div class="mc-question" style="margin-top:1.1rem">Q2: Which of these prompts is most likely to have produced this output?</div>
+      <div class="mc-options" id="q2c1">
+        <button class="mc-opt" onclick="answer(this,'q2c1',false,'q2c1-fb-correct','q2c1-fb-wrong')">Write an onboarding guide for a new employee at a corporate company. Include sections on culture, IT setup, key contacts, and first-week tips.</button>
+        <button class="mc-opt" onclick="answer(this,'q2c1',true,'q2c1-fb-correct','q2c1-fb-wrong')">I have three files — a welcome letter, an IT setup guide, and a culture deck. Synthesise all of them into a single, well-structured onboarding guide for a new employee joining Apex Corporate Solutions.</button>
+      </div>
+      <div class="mc-feedback correct-fb" id="q2c1-fb-correct">Exactly right. The key difference is the reference files. A generic prompt would produce a generic guide. By providing three real source documents, Copilot was able to include Apex-specific details — actual staff names, real extensions, the Level 4 coffee tip — that no amount of prompting alone could have produced. This is the power of grounding Copilot in your own content.</div>
+      <div class="mc-feedback wrong-fb" id="q2c1-fb-wrong">This prompt would produce a decent onboarding guide — but a generic one. Notice that the output contains very specific details: real staff names, actual email addresses, room numbers, even the tip about the Level 4 coffee machine. None of that could come from a prompt alone. The second option — which references three specific uploaded files — is what produced this output. Specificity of input drives specificity of output.</div>
+      <button class="mc-reset" id="reset-q2c1" onclick="resetQ('q2c1','q2c1-fb-correct','q2c1-fb-wrong','reset-q2c1')">Try again</button>
+    </div>
+
+    <!-- REVEAL -->
+    <div class="reveal-section" id="reveal-c1">
+      <div class="reveal-eyebrow">The answer</div>
+      <div class="reveal-title">Here's what actually happened</div>
+      <div class="reveal-grid">
+        <div class="reveal-card">
+          <div class="reveal-card-label">App used</div>
+          <div class="reveal-card-val">Microsoft Word — Copilot in Word</div>
+        </div>
+        <div class="reveal-card">
+          <div class="reveal-card-label">Difficulty</div>
+          <div class="reveal-card-val">Easy — the structured document format and familiar onboarding content are recognisable</div>
+        </div>
+        <div class="reveal-card" style="grid-column:1/-1">
+          <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+          <div class="reveal-card-val">"I have three files — a welcome letter, an IT setup guide, and a culture deck. Synthesise all of them into a single, well-structured onboarding guide for a new employee joining Apex Corporate Solutions."</div>
+        </div>
+      </div>
+      <div class="reveal-points-label">Why this is impressive</div>
+      <div class="reveal-point">Copilot read three files in completely different formats — Word, PDF, and PowerPoint — and unified them into one coherent document without being told where each piece of information lived</div>
+      <div class="reveal-point">It extracted the most relevant content from each source and discarded what wasn't needed, all from a single natural-language instruction</div>
+      <div class="reveal-point">The output retained Apex-specific details from the source files — names, extensions, room numbers — that a generic prompt could never have produced</div>
+      <div class="reveal-point">What would have taken a new HR manager 2–3 hours to compile manually took Copilot seconds</div>
+      <div class="lesson-box">
+        <div class="lesson-label">The takeaway</div>
+        <div class="lesson-text">The most powerful prompts combine a clear instruction with rich source material. Copilot is not just a writing tool — it's a synthesis engine. Feed it your actual documents and it produces your actual content, not a generic template. Think about what files already exist in your organisation that Copilot could use to do the same for you.</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="accent-bar"></div>
+</div>
+
+<!-- ══════════════ CHALLENGE 2 ══════════════ -->
+<div id="challenge-2" class="page challenge-page">
+  <div class="challenge-topbar">
+    <div class="challenge-topbar-dots">
+      <div class="dot" style="background:#378ADD"></div>
+      <div class="dot" style="background:#1D9E75"></div>
+      <div class="dot" style="background:#7F77DD"></div>
+      <div class="dot" style="background:#D85A30"></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px"><div class="challenge-badge">Challenge 2 of 8</div><div style="display:flex;gap:5px"><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot prog-dot-active" style="width:8px;height:8px;border-radius:50%;background:rgba(126,200,244,0.9);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div></div></div>
+  </div>
+  <div class="challenge-hero">
+    <div class="challenge-num">Challenge #2 &nbsp;·&nbsp; Difficulty: Medium</div>
+    <div class="challenge-title">Which app made this? What was the prompt?</div>
+    <div class="challenge-sub">Study the output below, then try to recreate it in Copilot using the reference files provided.</div>
+    <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
+  </div>
+  <div class="challenge-wave"></div>
+  <div class="challenge-body">
+
+    <!-- OUTPUT -->
+    <div class="output-card">
+      <div class="output-card-titlebar">
+        <div class="oc-dot"></div><div class="oc-dot"></div><div class="oc-dot"></div>
+        <span class="oc-fname">Department_Budget_Tracker_Q1_2025</span>
+      </div>
+      <div style="padding:0;background:#fff;overflow-x:auto">
+        <div style="background:#f3f2f1;border-bottom:0.5px solid #d0cece;padding:5px 12px;display:flex;align-items:center;gap:8px;font-size:12px;color:#666">
+          <span style="background:#e8e8e8;border:0.5px solid #d0cece;border-radius:2px;padding:2px 8px;font-size:11px;min-width:36px;text-align:center;color:#333">A1</span>
+          <span style="color:#d0cece">fx</span>
+          <span>Department</span>
+        </div>
+        <table style="border-collapse:collapse;width:100%;font-size:12px">
+          <thead>
+            <tr>
+              <th style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666;width:24px"></th>
+              <th style="background:#f3f2f1;border:0.5px solid #d0cece;padding:4px 8px;text-align:center;font-size:11px;color:#444;font-weight:500">A</th>
+              <th style="background:#f3f2f1;border:0.5px solid #d0cece;padding:4px 8px;text-align:center;font-size:11px;color:#444;font-weight:500">B</th>
+              <th style="background:#f3f2f1;border:0.5px solid #d0cece;padding:4px 8px;text-align:center;font-size:11px;color:#444;font-weight:500">C</th>
+              <th style="background:#f3f2f1;border:0.5px solid #d0cece;padding:4px 8px;text-align:center;font-size:11px;color:#444;font-weight:500">D</th>
+              <th style="background:#f3f2f1;border:0.5px solid #d0cece;padding:4px 8px;text-align:center;font-size:11px;color:#444;font-weight:500">E</th>
+              <th style="background:#f3f2f1;border:0.5px solid #d0cece;padding:4px 8px;text-align:center;font-size:11px;color:#444;font-weight:500">F</th>
+              <th style="background:#f3f2f1;border:0.5px solid #d0cece;padding:4px 8px;text-align:center;font-size:11px;color:#444;font-weight:500">G</th>
+            </tr>
+            <tr>
+              <td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">1</td>
+              <td style="background:#404040;color:#fff;font-weight:500;text-align:center;border:0.5px solid #d0cece;padding:4px 8px">Department</td>
+              <td style="background:#404040;color:#fff;font-weight:500;text-align:center;border:0.5px solid #d0cece;padding:4px 8px">Month</td>
+              <td style="background:#404040;color:#fff;font-weight:500;text-align:center;border:0.5px solid #d0cece;padding:4px 8px">Category</td>
+              <td style="background:#404040;color:#fff;font-weight:500;text-align:right;border:0.5px solid #d0cece;padding:4px 8px">Budgeted (SGD)</td>
+              <td style="background:#404040;color:#fff;font-weight:500;text-align:right;border:0.5px solid #d0cece;padding:4px 8px">Actual (SGD)</td>
+              <td style="background:#404040;color:#fff;font-weight:500;text-align:right;border:0.5px solid #d0cece;padding:4px 8px">Variance (SGD)</td>
+              <td style="background:#404040;color:#fff;font-weight:500;text-align:center;border:0.5px solid #d0cece;padding:4px 8px">Flag</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">2</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Operations</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Salaries &amp; Benefits</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">49,200</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">49,850</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:right;color:#3B6D11;background:#fff">+650</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:center;color:#3B6D11;background:#fff">—</td></tr>
+            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">3</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Operations</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Travel &amp; Accommodation</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">400</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">310</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:right;color:#3B6D11;background:#fff">-90</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:center;color:#3B6D11;background:#fff">—</td></tr>
+            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">4</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Technology</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Salaries &amp; Benefits</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">54,000</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">55,400</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fdf0f0;color:#A32D2D;font-weight:500;text-align:right">+1,400</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff3cd;color:#633806;font-weight:500;text-align:center">&#9650; OVER</td></tr>
+            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">5</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Technology</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Hardware (unplanned)</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">0</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">1,450</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fdf0f0;color:#A32D2D;font-weight:500;text-align:right">+1,450</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff3cd;color:#633806;font-weight:500;text-align:center">&#9650; OVER</td></tr>
+            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">6</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Marketing</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Digital Advertising</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">2,500</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">3,100</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fdf0f0;color:#A32D2D;font-weight:500;text-align:right">+600</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff3cd;color:#633806;font-weight:500;text-align:center">&#9650; OVER</td></tr>
+            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">7</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Marketing</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Travel — Conference</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">1,200</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">0</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:right;color:#3B6D11;background:#fff">-1,200</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:center;color:#3B6D11;background:#fff">—</td></tr>
+            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">8</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">HR</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Contractor — Recruitment</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">3,500</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">3,500</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:right;color:#1f1f1f;background:#fff">0</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:center;color:#3B6D11;background:#fff">—</td></tr>
+            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">9</td><td colspan="3" style="background:#e8e8e8;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">January total</td><td style="background:#e8e8e8;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">204,710</td><td style="background:#e8e8e8;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">207,468</td><td style="background:#fdf0f0;color:#A32D2D;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">+2,758</td><td style="background:#fff3cd;color:#633806;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:center">&#9650; +1.3%</td></tr>
+            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">10</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Marketing</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Mar-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Brand Photography (unplanned)</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">0</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">2,800</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fdf0f0;color:#A32D2D;font-weight:500;text-align:right">+2,800</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff3cd;color:#633806;font-weight:500;text-align:center">&#9650; OVER</td></tr>
+            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">11</td><td colspan="3" style="background:#404040;color:#fff;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px">Q1 2025 grand total</td><td style="background:#404040;color:#fff;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">621,300</td><td style="background:#404040;color:#fff;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">629,840</td><td style="background:#fdf0f0;color:#A32D2D;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">+8,540</td><td style="background:#fff3cd;color:#633806;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:center">&#9650; +1.4%</td></tr>
+          </tbody>
+        </table>
+        <div style="background:#f3f2f1;border-top:0.5px solid #d0cece;padding:4px 12px;display:flex;gap:4px">
+          <div style="font-size:11px;color:#333;padding:3px 12px;border:0.5px solid #d0cece;border-radius:2px 2px 0 0;background:#fff;font-weight:500">Sheet 1</div>
+          <div style="font-size:11px;color:#666;padding:3px 12px;border:0.5px solid #d0cece;border-radius:2px 2px 0 0;background:#f3f2f1">Sheet 2</div>
+          <div style="font-size:11px;color:#666;padding:3px 12px;border:0.5px solid #d0cece;border-radius:2px 2px 0 0;background:#f3f2f1">Sheet 3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REF FILES -->
+    <div class="ref-bar">
+      <div class="ref-label">Reference files provided</div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">Raw_Dept_Spend_Q1_2025.csv</div><div class="ref-desc">63 rows of raw expenditure data across 5 departments and 3 months, with columns for cost centre, category, vendor, PO number, approver, and notes</div></div></div>
+    </div>
+
+    <!-- MULTIPLE CHOICE -->
+    <div class="mc-section">
+      <div class="mc-eyebrow">Not near a Copilot device?</div>
+      <div class="mc-title">Try the multiple choice challenge instead</div>
+      <div class="mc-sub">Two questions — one about the app, one about the prompt. See if you can crack it.</div>
+
+      <div class="mc-question">Q1: Which Microsoft app do you think was used to generate this output?</div>
+      <div class="mc-options" id="q1c2">
+        <button class="mc-opt" onclick="answer(this,'q1c2',false,'q1c2-fb-correct','q1c2-fb-wrong')">Microsoft Word — the output looks like a written report with tables, which Word handles well</button>
+        <button class="mc-opt" onclick="answer(this,'q1c2',true,'q1c2-fb-correct','q1c2-fb-wrong')">Microsoft Excel — Copilot in Excel can read raw data files and build structured trackers with calculated columns and conditional flags</button>
+      </div>
+      <div class="mc-feedback correct-fb" id="q1c2-fb-correct">Correct! Despite looking like it could be a Word table, this is an Excel output. The row and column headers, formula bar, and sheet tabs are the giveaways. Copilot in Excel can ingest a raw CSV, understand the structure, group rows by department, calculate variance, and apply conditional flags — all from a single prompt.</div>
+      <div class="mc-feedback wrong-fb" id="q1c2-fb-wrong">A reasonable guess — the table formatting does look document-like. But look closely: there are row numbers, column letters, a formula bar, and sheet tabs at the bottom. This is an Excel output. The key insight is that Copilot in Excel doesn't just format data — it analyses it, groups it, calculates variance, and applies conditional logic like the &#9650; OVER flags, all from a single natural-language instruction.</div>
+      <button class="mc-reset" id="reset-q1c2" onclick="resetQ('q1c2','q1c2-fb-correct','q1c2-fb-wrong','reset-q1c2')">Try again</button>
+
+      <div class="mc-question" style="margin-top:1.1rem">Q2: Which prompt is most likely to have produced this output?</div>
+      <div class="mc-options" id="q2c2">
+        <button class="mc-opt" onclick="answer(this,'q2c2',false,'q2c2-fb-correct','q2c2-fb-wrong')">Create a summary table of our Q1 department spending with a total row at the bottom.</button>
+        <button class="mc-opt" onclick="answer(this,'q2c2',true,'q2c2-fb-correct','q2c2-fb-wrong')">Based on this data, create a monthly budget tracker by department showing budgeted vs actual spend, variance, and a flag for any category that has overspent by more than 10%.</button>
+      </div>
+      <div class="mc-feedback correct-fb" id="q2c2-fb-correct">Spot on. The richer prompt produced a richer output — not just a summary, but a structured tracker with variance calculations, percentage overruns, and conditional flags for categories exceeding 10% overspend. The raw data had 63 rows with 12 columns including PO numbers, vendors, and approvers. Copilot extracted only what was needed, grouped it by department, and applied the logic without being given a formula.</div>
+      <div class="mc-feedback wrong-fb" id="q2c2-fb-wrong">That prompt would produce a basic summary — but not this. Notice the variance column, the percentage calculations, and the &#9650; OVER flags that only appear when overspend exceeds 10%. That conditional logic had to be specified. The second prompt is more precise: it names the columns it wants, specifies the flagging threshold, and references the source data file. More specific input = more useful output.</div>
+      <button class="mc-reset" id="reset-q2c2" onclick="resetQ('q2c2','q2c2-fb-correct','q2c2-fb-wrong','reset-q2c2')">Try again</button>
+    </div>
+
+    <!-- REVEAL -->
+    <div class="reveal-section" id="reveal-c2">
+      <div class="reveal-eyebrow">The answer</div>
+      <div class="reveal-title">Here's what actually happened</div>
+      <div class="reveal-grid">
+        <div class="reveal-card">
+          <div class="reveal-card-label">App used</div>
+          <div class="reveal-card-val">Microsoft Excel — Copilot in Excel</div>
+        </div>
+        <div class="reveal-card">
+          <div class="reveal-card-label">Difficulty</div>
+          <div class="reveal-card-val">Medium — the output looks clean and structured, hiding the messy 63-row raw data it came from</div>
+        </div>
+        <div class="reveal-card" style="grid-column:1/-1">
+          <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+          <div class="reveal-card-val">"Based on this data, create a monthly budget tracker by department showing budgeted vs actual spend, variance, and a flag for any category that has overspent by more than 10%."</div>
+        </div>
+      </div>
+      <div class="reveal-points-label">Why this is impressive</div>
+      <div class="reveal-point">The raw CSV had 63 rows across 12 columns — including PO numbers, vendor names, approver names, and messy notes. Copilot ignored everything irrelevant and extracted only what was needed</div>
+      <div class="reveal-point">The 10% variance flag required conditional logic. Copilot inferred the formula and applied it without being given a single Excel function</div>
+      <div class="reveal-point">The clean, structured tracker looks nothing like the source data — Copilot did the grouping, aggregation, and formatting automatically</div>
+      <div class="reveal-point">What would normally require a confident Excel user 30–45 minutes of pivot tables and conditional formatting took Copilot seconds</div>
+      <div class="lesson-box">
+        <div class="lesson-label">The takeaway</div>
+        <div class="lesson-text">Copilot in Excel is not just for formatting — it can analyse, aggregate, and apply logic to your data. The more specific your prompt (what columns to include, what thresholds to flag), the more precise the output. If you regularly build reports or trackers from raw data exports, this is one of the highest-value Copilot use cases available to you right now.</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="accent-bar"></div>
+</div>
+
+<!-- ══════════════ CHALLENGE 3 ══════════════ -->
+<div id="challenge-3" class="page challenge-page">
+  <div class="challenge-topbar">
+    <div class="challenge-topbar-dots">
+      <div class="dot" style="background:#378ADD"></div>
+      <div class="dot" style="background:#1D9E75"></div>
+      <div class="dot" style="background:#7F77DD"></div>
+      <div class="dot" style="background:#D85A30"></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px"><div class="challenge-badge">Challenge 3 of 8</div><div style="display:flex;gap:5px"><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot prog-dot-active" style="width:8px;height:8px;border-radius:50%;background:rgba(126,200,244,0.9);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div></div></div>
+  </div>
+  <div class="challenge-hero">
+    <div class="challenge-num">Challenge #3 &nbsp;·&nbsp; Difficulty: Hard</div>
+    <div class="challenge-title">Which app made this? What was the prompt?</div>
+    <div class="challenge-sub">This one is tricky. Study the output carefully — things are not quite what they seem.</div>
+    <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
+  </div>
+  <div class="challenge-wave"></div>
+  <div class="challenge-body">
+
+    <!-- OUTPUT -->
+    <div class="output-card">
+      <div class="output-card-titlebar">
+        <div class="oc-dot"></div><div class="oc-dot"></div><div class="oc-dot"></div>
+        <span class="oc-fname">Sales_Analysis_FY2023</span>
+      </div>
+      <div class="doc-body">
+        <div class="doc-title" style="font-family:'Segoe UI',Arial,sans-serif;font-size:17px">Sales performance analysis — FY2023</div>
+        <div class="doc-sub">Generated from source data &nbsp;·&nbsp; 60 records across 5 regions, 12 months</div>
+
+        <div class="doc-h2" style="text-transform:uppercase;letter-spacing:0.06em;font-size:11px;border-bottom:1px solid #e0e0e0;padding-bottom:4px">Top 3 performing regions</div>
+        <table class="doc-table" style="margin:0.6rem 0 0.85rem">
+          <thead><tr><th>Rank</th><th>Region</th><th>Total net revenue (SGD)</th><th>Units sold</th><th>Top salesperson</th></tr></thead>
+          <tbody>
+            <tr><td style="text-align:center;font-weight:600;color:#333">1</td><td>Central</td><td style="text-align:right">937,580</td><td style="text-align:right">2,423</td><td>Evelyn Chua</td></tr>
+            <tr><td style="text-align:center;font-weight:600;color:#333">2</td><td>North</td><td style="text-align:right">884,960</td><td style="text-align:right">1,307</td><td>Alice Tan</td></tr>
+            <tr><td style="text-align:center;font-weight:600;color:#333">3</td><td>South</td><td style="text-align:right">856,100</td><td style="text-align:right">1,248</td><td>Brian Lim</td></tr>
+          </tbody>
+        </table>
+        <div style="background:#f5f5f5;border-left:3px solid #888;padding:0.65rem 0.85rem;margin-bottom:0.85rem;font-size:12px;color:#444;line-height:1.65">Central leads all regions driven by consistently high Software Licence volumes and strong Q4 performance from Evelyn Chua. The Central region recorded its highest single month in December (SGD 80,320 net revenue).</div>
+
+        <div class="doc-h2" style="text-transform:uppercase;letter-spacing:0.06em;font-size:11px;border-bottom:1px solid #e0e0e0;padding-bottom:4px">Revenue drop flags — months exceeding 15% decline</div>
+        <table class="doc-table" style="margin:0.6rem 0 0.85rem">
+          <thead><tr><th>Region</th><th>Month</th><th>Prior month revenue</th><th>This month revenue</th><th>Decline</th></tr></thead>
+          <tbody>
+            <tr><td>North</td><td>Jul-23</td><td style="text-align:right">138,000</td><td style="text-align:right">61,600</td><td style="color:#A32D2D;font-weight:600;text-align:right">-55.4%</td></tr>
+            <tr><td>Central</td><td>Jul-23</td><td style="text-align:right">86,250</td><td style="text-align:right">43,520</td><td style="color:#A32D2D;font-weight:600;text-align:right">-49.6%</td></tr>
+            <tr><td>West</td><td>Jul-23</td><td style="text-align:right">98,000</td><td style="text-align:right">69,000</td><td style="color:#A32D2D;font-weight:600;text-align:right">-29.6%</td></tr>
+            <tr><td>East</td><td>Aug-23</td><td style="text-align:right">79,200</td><td style="text-align:right">50,400</td><td style="color:#A32D2D;font-weight:600;text-align:right">-36.4%</td></tr>
+          </tbody>
+        </table>
+        <div style="background:#fdf0f0;border-left:3px solid #A32D2D;padding:0.65rem 0.85rem;margin-bottom:0.85rem;font-size:12px;color:#A32D2D;line-height:1.65">July 2023 shows a broad revenue dip across all regions — likely reflecting a mid-year seasonal pattern rather than a structural issue. All affected regions recovered strongly by September–October 2023.</div>
+
+        <div class="doc-h2" style="text-transform:uppercase;letter-spacing:0.06em;font-size:11px;border-bottom:1px solid #e0e0e0;padding-bottom:4px">Key trends</div>
+        <div class="doc-bullet">Software Licences is the highest-volume category, accounting for 42% of all units sold across the year</div>
+        <div class="doc-bullet">Q4 (Oct–Dec 2023) was the strongest quarter — net revenue was 34% higher than Q3</div>
+        <div class="doc-bullet">Managed Services commands the highest unit price (SGD 1,800) and showed consistent growth in H2 2023</div>
+        <div class="doc-bullet">Returns are highest in Software Licences (avg. 6.2% return rate) — worth reviewing the fulfilment process</div>
+        <div class="doc-bullet">The Direct channel consistently outperforms Partner and Online in Consulting Services, suggesting client preference for direct engagement on high-value deals</div>
+      </div>
+      <div style="background:#f3f2f1;border-top:0.5px solid #d0cece;padding:4px 12px;display:flex;gap:4px">
+        <div style="font-size:11px;color:#666;padding:3px 12px;border:0.5px solid #d0cece;border-radius:2px 2px 0 0;background:#f3f2f1">Sheet 1</div>
+        <div style="font-size:11px;color:#333;padding:3px 12px;border:0.5px solid #d0cece;border-radius:2px 2px 0 0;background:#fff;font-weight:500">Sheet 2</div>
+        <div style="font-size:11px;color:#666;padding:3px 12px;border:0.5px solid #d0cece;border-radius:2px 2px 0 0;background:#f3f2f1">Sheet 3</div>
+      </div>
+    </div>
+
+    <!-- REF FILES -->
+    <div class="ref-bar">
+      <div class="ref-label">Reference files provided</div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">Sales_Raw_Data_FY2023.csv</div><div class="ref-desc">60 rows of unprocessed sales transactions across 5 regions, 5 salespeople, 4 product categories, and 12 months — including units sold, pricing, returns, channels, and discounts</div></div></div>
+    </div>
+
+    <!-- MULTIPLE CHOICE -->
+    <div class="mc-section">
+      <div class="mc-eyebrow">Not near a Copilot device?</div>
+      <div class="mc-title">Try the multiple choice challenge instead</div>
+      <div class="mc-sub">Two questions — one about the app, one about the prompt. This one is designed to catch you out.</div>
+
+      <div class="mc-question">Q1: Which Microsoft app do you think generated this output?</div>
+      <div class="mc-options" id="q1c3">
+        <button class="mc-opt" onclick="answer(this,'q1c3',false,'q1c3-fb-correct','q1c3-fb-wrong')">Microsoft Word — this is clearly a written analytical report with headings, tables, and narrative commentary</button>
+        <button class="mc-opt" onclick="answer(this,'q1c3',true,'q1c3-fb-correct','q1c3-fb-wrong')">Microsoft Excel — Copilot in Excel generated this written analysis directly from a raw data file on a second sheet</button>
+      </div>
+      <div class="mc-feedback correct-fb" id="q1c3-fb-correct">Got it! This is the hard one — the output looks exactly like a Word document, which is precisely the point. The subtle giveaway is the sheet tabs at the bottom: Sheet 1 contains the raw data, and Sheet 2 (currently active) contains this Copilot-generated analysis. Copilot in Excel can produce written narrative analysis — not just tables — directly from your data.</div>
+      <div class="mc-feedback wrong-fb" id="q1c3-fb-wrong">This is the trick of Challenge #3 — the output is designed to look like a Word document. But look at the bottom of the output: there are sheet tabs. Sheet 1 holds the raw CSV data. Sheet 2 — the active one — is where Copilot wrote this analysis. Copilot in Excel doesn't just crunch numbers; it can produce written narrative reports, ranked tables, and trend commentary directly from a data file.</div>
+      <button class="mc-reset" id="reset-q1c3" onclick="resetQ('q1c3','q1c3-fb-correct','q1c3-fb-wrong','reset-q1c3')">Try again</button>
+
+      <div class="mc-question" style="margin-top:1.1rem">Q2: Which prompt most likely produced this output?</div>
+      <div class="mc-options" id="q2c3">
+        <button class="mc-opt" onclick="answer(this,'q2c3',true,'q2c3-fb-correct','q2c3-fb-wrong')">Analyse this sales data. Identify the top 3 performing regions, flag any months with more than 15% drop in revenue, and summarise the key trends.</button>
+        <button class="mc-opt" onclick="answer(this,'q2c3',false,'q2c3-fb-correct','q2c3-fb-wrong')">Write a sales performance report for FY2023 covering regional rankings, revenue trends, and any notable anomalies.</button>
+      </div>
+      <div class="mc-feedback correct-fb" id="q2c3-fb-correct">Exactly right. The prompt is data-first — it tells Copilot to analyse the attached data rather than write a generic report. The 15% threshold for revenue drops is a specific analytical instruction that produced the precise flagging table you see. This is the difference between asking Copilot to write something and asking it to analyse something — the latter produces far more grounded, specific, and useful output.</div>
+      <div class="mc-feedback wrong-fb" id="q2c3-fb-wrong">That prompt would produce a plausible report — but a generic one with made-up or hallucinated figures. The actual output contains very specific numbers: -55.4% for North in July, SGD 937,580 for Central's full-year revenue. Those figures came from the raw data, not from the prompt. The first option is a data-first prompt — it instructs Copilot to analyse the attached file and apply a specific threshold (15%). That's what grounded the output in real numbers.</div>
+      <button class="mc-reset" id="reset-q2c3" onclick="resetQ('q2c3','q2c3-fb-correct','q2c3-fb-wrong','reset-q2c3')">Try again</button>
+    </div>
+
+    <!-- REVEAL -->
+    <div class="reveal-section" id="reveal-c3">
+      <div class="reveal-eyebrow">The answer</div>
+      <div class="reveal-title">Here's what actually happened</div>
+      <div class="reveal-grid">
+        <div class="reveal-card">
+          <div class="reveal-card-label">App used</div>
+          <div class="reveal-card-val">Microsoft Excel — Copilot in Excel (analysis written to Sheet 2 from raw data on Sheet 1)</div>
+        </div>
+        <div class="reveal-card">
+          <div class="reveal-card-label">Difficulty</div>
+          <div class="reveal-card-val">Hard — the written narrative output is deliberately designed to look like a Word document</div>
+        </div>
+        <div class="reveal-card" style="grid-column:1/-1">
+          <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+          <div class="reveal-card-val">"Analyse this sales data. Identify the top 3 performing regions, flag any months with more than 15% drop in revenue, and summarise the key trends."</div>
+        </div>
+      </div>
+      <div class="reveal-points-label">Why this is impressive</div>
+      <div class="reveal-point">Copilot performed cross-regional aggregation, month-on-month percentage calculations, and trend identification — all from a raw 60-row CSV, with no pivot tables or formulas written by hand</div>
+      <div class="reveal-point">The 15% revenue drop threshold was applied as conditional logic across all regions and all months simultaneously — a task that would require complex formula work to replicate manually</div>
+      <div class="reveal-point">Copilot didn't just find numbers — it interpreted them, noting the July dip was likely seasonal and that all regions recovered by Q4. That's analytical judgment, not just calculation</div>
+      <div class="reveal-point">The output looks like a polished analyst report. The source was a raw data file. Copilot bridged the entire gap between the two</div>
+      <div class="lesson-box">
+        <div class="lesson-label">The takeaway</div>
+        <div class="lesson-text">Copilot in Excel is a data analyst, not just a spreadsheet tool. If you regularly produce performance reports, sales summaries, or trend analyses from raw data exports, this is one of the most powerful things Copilot can do. The key is to be analytical in your prompt — tell it what to look for, what thresholds matter, and what questions you need answered. Copilot will do the calculation and the writing.</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="accent-bar"></div>
+</div>
+
+<!-- ══════════════ CHALLENGE 4 ══════════════ -->
+<div id="challenge-4" class="page challenge-page">
+  <div class="challenge-topbar">
+    <div class="challenge-topbar-dots">
+      <div class="dot" style="background:#378ADD"></div>
+      <div class="dot" style="background:#1D9E75"></div>
+      <div class="dot" style="background:#7F77DD"></div>
+      <div class="dot" style="background:#D85A30"></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px"><div class="challenge-badge">Challenge 4 of 8</div><div style="display:flex;gap:5px"><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot prog-dot-active" style="width:8px;height:8px;border-radius:50%;background:rgba(126,200,244,0.9);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div></div></div>
+  </div>
+  <div class="challenge-hero">
+    <div class="challenge-num">Challenge #4 &nbsp;·&nbsp; Difficulty: Easy</div>
+    <div class="challenge-title">Which app made this? What was the prompt?</div>
+    <div class="challenge-sub">Study the output below, then try to recreate it in Copilot using the reference files provided.</div>
+    <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
+  </div>
+  <div class="challenge-wave"></div>
+  <div class="challenge-body">
+
+    <!-- OUTPUT -->
+    <div class="output-card">
+      <div class="output-card-titlebar">
+        <div class="oc-dot"></div><div class="oc-dot"></div><div class="oc-dot"></div>
+        <span class="oc-fname">Hybrid_Working_Benefits</span>
+      </div>
+      <!-- PPT chrome -->
+      <div style="background:#3a3a3a;padding:0.85rem;display:flex;gap:0.65rem;min-height:280px">
+        <!-- thumbnails -->
+        <div style="width:90px;min-width:90px;display:flex;flex-direction:column;gap:5px">
+          <div style="background:#fff;border-radius:3px;padding:5px;border:1.5px solid transparent">
+            <div style="font-size:7px;font-weight:600;color:#555;margin-bottom:2px">Section 1</div>
+            <div style="font-size:6px;color:#777">Opening</div>
+            <div style="font-size:7px;color:#aaa;margin-top:3px;text-align:right">1/5</div>
+          </div>
+          <div style="background:#fff;border-radius:3px;padding:5px;border:1.5px solid #aaa">
+            <div style="font-size:7px;font-weight:600;color:#333;margin-bottom:2px">Section 2</div>
+            <div style="font-size:6px;color:#333;font-weight:500">The evidence</div>
+            <div style="font-size:7px;color:#aaa;margin-top:3px;text-align:right">2/5</div>
+          </div>
+          <div style="background:#fff;border-radius:3px;padding:5px;border:1.5px solid transparent">
+            <div style="font-size:7px;font-weight:600;color:#555;margin-bottom:2px">Section 3</div>
+            <div style="font-size:6px;color:#777">Our survey</div>
+            <div style="font-size:7px;color:#aaa;margin-top:3px;text-align:right">3/5</div>
+          </div>
+          <div style="background:#fff;border-radius:3px;padding:5px;border:1.5px solid transparent">
+            <div style="font-size:7px;font-weight:600;color:#555;margin-bottom:2px">Section 4</div>
+            <div style="font-size:6px;color:#777">Key benefits</div>
+            <div style="font-size:7px;color:#aaa;margin-top:3px;text-align:right">4/5</div>
+          </div>
+          <div style="background:#fff;border-radius:3px;padding:5px;border:1.5px solid transparent">
+            <div style="font-size:7px;font-weight:600;color:#555;margin-bottom:2px">Section 5</div>
+            <div style="font-size:6px;color:#777">Recommendations</div>
+            <div style="font-size:7px;color:#aaa;margin-top:3px;text-align:right">5/5</div>
+          </div>
+        </div>
+        <!-- main slide -->
+        <div style="flex:1;background:#fff;border-radius:4px;display:flex;flex-direction:column;overflow:hidden">
+          <div style="background:#222;padding:14px 20px 10px">
+            <div style="font-size:18px;font-weight:600;color:#fff;line-height:1.2">What the research tells us</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.45);margin-top:3px">Sources: Bloom et al. (Nature, 2024) · McKinsey MGI (2023) · HBS Working Paper (2022) · Apex Staff Survey (Q4 FY2024)</div>
+          </div>
+          <div style="padding:14px 20px;flex:1">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:10px">
+              <div>
+                <div style="font-size:10px;font-weight:600;color:#333;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px;padding-bottom:3px;border-bottom:1.5px solid #555">External evidence</div>
+                <div style="font-size:10px;color:#333;line-height:1.6;padding-left:10px;position:relative;margin-bottom:3px">&#9658; Stanford/Trip.com RCT (n=1,612): hybrid workers as productive as full-time peers over 2 years</div>
+                <div style="font-size:10px;color:#333;line-height:1.6;padding-left:10px;position:relative;margin-bottom:3px">&#9658; Resignation rates fell 33% — largest benefit for women and long commuters</div>
+                <div style="font-size:10px;color:#333;line-height:1.6;padding-left:10px;position:relative;margin-bottom:3px">&#9658; HBS experiment: intermediate office days produced highest output novelty and collaboration</div>
+                <div style="font-size:10px;color:#333;line-height:1.6;padding-left:10px;position:relative;margin-bottom:3px">&#9658; McKinsey: 56% of knowledge workers globally now work hybrid</div>
+              </div>
+              <div>
+                <div style="font-size:10px;font-weight:600;color:#333;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px;padding-bottom:3px;border-bottom:1.5px solid #555">Our own data</div>
+                <div style="font-size:10px;color:#333;line-height:1.6;padding-left:10px;margin-bottom:3px">&#9658; 69% of Apex staff say hybrid improved their work-life balance</div>
+                <div style="font-size:10px;color:#333;line-height:1.6;padding-left:10px;margin-bottom:3px">&#9658; Technology leads satisfaction (7.8/10); Finance lowest (7.1/10)</div>
+                <div style="font-size:10px;color:#333;line-height:1.6;padding-left:10px;margin-bottom:3px">&#9658; 47% cite commute savings as a significant personal benefit</div>
+                <div style="font-size:10px;color:#333;line-height:1.6;padding-left:10px;margin-bottom:3px">&#9658; 87% would use AI tools more with proper training</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:7px">
+              <div style="background:#f5f5f5;border-radius:4px;padding:5px 8px;text-align:center;flex:1;border:0.5px solid #e0e0e0">
+                <div style="font-size:15px;font-weight:600;color:#333">33%</div>
+                <div style="font-size:9px;color:#666;line-height:1.3">Lower quit rates<br>(Bloom et al., 2024)</div>
+              </div>
+              <div style="background:#f5f5f5;border-radius:4px;padding:5px 8px;text-align:center;flex:1;border:0.5px solid #e0e0e0">
+                <div style="font-size:15px;font-weight:600;color:#333">61%</div>
+                <div style="font-size:9px;color:#666;line-height:1.3">Report positive<br>productivity impact</div>
+              </div>
+              <div style="background:#f5f5f5;border-radius:4px;padding:5px 8px;text-align:center;flex:1;border:0.5px solid #e0e0e0">
+                <div style="font-size:15px;font-weight:600;color:#333">7.5</div>
+                <div style="font-size:9px;color:#666;line-height:1.3">Avg Apex staff<br>satisfaction (out of 10)</div>
+              </div>
+              <div style="background:#f5f5f5;border-radius:4px;padding:5px 8px;text-align:center;flex:1;border:0.5px solid #e0e0e0">
+                <div style="font-size:15px;font-weight:600;color:#333">0</div>
+                <div style="font-size:9px;color:#666;line-height:1.3">Productivity penalty<br>found in RCT</div>
+              </div>
+            </div>
+          </div>
+          <div style="background:#f5f5f5;border-top:0.5px solid #e0e0e0;padding:5px 20px;display:flex;justify-content:space-between">
+            <span style="font-size:9px;color:#999">Apex Corporate Solutions — Internal</span>
+            <span style="font-size:9px;color:#999">2 of 5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REF FILES -->
+    <div class="ref-bar">
+      <div class="ref-label">Reference files provided</div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">Bloom_et_al_2024_Nature_Article.docx</div><div class="ref-desc">Full academic article from Nature (2024) reporting a 6-month randomised trial on hybrid working — covering productivity, retention, and job satisfaction findings</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">McKinsey_HBS_Hybrid_Research.pdf</div><div class="ref-desc">Two research pieces: McKinsey's global analysis of office attendance patterns and an HBS field experiment on how the number of in-office days affects output novelty and collaboration</div></div></div>
+      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">Apex_Staff_Survey_Q4_FY2024.csv</div><div class="ref-desc">Internal pulse survey of 287 Apex employees on hybrid working attitudes, satisfaction scores by department, and preferred working arrangements</div></div></div>
+    </div>
+
+    <!-- MULTIPLE CHOICE -->
+    <div class="mc-section">
+      <div class="mc-eyebrow">Not near a Copilot device?</div>
+      <div class="mc-title">Try the multiple choice challenge instead</div>
+      <div class="mc-sub">Two questions — one about the app, one about the prompt.</div>
+
+      <div class="mc-question">Q1: Which Microsoft app generated this output?</div>
+      <div class="mc-options" id="q1c4">
+        <button class="mc-opt" onclick="answer(this,'q1c4',true,'q1c4-fb-correct','q1c4-fb-wrong')">Microsoft PowerPoint — the slide panel on the left, two-column layout, stat boxes, and footer are all hallmarks of a deck</button>
+        <button class="mc-opt" onclick="answer(this,'q1c4',false,'q1c4-fb-correct','q1c4-fb-wrong')">Microsoft Word — this looks like a structured report with sections, columns, and a data summary table</button>
+      </div>
+      <div class="mc-feedback correct-fb" id="q1c4-fb-correct">Correct! The section thumbnails on the left, the dark title bar, the two-column bullet layout, the stat boxes, and the "2 of 5" footer are all classic deck conventions. Copilot in PowerPoint synthesised a journal article, a consulting report, and an internal staff survey into a coherent, structured deck — correctly treating the internal survey data as "our own" evidence distinct from the external research.</div>
+      <div class="mc-feedback wrong-fb" id="q1c4-fb-wrong">Look again at the left side of the output — there are five section thumbnails arranged vertically, each labelled with a section number. That's a slide panel. The dark title bar, two-column layout with bullet points, and stat boxes at the bottom are all deck conventions. This was generated in PowerPoint, not Word. The key clue is the structural chrome around the content, not just the content itself.</div>
+      <button class="mc-reset" id="reset-q1c4" onclick="resetQ('q1c4','q1c4-fb-correct','q1c4-fb-wrong','reset-q1c4')">Try again</button>
+
+      <div class="mc-question" style="margin-top:1.1rem">Q2: Which prompt most likely produced this output?</div>
+      <div class="mc-options" id="q2c4">
+        <button class="mc-opt" onclick="answer(this,'q2c4',false,'q2c4-fb-correct','q2c4-fb-wrong')">Create a 5-section deck on the benefits of hybrid working for a corporate organisation. Include an opening, evidence, key benefits, our survey results, and recommendations.</button>
+        <button class="mc-opt" onclick="answer(this,'q2c4',true,'q2c4-fb-correct','q2c4-fb-wrong')">I have three files — an academic study, a consulting research digest, and our own staff survey. Synthesise them into a 5-section deck on the benefits of hybrid working, using both external evidence and our internal data.</button>
+      </div>
+      <div class="mc-feedback correct-fb" id="q2c4-fb-correct">Exactly right. The difference between the two prompts is the reference files. The first prompt asks Copilot to write from scratch — it would produce generic content with no specific numbers. The second grounds Copilot in real documents, which is why the output contains precise figures: the 33% quit rate reduction from the Nature study, the 7.5 Apex satisfaction score from the internal survey, and the McKinsey attendance statistics. Real files produce real content.</div>
+      <div class="mc-feedback wrong-fb" id="q2c4-fb-wrong">That prompt would produce a reasonable deck — but a generic one. Notice the stat boxes: 33% lower quit rates (from the Bloom et al. Nature study), 7.5 average Apex satisfaction score (from the internal survey), 61% reporting positive productivity impact (from McKinsey). None of those figures could come from a prompt alone. The second option explicitly references the three uploaded source files, which is what grounded the output in real, specific data.</div>
+      <button class="mc-reset" id="reset-q2c4" onclick="resetQ('q2c4','q2c4-fb-correct','q2c4-fb-wrong','reset-q2c4')">Try again</button>
+    </div>
+
+    <!-- REVEAL -->
+    <div class="reveal-section" id="reveal-c4">
+      <div class="reveal-eyebrow">The answer</div>
+      <div class="reveal-title">Here's what actually happened</div>
+      <div class="reveal-grid">
+        <div class="reveal-card">
+          <div class="reveal-card-label">App used</div>
+          <div class="reveal-card-val">Microsoft PowerPoint — Copilot in PowerPoint</div>
+        </div>
+        <div class="reveal-card">
+          <div class="reveal-card-label">Difficulty</div>
+          <div class="reveal-card-val">Easy — section thumbnails, two-column layout, and stat boxes are recognisable deck conventions</div>
+        </div>
+        <div class="reveal-card" style="grid-column:1/-1">
+          <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+          <div class="reveal-card-val">"I have three files — an academic study, a consulting research digest, and our own staff survey. Synthesise them into a 5-section deck on the benefits of hybrid working, using both external evidence and our internal data."</div>
+        </div>
+      </div>
+      <div class="reveal-points-label">Why this is impressive</div>
+      <div class="reveal-point">Copilot read a journal article, a consulting report, and a CSV survey file — three completely different formats and voices — and wove them into a single coherent narrative</div>
+      <div class="reveal-point">It correctly distinguished between "external evidence" (the published research) and "our own data" (the internal survey), presenting them in separate columns without being told to</div>
+      <div class="reveal-point">The stat boxes at the bottom synthesise the most impactful numbers across all three sources into a single visual summary — a design decision Copilot made independently</div>
+      <div class="reveal-point">A consultant would charge several hours to produce this deck. Copilot produced it in seconds from files that already existed in your organisation</div>
+      <div class="lesson-box">
+        <div class="lesson-label">The takeaway</div>
+        <div class="lesson-text">Copilot in PowerPoint is at its most powerful when you give it real source material. Every organisation has research, reports, and survey data sitting in files that never make it into a deck because the effort of synthesis is too high. Copilot removes that barrier entirely. The next time you need to build a business case or evidence-based presentation, try uploading your source documents first — then prompt Copilot to synthesise, not just generate.</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="accent-bar"></div>
+</div>
+
+<!-- ══════════════ CHALLENGE 5 ══════════════ -->
+<div id="challenge-5" class="page challenge-page">
+  <div class="challenge-topbar">
+    <div class="challenge-topbar-dots">
+      <div class="dot" style="background:#378ADD"></div>
+      <div class="dot" style="background:#1D9E75"></div>
+      <div class="dot" style="background:#7F77DD"></div>
+      <div class="dot" style="background:#D85A30"></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px"><div class="challenge-badge">Challenge 5 of 8</div><div style="display:flex;gap:5px"><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot prog-dot-active" style="width:8px;height:8px;border-radius:50%;background:rgba(126,200,244,0.9);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div></div></div>
+  </div>
+  <div class="challenge-hero">
+    <div class="challenge-num">Challenge #5 &nbsp;·&nbsp; Difficulty: Hard</div>
+    <div class="challenge-title">Which app made this? What was the prompt?</div>
+    <div class="challenge-sub">Nothing about this output looks like what it actually is. Read carefully.</div>
+    <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
+  </div>
+  <div class="challenge-wave"></div>
+  <div class="challenge-body">
+
+    <!-- OUTPUT -->
+    <div class="output-card">
+      <div class="output-card-titlebar">
+        <div class="oc-dot"></div><div class="oc-dot"></div><div class="oc-dot"></div>
+        <span class="oc-fname">Digital_Transformation_Strategy</span>
+      </div>
+      <!-- view bar -->
+      <div style="background:#f0f0f0;border-bottom:0.5px solid #d0cece;padding:5px 16px;font-size:11px;color:#666;display:flex;gap:16px">
+        <span style="font-weight:600;color:#333">Extended view</span>
+        <span>Standard</span><span>Outline</span><span>Overview</span>
+      </div>
+      <div style="padding:1.5rem 1.85rem;background:#fff">
+        <div style="font-size:15px;font-weight:600;color:#333;margin-bottom:0.2rem">Talking points — Digital transformation strategy</div>
+        <div style="font-size:11px;color:#888;margin-bottom:1.4rem;padding-bottom:0.9rem;border-bottom:0.5px solid #e0e0e0">10-minute address to senior leadership &nbsp;·&nbsp; April 2025</div>
+
+        <div style="display:flex;gap:1rem;margin-bottom:1.1rem;padding-bottom:1.1rem;border-bottom:0.5px solid #f0f0f0">
+          <div style="min-width:60px;font-size:10px;font-weight:600;color:#555;padding-top:2px;text-transform:uppercase;letter-spacing:0.06em;line-height:1.4">Part 1<br>Opening</div>
+          <div style="font-size:12px;color:#333;line-height:1.8;flex:1">Good afternoon. Over the next ten minutes I want to make the case that our transformation programme is not primarily a technology initiative — it is a business survival initiative. The diagnostic completed in November told us something important: 47% of our core processes still involve manual steps, we have client data in four separate platforms that cannot talk to each other, and only 23% of our people feel confident using AI tools in their daily work. These are not future risks. They are present-day vulnerabilities.</div>
+        </div>
+        <div style="display:flex;gap:1rem;margin-bottom:1.1rem;padding-bottom:1.1rem;border-bottom:0.5px solid #f0f0f0">
+          <div style="min-width:60px;font-size:10px;font-weight:600;color:#555;padding-top:2px;text-transform:uppercase;letter-spacing:0.06em;line-height:1.4">Part 2<br>Context</div>
+          <div style="font-size:12px;color:#333;line-height:1.8;flex:1">Our three closest competitors have each made significant investments in process automation and AI-assisted delivery in the past 18 months. We are not behind yet — but the window is closing. Our diagnostic found that 81 staff are already using personal AI accounts on work tasks without formal guidance. They are getting productivity benefits, but we are carrying the data risk. A sanctioned, governed AI rollout is not just a capability investment; it is a risk mitigation measure.</div>
+        </div>
+        <div style="display:flex;gap:1rem;margin-bottom:1.1rem;padding-bottom:1.1rem;border-bottom:0.5px solid #f0f0f0">
+          <div style="min-width:60px;font-size:10px;font-weight:600;color:#555;padding-top:2px;text-transform:uppercase;letter-spacing:0.06em;line-height:1.4">Part 3<br>Pillars</div>
+          <div style="font-size:12px;color:#333;line-height:1.8;flex:1">Our roadmap runs across three pillars in parallel, not in sequence. Digitising core operations creates the clean, connected data that elevating client experience depends on. Building AI-ready talent makes both other pillars sustainable. I also want to acknowledge the Finance team's legitimate concerns about migration timing — we have committed to co-designing the migration schedule with Mei Lin's team rather than imposing it.</div>
+        </div>
+        <div style="display:flex;gap:1rem;margin-bottom:1.1rem;padding-bottom:1.1rem;border-bottom:0.5px solid #f0f0f0">
+          <div style="min-width:60px;font-size:10px;font-weight:600;color:#555;padding-top:2px;text-transform:uppercase;letter-spacing:0.06em;line-height:1.4">Part 4<br>Investment</div>
+          <div style="font-size:12px;color:#333;line-height:1.8;flex:1">Total investment over three years is approximately $1.34 million, front-loaded in FY2025. Projected cumulative benefit by FY2027 is $3.6 million — a 2.7 times return, conservative by industry benchmarks. One thing these numbers do not capture: the cost of voluntary turnover. Staff who feel their employer invests in them are less likely to leave. If we reduce voluntary attrition by even 10%, that is significant at roughly $18,000 per head to replace.</div>
+        </div>
+        <div style="display:flex;gap:1rem">
+          <div style="min-width:60px;font-size:10px;font-weight:600;color:#555;padding-top:2px;text-transform:uppercase;letter-spacing:0.06em;line-height:1.4">Part 5<br>Close</div>
+          <div style="font-size:12px;color:#333;line-height:1.8;flex:1">Transformation programmes succeed or fail on accountability, not ambition. The Steering Committee will be chaired by Christopher personally, with quarterly reviews and a monthly dashboard shared with the Board. The first formal review is Q3 FY2025. If we are behind, you will hear it from us directly. We are not going to manage this programme from behind a polished document that smooths over the reality. Thank you.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REF FILES -->
+    <div class="ref-bar">
+      <div class="ref-label">Reference files provided</div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">Board_Strategy_Briefing_Talking_Points.pptx</div><div class="ref-desc">Detailed talking points prepared for the Board covering the strategic rationale, three pillars, financial summary, and governance for the FY2025–2027 transformation programme</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">Digital_Readiness_Diagnostic_Report.docx</div><div class="ref-desc">Internal diagnostic report covering process fragmentation findings, data silo risks, AI readiness gaps, technology debt, and change readiness scores by department</div></div></div>
+      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">Leadership_Email_Thread_March2025.pdf</div><div class="ref-desc">An email exchange between five senior leaders discussing AI rollout priorities, Finance migration concerns, the AI Champions programme design, and Q2 planning ahead of the strategy offsite</div></div></div>
+    </div>
+
+    <!-- MULTIPLE CHOICE -->
+    <div class="mc-section">
+      <div class="mc-eyebrow">Not near a Copilot device?</div>
+      <div class="mc-title">Try the multiple choice challenge instead</div>
+      <div class="mc-sub">Two questions — one about the app, one about the prompt. This one is the hardest of all eight.</div>
+
+      <div class="mc-question">Q1: Which Microsoft app generated this output?</div>
+      <div class="mc-options" id="q1c5">
+        <button class="mc-opt" onclick="answer(this,'q1c5',false,'q1c5-fb-correct','q1c5-fb-wrong')">Microsoft Word — this is a structured document with labelled sections, dense prose, and a clear hierarchy</button>
+        <button class="mc-opt" onclick="answer(this,'q1c5',true,'q1c5-fb-correct','q1c5-fb-wrong')">Microsoft PowerPoint — this is the Notes view of a deck, showing talking points written for each section rather than slide content</button>
+      </div>
+      <div class="mc-feedback correct-fb" id="q1c5-fb-correct">You got it — and this is the hardest challenge for a reason. There are no bullets, no slide titles, and no visual layout clues. The giveaway is the view bar at the top: "Extended view / Standard / Outline / Overview" — those are deck navigation options, not document views. The Part 1–5 labels correspond to slides, and the dense prose is what the presenter would say aloud, not what appears on screen. Copilot generated the spoken word from three written documents.</div>
+      <div class="mc-feedback wrong-fb" id="q1c5-fb-wrong">A completely understandable guess — this is Challenge #5 for a reason. Look at the view bar at the very top: "Extended view / Standard / Outline / Overview". Those are navigation modes for a deck, not a document. The "Part 1–5" labels are slides. The dense prose blocks are talking points — what the presenter says aloud, not what appears on screen. Copilot generated five sections of spoken-word content from three very different written documents, and none of it looks like a deck at all.</div>
+      <button class="mc-reset" id="reset-q1c5" onclick="resetQ('q1c5','q1c5-fb-correct','q1c5-fb-wrong','reset-q1c5')">Try again</button>
+
+      <div class="mc-question" style="margin-top:1.1rem">Q2: Which prompt most likely produced this output?</div>
+      <div class="mc-options" id="q2c5">
+        <button class="mc-opt" onclick="answer(this,'q2c5',false,'q2c5-fb-correct','q2c5-fb-wrong')">Write talking points for a 10-minute leadership presentation on our digital transformation strategy covering our three pillars, financials, and governance.</button>
+        <button class="mc-opt" onclick="answer(this,'q2c5',true,'q2c5-fb-correct','q2c5-fb-wrong')">Based on these three files, generate detailed talking points for a 10-minute address to senior leadership on our digital transformation strategy.</button>
+      </div>
+      <div class="mc-feedback correct-fb" id="q2c5-fb-correct">Correct. The key is "based on these three files" — that single phrase is what makes the output credible. Notice Part 3 mentions Mei Lin by name and references the Finance team's specific concerns about month-end migration timing. That detail came from the leadership email thread, not from any prompt instruction. Copilot read candid internal emails and incorporated the human tensions they contained into a polished leadership address — without being told to.</div>
+      <div class="mc-feedback wrong-fb" id="q2c5-fb-wrong">That prompt would produce plausible but generic talking points. Notice Part 3 of the output: it mentions Mei Lin by name and specifically references the Finance team's concerns about month-end disruption during migration. That detail came from a candid internal email — it was not in any prompt instruction. The second prompt — which references the three uploaded files — is what gave Copilot access to those real internal conversations and allowed it to weave them into the address naturally.</div>
+      <button class="mc-reset" id="reset-q2c5" onclick="resetQ('q2c5','q2c5-fb-correct','q2c5-fb-wrong','reset-q2c5')">Try again</button>
+    </div>
+
+    <!-- REVEAL -->
+    <div class="reveal-section" id="reveal-c5">
+      <div class="reveal-eyebrow">The answer</div>
+      <div class="reveal-title">Here's what actually happened</div>
+      <div class="reveal-grid">
+        <div class="reveal-card">
+          <div class="reveal-card-label">App used</div>
+          <div class="reveal-card-val">Microsoft PowerPoint — Copilot generated talking points in the Notes view, one section per slide</div>
+        </div>
+        <div class="reveal-card">
+          <div class="reveal-card-label">Difficulty</div>
+          <div class="reveal-card-val">Hard — the output contains no slide structure, titles, or bullets. Nothing about it looks like a deck</div>
+        </div>
+        <div class="reveal-card" style="grid-column:1/-1">
+          <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+          <div class="reveal-card-val">"Based on these three files, generate detailed talking points for a 10-minute address to senior leadership on our digital transformation strategy."</div>
+        </div>
+      </div>
+      <div class="reveal-points-label">Why this is impressive</div>
+      <div class="reveal-point">Copilot synthesised three documents with completely different voices — a formal board briefing, a data-heavy diagnostic report, and a candid internal email thread — into a single, consistent spoken-word address</div>
+      <div class="reveal-point">It incorporated real tensions from the email thread (Finance's migration concerns, the debate about AI champion design) without being instructed to — it simply read the documents and judged what mattered</div>
+      <div class="reveal-point">The output is written for a human to deliver aloud, not to be read. Copilot adapted register and tone appropriately — moving from formal strategy language to direct, personal closing remarks</div>
+      <div class="reveal-point">Preparing a 10-minute leadership address from three source documents would typically take a senior communicator 2–3 hours. Copilot produced a credible first draft in seconds</div>
+      <div class="lesson-box">
+        <div class="lesson-label">The takeaway</div>
+        <div class="lesson-text">Copilot can read between the lines. When you give it real internal documents — including candid emails and working notes — it does not just extract facts. It understands context, acknowledges tensions, and produces output that reflects the real situation rather than a sanitised version of it. If you regularly have to brief senior stakeholders or prepare leadership communications, this is a capability worth exploring. Your files already contain the story — Copilot can help you tell it.</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="accent-bar"></div>
+</div>
+
+<!-- ══════════════ CHALLENGE 6 ══════════════ -->
+<div id="challenge-6" class="page challenge-page">
+  <div class="challenge-topbar">
+    <div class="challenge-topbar-dots">
+      <div class="dot" style="background:#378ADD"></div>
+      <div class="dot" style="background:#1D9E75"></div>
+      <div class="dot" style="background:#7F77DD"></div>
+      <div class="dot" style="background:#D85A30"></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px"><div class="challenge-badge">Challenge 6 of 8</div><div style="display:flex;gap:5px"><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot prog-dot-active" style="width:8px;height:8px;border-radius:50%;background:rgba(126,200,244,0.9);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div></div></div>
+  </div>
+  <div class="challenge-hero">
+    <div class="challenge-num">Challenge #6 &nbsp;·&nbsp; Difficulty: Medium</div>
+    <div class="challenge-title">Which app made this? What was the prompt?</div>
+    <div class="challenge-sub">Study the output below, then try to recreate it in Copilot using the reference files provided.</div>
+    <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
+  </div>
+  <div class="challenge-wave"></div>
+  <div class="challenge-body">
+
+    <!-- OUTPUT -->
+    <div class="output-card">
+      <div class="output-card-titlebar">
+        <div class="oc-dot"></div><div class="oc-dot"></div><div class="oc-dot"></div>
+        <span class="oc-fname">Q3 Planning &amp; Budget Review — recap</span>
+      </div>
+      <!-- chat header -->
+      <div style="padding:10px 16px;border-bottom:0.5px solid #e8e8e8;background:#fff">
+        <div style="font-size:14px;font-weight:600;color:#1f1f1f">Q3 Planning &amp; Budget Review — meeting recap</div>
+        <div style="font-size:11px;color:#888;margin-top:2px">Tuesday 8 April 2025 &nbsp;·&nbsp; 10:00–10:37 AM &nbsp;·&nbsp; 6 attendees</div>
+      </div>
+      <!-- message -->
+      <div style="padding:1rem 1.1rem;background:#f5f5f5">
+        <div style="background:#ebebf0;border-radius:0 12px 12px 12px;padding:0.85rem 1rem;max-width:96%">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+            <div style="width:20px;height:20px;border-radius:50%;background:#ccc;display:flex;align-items:center;justify-content:center">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="#666" stroke-width="1.2"/><path d="M3 5l1.3 1.3L7 3.5" stroke="#666" stroke-width="1" stroke-linecap="round"/></svg>
+            </div>
+            <span style="font-size:11px;font-weight:600;color:#666">AI-generated recap</span>
+          </div>
+
+          <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px">Summary</div>
+          <div style="font-size:12px;color:#1f1f1f;line-height:1.7;margin-bottom:0.75rem">The team reviewed Q3 budget performance (currently tracking at 108% of projection), addressed a two-week delay risk on the CRM migration, and agreed a path forward on the office supplies vendor contract. Five action items were assigned across four team members with deadlines between Wednesday 9 April and Friday 11 April.</div>
+
+          <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px">Key decisions</div>
+          <div style="font-size:12px;color:#1f1f1f;line-height:1.65;padding-left:14px;position:relative;margin-bottom:4px">&#10003;&nbsp; CRM migration to proceed as partial rollout on 15 October covering core modules; Phase 2 targeted 14 November</div>
+          <div style="font-size:12px;color:#1f1f1f;line-height:1.65;padding-left:14px;position:relative;margin-bottom:4px">&#10003;&nbsp; Contractor vs permanent hire cost comparison required before any headcount decision</div>
+          <div style="font-size:12px;color:#1f1f1f;line-height:1.65;padding-left:14px;position:relative;margin-bottom:4px">&#10003;&nbsp; VendorC to receive best and final offer request; contract decision at next week's ops meeting</div>
+          <div style="font-size:12px;color:#1f1f1f;line-height:1.65;padding-left:14px;position:relative;margin-bottom:10px">&#10003;&nbsp; Middleware licence renewal at SGD 3,200 for 30 days — within Finance sign-off threshold</div>
+
+          <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Action items</div>
+          <div style="display:flex;gap:8px;font-size:12px;color:#1f1f1f;line-height:1.6;margin-bottom:5px;align-items:flex-start">
+            <div style="min-width:20px;height:20px;background:#555;color:#fff;border-radius:50%;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">1</div>
+            <div><span style="font-weight:600">Marcus Teo</span> — Prepare contractor vs permanent hire cost comparison. <span style="color:#888;font-size:11px">Due: Friday 11 April</span></div>
+          </div>
+          <div style="display:flex;gap:8px;font-size:12px;color:#1f1f1f;line-height:1.6;margin-bottom:5px;align-items:flex-start">
+            <div style="min-width:20px;height:20px;background:#555;color:#fff;border-radius:50%;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">2</div>
+            <div><span style="font-weight:600">Priya Menon</span> — Initiate HR headcount approval process; schedule call with HR this week. <span style="color:#888;font-size:11px">Due: This week</span></div>
+          </div>
+          <div style="display:flex;gap:8px;font-size:12px;color:#1f1f1f;line-height:1.6;margin-bottom:5px;align-items:flex-start">
+            <div style="min-width:20px;height:20px;background:#555;color:#fff;border-radius:50%;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">3</div>
+            <div><span style="font-weight:600">Jason Ong</span> — Confirm partial rollout scope with vendor; submit one-pager on phase scope to Sandra. <span style="color:#888;font-size:11px">Due: Wed 9 April, 3:00 PM</span></div>
+          </div>
+          <div style="display:flex;gap:8px;font-size:12px;color:#1f1f1f;line-height:1.6;margin-bottom:5px;align-items:flex-start">
+            <div style="min-width:20px;height:20px;background:#555;color:#fff;border-radius:50%;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">4</div>
+            <div><span style="font-weight:600">Derek Tan</span> — Confirm middleware licence 30-day renewal cost; flag immediately if above SGD 5,000. <span style="color:#888;font-size:11px">Due: Thu 10 April</span></div>
+          </div>
+          <div style="display:flex;gap:8px;font-size:12px;color:#1f1f1f;line-height:1.6;align-items:flex-start">
+            <div style="min-width:20px;height:20px;background:#555;color:#fff;border-radius:50%;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">5</div>
+            <div><span style="font-weight:600">Weiling Chan</span> — Request best and final offer from VendorC for office supplies contract. <span style="color:#888;font-size:11px">Due: Friday 11 April</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REF FILES -->
+    <div class="ref-bar">
+      <div class="ref-label">Reference files provided</div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">Pre_Meeting_Email_Thread.pdf</div><div class="ref-desc">Email exchange before the meeting — includes the agenda and late flags from Jason and Marcus about issues to raise</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">Meeting_Transcript_8Apr2025.txt</div><div class="ref-desc">Full verbatim transcript of the Q3 Planning & Budget Review meeting, covering six attendees and multiple agenda items</div></div></div>
+      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">Post_Meeting_Chat_Log.txt</div><div class="ref-desc">Chat messages sent after the meeting confirming vendor decisions, revised scope, licence costs, and headcount next steps — some action items only finalised here</div></div></div>
+    </div>
+
+    <!-- MULTIPLE CHOICE -->
+    <div class="mc-section">
+      <div class="mc-eyebrow">Not near a Copilot device?</div>
+      <div class="mc-title">Try the multiple choice challenge instead</div>
+      <div class="mc-sub">Two questions — one about the app, one about what makes this output special.</div>
+
+      <div class="mc-question">Q1: Which Microsoft app generated this output?</div>
+      <div class="mc-options" id="q1c6">
+        <button class="mc-opt" onclick="answer(this,'q1c6',false,'q1c6-fb-correct','q1c6-fb-wrong')">Microsoft Outlook — this looks like an email summary sent after a meeting, with decisions and action items listed</button>
+        <button class="mc-opt" onclick="answer(this,'q1c6',true,'q1c6-fb-correct','q1c6-fb-wrong')">Microsoft Teams — this is a Copilot-generated meeting recap posted in a team conversation thread</button>
+      </div>
+      <div class="mc-feedback correct-fb" id="q1c6-fb-correct">Correct! The chat bubble layout, the filename format, and the "AI-generated recap" badge are all hallmarks of a Teams Copilot output. In Teams, Copilot can summarise a meeting and post the recap directly into the channel conversation — making it immediately visible and actionable for the whole team, not just the recipients of an email.</div>
+      <div class="mc-feedback wrong-fb" id="q1c6-fb-wrong">A reasonable guess — the structured format of decisions and action items does look email-like. But look at the layout: the content sits inside a chat bubble with a rounded corner, posted against a light grey background. That's a Teams conversation thread, not an email compose window. The "AI-generated recap" badge and the filename format confirm it. Teams Copilot posts the recap directly into the channel so the whole team sees it immediately.</div>
+      <button class="mc-reset" id="reset-q1c6" onclick="resetQ('q1c6','q1c6-fb-correct','q1c6-fb-wrong','reset-q1c6')">Try again</button>
+
+      <div class="mc-question" style="margin-top:1.1rem">Q2: Action item #4 — Derek Tan's middleware licence task — was NOT mentioned in the meeting transcript. Where did it come from?</div>
+      <div class="mc-options" id="q2c6">
+        <button class="mc-opt" onclick="answer(this,'q2c6',false,'q2c6-fb-correct','q2c6-fb-wrong')">Copilot inferred it from the meeting context — it knew the licence would need renewing based on the CRM discussion</button>
+        <button class="mc-opt" onclick="answer(this,'q2c6',true,'q2c6-fb-correct','q2c6-fb-wrong')">It was confirmed in the post-meeting chat log — Derek posted the cost estimate and next steps there after the meeting ended</button>
+      </div>
+      <div class="mc-feedback correct-fb" id="q2c6-fb-correct">Exactly right — and this is the real insight of Challenge #6. The post-meeting chat log is Reference File C. After the meeting, Derek confirmed the SGD 3,200 renewal cost in the chat, and the team finalised several other decisions there too. Copilot read all three documents and reconciled the full picture — including commitments that were only made after the meeting officially ended. A manual note-taker would almost certainly have missed this.</div>
+      <div class="mc-feedback wrong-fb" id="q2c6-fb-wrong">Copilot doesn't infer or hallucinate action items — it extracts them from the documents provided. Derek's middleware task was confirmed in Reference File C: the post-meeting chat log. After the meeting ended, Derek posted that the 30-day renewal would cost SGD 3,200, and the team wrapped up several other decisions in that same thread. Copilot read all three documents — the pre-meeting emails, the transcript, and the post-meeting chat — and assembled the complete picture, including what happened after the call ended.</div>
+      <button class="mc-reset" id="reset-q2c6" onclick="resetQ('q2c6','q2c6-fb-correct','q2c6-fb-wrong','reset-q2c6')">Try again</button>
+    </div>
+
+    <!-- REVEAL -->
+    <div class="reveal-section" id="reveal-c6">
+      <div class="reveal-eyebrow">The answer</div>
+      <div class="reveal-title">Here's what actually happened</div>
+      <div class="reveal-grid">
+        <div class="reveal-card">
+          <div class="reveal-card-label">App used</div>
+          <div class="reveal-card-val">Microsoft Teams — Copilot generated the recap from three separate documents and posted it to the channel</div>
+        </div>
+        <div class="reveal-card">
+          <div class="reveal-card-label">Difficulty</div>
+          <div class="reveal-card-val">Medium — the action item format is a recognisable Teams Copilot signature, but the multi-source trick is easy to miss</div>
+        </div>
+        <div class="reveal-card" style="grid-column:1/-1">
+          <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+          <div class="reveal-card-val">"Summarise this meeting and the related communications. List the key decisions made, and provide all action items with owners and due dates."</div>
+        </div>
+      </div>
+      <div class="reveal-points-label">Why this is impressive</div>
+      <div class="reveal-point">Copilot reconciled three separate documents — a pre-meeting email thread, a live transcript, and a post-meeting chat log — and assembled a single, complete picture of what was decided and who owns what</div>
+      <div class="reveal-point">Action item #4 (Derek's middleware licence task) only existed in the post-meeting chat — it was never discussed in the transcript. Copilot caught it because it read all three documents, not just the transcript</div>
+      <div class="reveal-point">Several decisions were only finalised in the chat after the meeting ended. A human note-taker working from the transcript alone would have produced an incomplete and potentially misleading set of action items</div>
+      <div class="reveal-point">The output assigns owners and due dates to every action item — detail that was scattered across the three documents and required synthesis, not just extraction</div>
+      <div class="lesson-box">
+        <div class="lesson-label">The takeaway</div>
+        <div class="lesson-text">Meetings don't end when the call ends. Decisions get updated, action items get clarified, and commitments get made in the chat thread that follows. Copilot is the only participant that reads everything — before, during, and after — and produces a complete record. If you have ever sent a follow-up email only to realise you missed something from the chat, this is the capability that solves that problem.</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="accent-bar"></div>
+</div>
+
+<!-- ══════════════ CHALLENGE 7 ══════════════ -->
+<div id="challenge-7" class="page challenge-page">
+  <div class="challenge-topbar">
+    <div class="challenge-topbar-dots">
+      <div class="dot" style="background:#378ADD"></div>
+      <div class="dot" style="background:#1D9E75"></div>
+      <div class="dot" style="background:#7F77DD"></div>
+      <div class="dot" style="background:#D85A30"></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px"><div class="challenge-badge">Challenge 7 of 8</div><div style="display:flex;gap:5px"><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot prog-dot-active" style="width:8px;height:8px;border-radius:50%;background:rgba(126,200,244,0.9);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div></div></div>
+  </div>
+  <div class="challenge-hero">
+    <div class="challenge-num">Challenge #7 &nbsp;·&nbsp; Difficulty: Medium</div>
+    <div class="challenge-title">Which app made this? What was the prompt?</div>
+    <div class="challenge-sub">The output is straightforward. What's impressive is what went into making it.</div>
+    <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
+  </div>
+  <div class="challenge-wave"></div>
+  <div class="challenge-body">
+
+    <!-- OUTPUT -->
+    <div class="output-card">
+      <div class="output-card-titlebar">
+        <div class="oc-dot"></div><div class="oc-dot"></div><div class="oc-dot"></div>
+        <span class="oc-fname">Draft — RE: Unacceptable Delays — Project Phoenix Delivery</span>
+      </div>
+      <!-- email header -->
+      <div style="padding:14px 20px 10px;border-bottom:0.5px solid #e8e8e8;background:#fff">
+        <div style="font-size:14px;font-weight:600;color:#1f1f1f;margin-bottom:7px">RE: Unacceptable Delays — Project Phoenix Delivery</div>
+        <div style="font-size:12px;color:#666;line-height:1.8">
+          <span style="font-weight:600;color:#333">To:</span> Raymond Hartley &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ef9dc1878e9d9b838a96af9f86818a9c9b9d8a8a9b889d809a9fc18c8082">[email&#160;protected]</a>&gt;<br>
+          <span style="font-weight:600;color:#333">CC:</span> Linda Wee; Gary Soh<br>
+          <span style="font-weight:600;color:#333">From:</span> Sandra Lim &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5320323d3721327d3f3a3e133223362b303c21237d303c3e">[email&#160;protected]</a>&gt;<br>
+          <span style="font-weight:600;color:#333">Status:</span> <span style="color:#888;font-style:italic">Draft — AI-generated, review before sending</span>
+        </div>
+      </div>
+      <!-- email body -->
+      <div style="padding:18px 20px;font-size:13px;color:#1f1f1f;line-height:1.85;background:#fff">
+        <p style="margin-bottom:0.8rem">Dear Raymond,</p>
+        <p style="margin-bottom:0.8rem">Thank you for writing to us directly. I want to respond to you personally, and without delay.</p>
+        <p style="margin-bottom:0.8rem">I want to acknowledge, without qualification, that the delivery of the system integration report for Project Phoenix is overdue. The original deadline was 28 March 2025, and we have not met it. I am sorry for the disruption this has caused to your planning and to your commitments to your own stakeholders. You are right to be frustrated, and your escalation was entirely warranted.</p>
+        <p style="margin-bottom:0.6rem">Let me address your four requests directly:</p>
+        <ol style="padding-left:1.4rem;margin-bottom:0.8rem">
+          <li style="margin-bottom:0.5rem"><strong>Root cause:</strong> The delay was caused by two compounding factors — an unexpected delay in receiving the legacy data extract during the Easter period, and the unplanned absence of our senior analyst due to hospitalisation leave. Neither excuses the delay, and both reflect gaps in our contingency planning that I am personally committed to addressing.</li>
+          <li style="margin-bottom:0.5rem"><strong>Revised schedule:</strong> The system integration report will be delivered to you by <strong>Thursday, 10 April 2025 at 10:00 AM</strong>. This is a firm commitment, not an estimate.</li>
+          <li style="margin-bottom:0.5rem"><strong>Steps to prevent recurrence:</strong> We are implementing three immediate measures — a dedicated backup resource for all Tier 1 client projects, a formal early-warning protocol requiring notification within 24 hours of any delivery risk, and a weekly status update cadence for Project Phoenix for the remainder of the engagement.</li>
+          <li style="margin-bottom:0.5rem"><strong>Senior escalation:</strong> I am taking over as your primary point of contact for the duration of Phase 1. My direct line is +65 6438 2201. You have my personal commitment to the successful delivery of this project.</li>
+        </ol>
+        <p style="margin-bottom:0.8rem">I would welcome the opportunity to speak with you by phone today or tomorrow. Please let me know a time that suits.</p>
+        <p style="margin-bottom:0.8rem">Yours sincerely,</p>
+        <div style="margin-top:0.75rem;padding-top:0.75rem;border-top:0.5px solid #e8e8e8;font-size:12px;color:#666;line-height:1.8">
+          <strong style="color:#333">Sandra Lim</strong><br>
+          People &amp; Culture — escalation lead, Project Phoenix<br>
+          Apex Corporate Solutions<br>
+          +65 6438 2201 &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="89fae8e7edfbe8a7e5e0e4c9e8f9ecf1eae6fbf9a7eae6e4">[email&#160;protected]</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- REF FILES -->
+    <div class="ref-bar">
+      <div class="ref-label">Reference files provided</div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">Client_Complaint_Email_Hartley.msg</div><div class="ref-desc">A formal complaint from Pine Street Group's COO demanding written acknowledgement of a project delay, a revised schedule, and senior escalation — with a response deadline of Wednesday 9 April</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">Internal_Escalation_Email_JasonOng.msg</div><div class="ref-desc">An internal email from the project manager explaining the root causes of the delay and the revised internal delivery timeline — not intended for the client</div></div></div>
+      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">Project_Phoenix_Briefing_Note.docx</div><div class="ref-desc">An internal briefing note covering contract value, penalty clause exposure, the client relationship context, and the recommended tone and content for the response</div></div></div>
+    </div>
+
+    <!-- MULTIPLE CHOICE -->
+    <div class="mc-section">
+      <div class="mc-eyebrow">Not near a Copilot device?</div>
+      <div class="mc-title">Try the multiple choice challenge instead</div>
+      <div class="mc-sub">Two questions — one about the app, one about the most impressive thing Copilot did here.</div>
+
+      <div class="mc-question">Q1: Which Microsoft app generated this output?</div>
+      <div class="mc-options" id="q1c7">
+        <button class="mc-opt" onclick="answer(this,'q1c7',false,'q1c7-fb-correct','q1c7-fb-wrong')">Microsoft Word — this is a formal letter drafted from source documents, which is a classic Word task</button>
+        <button class="mc-opt" onclick="answer(this,'q1c7',true,'q1c7-fb-correct','q1c7-fb-wrong')">Microsoft Outlook — this is an email draft sitting in the Drafts folder, generated by Copilot ready for review before sending</button>
+      </div>
+      <div class="mc-feedback correct-fb" id="q1c7-fb-correct">Correct! The email header format — To, CC, From, Subject — and the "Draft — AI-generated, review before sending" status label are the giveaways. This was generated in Outlook, sitting ready in the Drafts folder. Copilot in Outlook can draft a reply using uploaded reference files, not just the email thread itself — making it far more capable than a simple "reply" suggestion.</div>
+      <div class="mc-feedback wrong-fb" id="q1c7-fb-wrong">This looks like a formal letter, but the format gives it away — notice the To, CC, From, and Subject fields at the top, and the "Draft — AI-generated, review before sending" status. This is an email sitting in the Drafts folder in Outlook, not a Word document. The key difference matters practically: Copilot in Outlook generated this reply with awareness of the full email context, the attached reference files, and the expectation that a human would review it before hitting send.</div>
+      <button class="mc-reset" id="reset-q1c7" onclick="resetQ('q1c7','q1c7-fb-correct','q1c7-fb-wrong','reset-q1c7')">Try again</button>
+
+      <div class="mc-question" style="margin-top:1.1rem">Q2: The reply commits to delivering the report by "Thursday, 10 April 2025 at 10:00 AM". That specific date and time did not appear in the client's complaint. Where did it come from?</div>
+      <div class="mc-options" id="q2c7">
+        <button class="mc-opt" onclick="answer(this,'q2c7',false,'q2c7-fb-correct','q2c7-fb-wrong')">Copilot estimated a reasonable delivery date based on the context of the complaint and the delay described</button>
+        <button class="mc-opt" onclick="answer(this,'q2c7',true,'q2c7-fb-correct','q2c7-fb-wrong')">It came from the internal escalation email — Jason Ong stated that the report would be ready for client delivery by Thursday 10 April at 10am</button>
+      </div>
+      <div class="mc-feedback correct-fb" id="q2c7-fb-correct">Exactly right. Jason's internal email — Reference File B — contained the revised delivery estimate that the team had agreed internally. Copilot read that internal document, extracted the committed date, and used it to anchor the client response. Critically, it did this without revealing any other internal detail from Jason's email — the reasons for the delay were reframed appropriately for a client audience. Copilot used internal context without leaking it.</div>
+      <div class="mc-feedback wrong-fb" id="q2c7-fb-wrong">Copilot doesn't estimate or guess dates — that would be dangerous in a client-facing context. The specific date and time came from Reference File B: Jason Ong's internal escalation email, in which he stated the report would be ready for client delivery by Thursday 10 April at 10am. Copilot read that internal document, extracted the commitment, and used it to anchor the reply — without revealing any of the other sensitive internal detail Jason had shared. That's a meaningful distinction: it used the information without exposing it.</div>
+      <button class="mc-reset" id="reset-q2c7" onclick="resetQ('q2c7','q2c7-fb-correct','q2c7-fb-wrong','reset-q2c7')">Try again</button>
+    </div>
+
+    <!-- REVEAL -->
+    <div class="reveal-section" id="reveal-c7">
+      <div class="reveal-eyebrow">The answer</div>
+      <div class="reveal-title">Here's what actually happened</div>
+      <div class="reveal-grid">
+        <div class="reveal-card">
+          <div class="reveal-card-label">App used</div>
+          <div class="reveal-card-val">Microsoft Outlook — Copilot drafted the reply using three reference files and placed it in the Drafts folder for review</div>
+        </div>
+        <div class="reveal-card">
+          <div class="reveal-card-label">Difficulty</div>
+          <div class="reveal-card-val">Medium — it's clearly an email, but the multi-document sourcing and internal context management are easy to miss</div>
+        </div>
+        <div class="reveal-card" style="grid-column:1/-1">
+          <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+          <div class="reveal-card-val">"Draft a professional reply to this client complaint. Acknowledge the delay, apologise sincerely, give a firm revised delivery date, and outline three specific steps we are taking. Do not reference any internal documents."</div>
+        </div>
+      </div>
+      <div class="reveal-points-label">Why this is impressive</div>
+      <div class="reveal-point">Copilot read an external complaint and two confidential internal documents — and produced a reply that used the internal context without revealing it. The instruction "do not reference any internal documents" was followed precisely</div>
+      <div class="reveal-point">The delivery commitment of "Thursday 10 April at 10:00 AM" came from Jason's internal email — a specific, traceable fact that no amount of prompt engineering alone could have produced</div>
+      <div class="reveal-point">The reply addresses all four of the client's specific demands — root cause, revised schedule, prevention steps, and senior escalation — because Copilot read the complaint carefully enough to extract and respond to each one</div>
+      <div class="reveal-point">The briefing note contained sensitive commercial details including penalty clause exposure and contract value. None of that appeared in the reply — Copilot used context to inform tone and urgency without leaking confidential information</div>
+      <div class="lesson-box">
+        <div class="lesson-label">The takeaway</div>
+        <div class="lesson-text">Copilot can hold the line between what it knows and what it shares. When drafting client-facing communications under pressure, the hardest thing is not writing the words — it is knowing what internal context to use, what to protect, and what commitments are safe to make. By grounding Copilot in real internal documents while instructing it on what not to reveal, you get a reply that is both credible and commercially safe. That is a combination that takes an experienced professional significant time to produce alone.</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="accent-bar"></div>
+</div>
+
+<!-- ══════════════ CHALLENGE 8 ══════════════ -->
+<div id="challenge-8" class="page challenge-page">
+  <div class="challenge-topbar">
+    <div class="challenge-topbar-dots">
+      <div class="dot" style="background:#378ADD"></div>
+      <div class="dot" style="background:#1D9E75"></div>
+      <div class="dot" style="background:#7F77DD"></div>
+      <div class="dot" style="background:#D85A30"></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px"><div class="challenge-badge">Challenge 8 of 8</div><div style="display:flex;gap:5px"><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot prog-dot-active" style="width:8px;height:8px;border-radius:50%;background:rgba(126,200,244,0.9);transition:background .2s"></div></div></div>
+  </div>
+  <div class="challenge-hero">
+    <div class="challenge-num">Challenge #8 &nbsp;·&nbsp; Difficulty: Hard</div>
+    <div class="challenge-title">Which app made this? What was the prompt?</div>
+    <div class="challenge-sub">Six sources. Three files. One output. The most ambitious challenge of all eight.</div>
+    <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
+  </div>
+  <div class="challenge-wave"></div>
+  <div class="challenge-body">
+
+    <!-- OUTPUT -->
+    <div class="output-card">
+      <div class="output-card-titlebar">
+        <div class="oc-dot"></div><div class="oc-dot"></div><div class="oc-dot"></div>
+        <span class="oc-fname">AI_Productivity_Briefing — workspace</span>
+      </div>
+      <!-- subtle input pane hint -->
+      <div style="background:#f8f5fc;border-bottom:0.5px solid #e0d4ec;padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#9b6ab5">Source files</span>
+        <span style="font-size:11px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;padding:2px 8px;color:#444">Academic_Research_Articles.docx</span>
+        <span style="font-size:11px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;padding:2px 8px;color:#444">Corporate_Research_Reports.pdf</span>
+        <span style="font-size:11px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;padding:2px 8px;color:#444">Apex_AI_Pulse_Survey.xlsx</span>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:5px">
+          <div style="width:14px;height:14px;border-radius:50%;background:#e0d4ec;display:flex;align-items:center;justify-content:center">
+            <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4.5L3 6L6.5 2.5" stroke="#7719AA" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <span style="font-size:11px;font-weight:600;color:#7719AA">AI output</span>
+          <span style="font-size:10px;color:#aaa">· 6 sources across 3 files</span>
+        </div>
+      </div>
+      <!-- document body -->
+      <div style="padding:1.5rem 1.85rem;background:#fff">
+        <div style="font-size:16px;font-weight:600;color:#1f1f1f;margin-bottom:0.2rem">AI and office productivity: a briefing for Apex Corporate Solutions</div>
+        <div style="font-size:11px;color:#999;margin-bottom:1.1rem;padding-bottom:0.75rem;border-bottom:0.5px solid #e8e8e8">April 2025 &nbsp;·&nbsp; AI-generated from 6 sources across 3 files &nbsp;·&nbsp; 4 academic studies · 3 corporate reports · 1 internal staff survey</div>
+
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#666;margin:0 0 0.4rem;border-bottom:0.5px solid #e8e8e8;padding-bottom:3px">Overview</div>
+        <div style="font-size:12px;color:#1f1f1f;line-height:1.8;margin-bottom:0.85rem">Generative AI has crossed a meaningful threshold in the workplace. Adoption has grown faster than any prior general-purpose technology — reaching approximately 40% of the US working-age population within two years of launch, compared with a three-year timeline for the personal computer to reach 20%. <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px;margin-left:2px">Bick et al. 2025</span> Within Apex, our Q1 FY2025 pulse survey confirms the wave has arrived: 23% of staff already use AI tools in their daily work, and 71% say they would do so if given proper training and guidance.</div>
+
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#666;margin:0 0 0.4rem;border-bottom:0.5px solid #e8e8e8;padding-bottom:3px">Key benefits</div>
+        <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; Productivity gains are consistently measured: AI assistance improves individual output by 14–34%, with the largest gains among less experienced workers <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px">Brynjolfsson et al. 2023</span></div>
+        <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; Knowledge workers using AI report saving an average of 5.4% of their working hours — roughly 2.2 hours per week — rising to 4+ hours among daily users <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px">Bick et al. 2025</span></div>
+        <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; For Apex specifically, staff identified email drafting, report writing, and meeting follow-up as the highest-value use cases — an estimated 8.65 automatable hours per staff member per week <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px">Apex survey 2025</span></div>
+        <div style="background:#f5f5f5;border-left:2px solid #ccc;padding:0.65rem 0.9rem;margin:0.75rem 0 0.85rem;font-size:12px;color:#555;line-height:1.65">McKinsey estimates generative AI could add SGD 3.5–6 trillion in annual value globally. The highest-value applications — document drafting, information synthesis, data analysis, and communication — are precisely the tasks Apex staff flagged as their biggest time burdens. <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px">McKinsey 2023</span></div>
+
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#666;margin:0 0 0.4rem;border-bottom:0.5px solid #e8e8e8;padding-bottom:3px">Risks and concerns</div>
+        <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; 78% of AI-using workers globally bring their own tools to work without employer knowledge — at Apex, 81 staff confirmed using personal accounts on work tasks, creating data and IP exposure <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px">Microsoft WTI 2024</span></div>
+        <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; Only 23% of Apex staff feel confident using AI, yet 60% of business leaders globally admit their organisation lacks a clear AI plan — ungoverned adoption is a present risk <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px">Apex survey; Microsoft WTI 2024</span></div>
+        <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.85rem">&#9658;&nbsp; Accuracy and verification concerns are cited by 34% of Apex staff as a reason for hesitation — structured guidance on when and how to check AI outputs is needed</div>
+
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#666;margin:0 0 0.4rem;border-bottom:0.5px solid #e8e8e8;padding-bottom:3px">Recommended next steps</div>
+        <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; Launch a governed AI rollout immediately — converts existing ungoverned usage into a secure, supported programme and directly mitigates the data risk above</div>
+        <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; Design the AI Champions programme as a 90-day cohort experience — avoid the 2-hour training model that has failed in prior internal programmes</div>
+        <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; Define success metrics beyond training completion: track behavioural adoption and weekly time savings per staff member</div>
+        <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;">&#9658;&nbsp; Prioritise Finance and Operations for targeted support — both show below-average AI confidence and represent the highest-volume manual workflows</div>
+      </div>
+    </div>
+
+    <!-- REF FILES -->
+    <div class="ref-bar">
+      <div class="ref-label">Reference files provided</div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">Academic_Research_Articles.docx</div><div class="ref-desc">Two full academic articles: a QJE study on generative AI's productivity impact on customer support agents (14–34% gains), and a St. Louis Fed paper tracking AI adoption rates and time savings across the US workforce</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">Corporate_Research_Reports.pdf</div><div class="ref-desc">Three corporate research reports — Microsoft's 2024 Work Trend Index on AI adoption and the "BYOAI" risk, and two McKinsey reports on the economic value of generative AI and the emergence of agentic AI</div></div></div>
+      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">Apex_AI_Pulse_Survey_Q1FY2025.xlsx</div><div class="ref-desc">Internal survey of 287 Apex staff covering current AI tool usage, confidence levels, informal ungoverned usage risks, and an estimated 8.65 hours per week of automatable tasks per person</div></div></div>
+    </div>
+
+    <!-- MULTIPLE CHOICE -->
+    <div class="mc-section">
+      <div class="mc-eyebrow">Not near a Copilot device?</div>
+      <div class="mc-title">Try the multiple choice challenge instead</div>
+      <div class="mc-sub">The final challenge. Two questions — and the second one is the most revealing of all eight.</div>
+
+      <div class="mc-question">Q1: Which Microsoft app generated this output?</div>
+      <div class="mc-options" id="q1c8">
+        <button class="mc-opt" onclick="answer(this,'q1c8',false,'q1c8-fb-correct','q1c8-fb-wrong')">Microsoft Word — this is a structured research briefing document with sections, citations, and a callout box</button>
+        <button class="mc-opt" onclick="answer(this,'q1c8',true,'q1c8-fb-correct','q1c8-fb-wrong')">Microsoft Copilot Notebook — a long-context workspace tool designed to synthesise large volumes of source material into structured outputs</button>
+      </div>
+      <div class="mc-feedback correct-fb" id="q1c8-fb-correct">Correct — and this is the hardest app to identify precisely because the output looks exactly like a Word document. The giveaway is the source file strip at the top: three file chips showing the uploaded documents, and the "AI output · 6 sources across 3 files" label on the right. Copilot Notebook is designed for exactly this task — processing large, unstructured source material and producing a coherent, well-organised output from it.</div>
+      <div class="mc-feedback wrong-fb" id="q1c8-fb-wrong">A completely understandable guess — the output is indistinguishable from a Word document in terms of content and layout. The tell is at the very top of the output: a strip showing three file chips (the uploaded source documents) and an "AI output · 6 sources across 3 files" label. That's the Copilot Notebook interface. Unlike Word's Copilot, Notebook is built specifically for long-context synthesis — it can hold and reason across much larger volumes of source material than a standard document editor.</div>
+      <button class="mc-reset" id="reset-q1c8" onclick="resetQ('q1c8','q1c8-fb-correct','q1c8-fb-wrong','reset-q1c8')">Try again</button>
+
+      <div class="mc-question" style="margin-top:1.1rem">Q2: The "Recommended next steps" section suggests prioritising Finance and Operations for AI support. That recommendation didn't come from any of the academic or corporate research. Where did it come from?</div>
+      <div class="mc-options" id="q2c8">
+        <button class="mc-opt" onclick="answer(this,'q2c8',false,'q2c8-fb-correct','q2c8-fb-wrong')">Copilot generated a logical recommendation based on the types of tasks typically found in Finance and Operations roles</button>
+        <button class="mc-opt" onclick="answer(this,'q2c8',true,'q2c8-fb-correct','q2c8-fb-wrong')">It came from the Apex internal survey — which showed Finance and Operations had the lowest AI confidence scores and the highest volume of manual workflows</button>
+      </div>
+      <div class="mc-feedback correct-fb" id="q2c8-fb-correct">Exactly right — and this is the most important insight of the entire booth. The recommendation is not generic advice from a research paper. It is grounded in Apex's own data: the internal pulse survey showed Finance scored 2.1/5 on AI confidence and Operations scored 2.3/5 — the two lowest in the organisation. Copilot read that internal data, cross-referenced it with the external research on where AI delivers the most value, and produced a recommendation that is specific to Apex. That is the difference between a generic briefing and a useful one.</div>
+      <div class="mc-feedback wrong-fb" id="q2c8-fb-wrong">Copilot doesn't generate generic recommendations — it grounds them in evidence. The Finance and Operations recommendation came directly from Reference File C: the Apex internal pulse survey. Finance scored 2.1/5 on AI confidence and Operations scored 2.3/5 — the two lowest departments in the organisation. Copilot read that internal data, connected it to the external research on where AI delivers the most productivity value, and produced a recommendation that is specific to Apex rather than generic advice that could apply to any organisation. That connection between external research and internal data is what Notebook is built to make.</div>
+      <button class="mc-reset" id="reset-q2c8" onclick="resetQ('q2c8','q2c8-fb-correct','q2c8-fb-wrong','reset-q2c8')">Try again</button>
+    </div>
+
+    <!-- REVEAL -->
+    <div class="reveal-section" id="reveal-c8">
+      <div class="reveal-eyebrow">The answer</div>
+      <div class="reveal-title">Here's what actually happened</div>
+      <div class="reveal-grid">
+        <div class="reveal-card">
+          <div class="reveal-card-label">App used</div>
+          <div class="reveal-card-val">Microsoft Copilot Notebook — a long-context workspace that synthesised 6 sources across 3 files into a single structured briefing</div>
+        </div>
+        <div class="reveal-card">
+          <div class="reveal-card-label">Difficulty</div>
+          <div class="reveal-card-val">Hard — the output is visually identical to a Word document and Copilot Notebook is the least well-known of the six apps</div>
+        </div>
+        <div class="reveal-card" style="grid-column:1/-1">
+          <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
+          <div class="reveal-card-val">"Using these three files — academic research, corporate reports, and our own internal survey — create a structured briefing on AI and office productivity with sections on: Overview, Key Benefits, Risks and Concerns, and Recommended Next Steps for our organisation."</div>
+        </div>
+      </div>
+      <div class="reveal-points-label">Why this is impressive</div>
+      <div class="reveal-point">Copilot Notebook processed 6 distinct sources — two academic papers, three corporate reports, and one internal staff survey — across three files in different formats, and synthesised them into a single briefing with a consistent voice and structure</div>
+      <div class="reveal-point">The inline citations (Brynjolfsson et al., Bick et al., McKinsey, Apex survey) show Copilot tracking which claim came from which source — a level of source awareness that goes beyond simple summarisation</div>
+      <div class="reveal-point">The "Recommended next steps" section is not generic AI advice — it is grounded in Apex's specific survey data, connecting external evidence to internal reality in a way that makes the output immediately actionable for this organisation</div>
+      <div class="reveal-point">A strategy analyst would spend one to two days producing a briefing of this quality and specificity. Copilot produced a credible first draft in under a minute — and the internal data that makes it specific to Apex was already sitting in a spreadsheet</div>
+      <div class="lesson-box">
+        <div class="lesson-label">The big finish — what all 8 challenges have in common</div>
+        <div class="lesson-text">Every output in this booth was produced by combining a clear prompt with real source material that already existed inside the organisation. No challenge required Copilot to make things up or work from scratch. The pattern is always the same: identify the task, gather the relevant files, write a specific prompt, and let Copilot do the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution. That is what working smarter looks like in practice.</div>
+      </div>
+    </div>
+
+  </div>
+  <div class="accent-bar"></div>
+</div>
+
+<script>
+const challenges = [1,2,3,4,5,6,7,8];
+let history = [];  // track which challenges have been seen this session
+let currentChallenge = null;
+let completed = new Set();
+
+function updateProgressDots(){
+  document.querySelectorAll('.prog-dot[data-ch]').forEach(function(dot){
+    const ch = parseInt(dot.getAttribute('data-ch'));
+    if(completed.has(ch)){
+      dot.style.background = 'rgba(29,158,117,0.9)';
+    } else if(ch === currentChallenge){
+      dot.style.background = 'rgba(126,200,244,0.9)';
+    } else {
+      dot.style.background = 'rgba(255,255,255,0.2)';
+    }
+  });
+}
+
+function goToApp(ids){
+  const id = ids[Math.floor(Math.random()*ids.length)];
+  loadChallenge(id);
+}
+
+function startChallenge(){
+  // pick one not yet seen, or reset if all seen
+  const unseen = challenges.filter(c => !history.includes(c));
+  const pool = unseen.length > 0 ? unseen : challenges;
+  const id = pool[Math.floor(Math.random()*pool.length)];
+  loadChallenge(id);
+}
+
+function nextChallenge(){
+  const unseen = challenges.filter(c => !history.includes(c) && c !== currentChallenge);
+  const pool = unseen.length > 0 ? unseen : challenges.filter(c => c !== currentChallenge);
+  if(pool.length === 0){ showPage('landing'); return; }
+  const id = pool[Math.floor(Math.random()*pool.length)];
+  loadChallenge(id);
+}
+
+function loadChallenge(id){
+  resetChallenge(id);
+  currentChallenge = id;
+  if(!history.includes(id)) history.push(id);
+  showPage('challenge-'+id);
+  updateProgressDots();
+}
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const p = document.getElementById(id);
+  if(p){p.classList.add('active');p.scrollTop=0;}
+}
+
+function goHome(){
+  currentChallenge = null;
+  showPage('landing');
+}
+
+function resetChallenge(cn){
+  // reset Q1
+  ['q1c'+cn,'q2c'+cn].forEach(function(gid){
+    const g = document.getElementById(gid);
+    if(!g) return;
+    g.querySelectorAll('.mc-opt').forEach(function(o){
+      o.classList.remove('correct','wrong','disabled');
+    });
+  });
+  // hide feedback and reset buttons
+  const page = document.getElementById('challenge-'+cn);
+  if(!page) return;
+  page.querySelectorAll('.mc-feedback').forEach(function(el){ el.classList.remove('show'); });
+  page.querySelectorAll('.mc-reset').forEach(function(el){ el.classList.remove('show'); });
+  // hide reveal
+  const reveal = document.getElementById('reveal-c'+cn);
+  if(reveal) reveal.style.display='none';
+  completed.delete(parseInt(cn));
+  updateProgressDots();
+}
+
+function answer(btn, groupId, isCorrect, correctFbId, wrongFbId){
+  const group = document.getElementById(groupId);
+  const opts = group.querySelectorAll('.mc-opt');
+  opts.forEach(function(o){ o.classList.add('disabled'); });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if(!isCorrect){
+    opts.forEach(function(o){
+      if(o!==btn) o.classList.add('correct');
+    });
+  }
+  document.getElementById(isCorrect ? correctFbId : wrongFbId).classList.add('show');
+  const resetId = 'reset-'+groupId;
+  const resetBtn = document.getElementById(resetId);
+  if(resetBtn) resetBtn.classList.add('show');
+  const m = groupId.match(/q\dc(\d+)/);
+  if(m) checkReveal(m[1]);
+}
+
+function checkReveal(cn){
+  const q1 = document.getElementById('q1c'+cn);
+  const q2 = document.getElementById('q2c'+cn);
+  if(!q1||!q2) return;
+  const q1done = q1.querySelector('.mc-opt.correct, .mc-opt.wrong');
+  const q2done = q2.querySelector('.mc-opt.correct, .mc-opt.wrong');
+  if(q1done && q2done){
+    const reveal = document.getElementById('reveal-c'+cn);
+    if(reveal) reveal.style.display='block';
+    completed.add(parseInt(cn));
+    updateProgressDots();
+  }
+}
+
+function resetQ(groupId, correctFbId, wrongFbId, resetBtnId){
+  const group = document.getElementById(groupId);
+  group.querySelectorAll('.mc-opt').forEach(function(o){
+    o.classList.remove('correct','wrong','disabled');
+  });
+  document.getElementById(correctFbId).classList.remove('show');
+  document.getElementById(wrongFbId).classList.remove('show');
+  document.getElementById(resetBtnId).classList.remove('show');
+  // hide reveal again if it was shown
+  const m = groupId.match(/q\dc(\d+)/);
+  if(m){
+    const reveal = document.getElementById('reveal-c'+m[1]);
+    if(reveal) reveal.style.display='none';
+  }
+}
+
+function copyPrompt(btn){
+  const card = btn.closest('.reveal-card');
+  const val = card.querySelector('.reveal-card-val');
+  if(!val) return;
+  const text = val.textContent.replace(/^["""]|["""]$/g,'').trim();
+  navigator.clipboard.writeText(text).then(function(){
+    btn.textContent='Copied!';
+    btn.classList.add('copied');
+    setTimeout(function(){ btn.textContent='Copy'; btn.classList.remove('copied'); }, 2000);
+  }).catch(function(){
+    // fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent='Copied!';
+    btn.classList.add('copied');
+    setTimeout(function(){ btn.textContent='Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// Keyboard shortcuts for booth operator
+document.addEventListener('keydown', function(e){
+  if(e.key==='Escape') goHome();
+  if(e.key==='n' || e.key==='N'){
+    if(currentChallenge) nextChallenge();
+    else startChallenge();
+  }
+  if(e.key==='r' || e.key==='R'){
+    if(currentChallenge) resetChallenge(currentChallenge);
+  }
+});
+
+// Ensure landing page is active on load
+document.addEventListener('DOMContentLoaded', function(){
+  challenges.forEach(function(cn){
+    const page = document.getElementById('challenge-'+cn);
+    if(!page) return;
+    page.querySelectorAll('.challenge-topbar .prog-dot').forEach(function(dot, i){
+      dot.setAttribute('data-ch', i+1);
+    });
+  });
+  showPage('landing');
+});
+</script>
+</body>
+</html>
