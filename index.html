@@ -21,7 +21,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
    LANDING PAGE
 ══════════════════════════════ */
 #landing{background:#0F2B5B;}
-.hero{background:#0F2B5B;padding:clamp(1rem,2vh,1.75rem) clamp(2rem,5vw,6rem) clamp(0.75rem,1.5vh,1.25rem);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:0 0 auto}
+.hero{background:#0F2B5B;padding:clamp(1.75rem,3.5vh,2.75rem) clamp(2rem,5vw,6rem) clamp(0.75rem,1.5vh,1.25rem);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:0 0 auto}
 .hero-dots{display:flex;justify-content:center;gap:14px;margin-bottom:clamp(1rem,2vh,1.75rem)}
 .dot{width:16px;height:16px;border-radius:50%}
 .eyebrow{font-size:clamp(11px,0.9vw,13px);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:clamp(1rem,2vh,1.75rem)}
@@ -31,20 +31,20 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
 .landing-title{font-size:clamp(36px,4.5vw,62px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:1.25rem;letter-spacing:-0.5px;text-align:center}
 .landing-title em{font-style:normal;color:#7EC8F4;text-decoration:underline;text-decoration-style:wavy;text-underline-offset:8px}
 .fine-print{font-size:clamp(14px,1.4vw,19px);color:rgba(255,255,255,0.8);font-style:italic;margin-bottom:clamp(1.75rem,3vh,2.5rem);text-align:center}
-.start-btn{background:#C2E4F8;color:#1A4F7C;font-size:clamp(16px,1.4vw,20px);padding:clamp(12px,1.2vh,16px) clamp(32px,3.5vw,52px);border-radius:999px;border:none;font-family:'Segoe UI',Arial,sans-serif;font-weight:700;cursor:pointer;transition:opacity .15s,transform .1s;margin-bottom:0.5rem}
+.start-btn{background:#fff;color:#0F2B5B;font-size:clamp(16px,1.4vw,20px);padding:clamp(12px,1.2vh,16px) clamp(32px,3.5vw,52px);border-radius:999px;border:none;font-family:'Segoe UI',Arial,sans-serif;font-weight:700;cursor:pointer;transition:opacity .15s,transform .1s;margin-bottom:0.5rem}
 .start-btn:hover{opacity:.88}
 .start-btn:active{transform:scale(.97)}
 .start-sub{font-size:13px;color:rgba(255,255,255,0.4);font-style:italic}
 
-.wave{display:block;width:100%;height:32px;background:#0F2B5B;clip-path:ellipse(55% 100% at 50% 0%);flex-shrink:0}
+.wave{display:block;width:100%;height:8px;background:#0F2B5B;clip-path:ellipse(55% 100% at 50% 0%);flex-shrink:0}
 .landing-body{background:#EBF4FF;padding:0 clamp(1.5rem,4vw,5rem);display:flex;flex-direction:column;align-items:center;flex:1;justify-content:space-evenly;min-height:0;overflow-y:auto}
 .steps{display:grid;grid-template-columns:repeat(3,1fr) auto;gap:16px;align-items:stretch;width:100%;max-width:1400px;margin:0 auto}
 .step{background:#fff;border-radius:14px;padding:clamp(1.25rem,1.8vh,2rem) 1.4rem clamp(1.1rem,1.5vh,1.75rem);text-align:left;border-top:5px solid #ccc}
 .start-circle-wrap{display:flex;flex-direction:column;align-items:center;gap:0.4rem;align-self:center}
-.start-circle-btn{width:60px;height:60px;border-radius:50%;background:#C2E4F8;color:#1A4F7C;border:2px solid #A3CFEB;cursor:pointer;font-size:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .15s,transform .1s;font-family:'Segoe UI',Arial,sans-serif}
+.start-circle-btn{width:60px;height:60px;border-radius:50%;background:linear-gradient(#fff,#fff) padding-box,conic-gradient(#378ADD,#1D9E75,#7F77DD,#D85A30,#378ADD) border-box;color:#0F2B5B;border:3px solid transparent;cursor:pointer;font-size:26px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:opacity .15s,transform .1s;font-family:'Segoe UI',Arial,sans-serif}
 .start-circle-btn:hover{opacity:.85;transform:scale(1.08)}
 .start-circle-btn:active{transform:scale(.96)}
-.start-circle-label{font-size:11px;font-weight:700;color:#1A4F7C;text-transform:uppercase;letter-spacing:0.1em;text-align:center}
+.start-circle-label{font-size:12px;font-weight:700;color:#0F2B5B;text-transform:uppercase;letter-spacing:0.1em;text-align:center}
 @media(max-width:900px){.steps{grid-template-columns:1fr 1fr}.start-circle-wrap{grid-column:1/-1;justify-self:center}}
 @media(max-width:600px){.steps{grid-template-columns:1fr}}
 .step.s1{border-color:#378ADD}.step.s2{border-color:#1D9E75}.step.s3{border-color:#7F77DD}
@@ -283,11 +283,11 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="step s3">
         <div class="step-num">Face the truth</div>
         <div class="step-text">Type your prompt into Copilot and see what comes out. Tweak and try again — you might just unlock a new superpower.</div>
-        <div class="step-sub">No Copilot device? Each challenge has a multiple choice option — try it on your personal device.</div>
+        <div class="step-sub">No Copilot device? Each challenge has a multiple choice quiz option — try it on your personal device.</div>
       </div>
       <div class="start-circle-wrap">
-        <button class="start-circle-btn" onclick="startChallenge()">→</button>
         <span class="start-circle-label">Start Challenge</span>
+        <button class="start-circle-btn" onclick="startChallenge()">→</button>
       </div>
     </div>
     <div class="apps-section">
@@ -331,6 +331,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <div class="output-intro">
       <div class="output-intro-eyebrow">The mystery output</div>
       <div class="output-intro-title">Take a look — how would you recreate this in Copilot?</div>
+      <div style="font-size:12px;color:#888;font-style:italic;margin-top:0.4rem;line-height:1.55">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</div>
     </div>
     <div class="output-card">
       <div class="output-card-titlebar">
@@ -341,7 +342,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <div class="doc-title">Welcome to Apex Corporate Solutions</div>
         <div class="doc-sub">New Employee Onboarding Guide &nbsp;·&nbsp; People &amp; Culture &nbsp;·&nbsp; Q1 2025</div>
         <div class="doc-h2">About our culture</div>
-        <div class="doc-text">Apex is built on three values: Integrity, Collaboration, and a Growth Mindset. We work in a hybrid model — three days in the office, two at home. Core hours are 10am–4pm. Dress code is business casual Monday–Thursday; casual on Fridays.</div>
+        <div class="doc-text">Apex is built on three values: Integrity, Collaboration, and a Growth Mindset. We work in a hybrid model — three days in the office, two at home. Core hours are 10am–4pm. Teams is our primary communication platform; use email when a formal record is needed.</div>
         <div class="doc-h2">IT setup — your first three days</div>
         <div class="doc-bullet">Collect your laptop from IT Services, Level 2, Room 204 — bring your staff pass</div>
         <div class="doc-bullet">Activate your Microsoft 365 account at portal.office.com</div>
@@ -352,15 +353,15 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <table class="doc-table">
           <thead><tr><th>Name</th><th>Role</th><th>Email</th><th>Ext.</th></tr></thead>
           <tbody>
-            <tr><td>Sandra Lim</td><td>HR Business Partner</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ee9d8f808a9c8fc0828783ae8f9e8b968d819c9ec08d8183">[email&#160;protected]</a></td><td>2201</td></tr>
-            <tr><td>Derek Tan</td><td>IT Services Lead</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bdd9d8cfd8d693c9dcd3fddccdd8c5ded2cfcd93ded2d0">[email&#160;protected]</a></td><td>1801</td></tr>
-            <tr><td>Priya Menon</td><td>Payroll &amp; Benefits</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f585879c8c94db98909b9a9bb59485908d969a8785db969a98">[email&#160;protected]</a></td><td>2305</td></tr>
-            <tr><td>James Chew</td><td>Facilities Manager</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="442e252921376a272c2133042534213c272b36346a272b29">[email&#160;protected]</a></td><td>3101</td></tr>
+            <tr><td>Sandra Lim</td><td>HR Business Partner</td><td>sandra.lim@apexcorp.com</td><td>2201</td></tr>
+            <tr><td>Derek Tan</td><td>IT Services Lead</td><td>derek.tan@apexcorp.com</td><td>1801</td></tr>
+            <tr><td>Michael Boo</td><td>IT Security</td><td>michael.boo@apexcorp.com</td><td>1803</td></tr>
+            <tr><td>IT Help Desk</td><td>IT Services</td><td>helpdesk@apexcorp.com</td><td>1800</td></tr>
           </tbody>
         </table>
         <div class="doc-h2">Tips for your first week</div>
-        <div class="doc-bullet">Day 1: Collect your laptop, meet your buddy, attend the New Joiner Briefing at 10am in Conference Room B</div>
-        <div class="doc-bullet">Days 2–3: Complete mandatory e-learning — Information Security, Data Protection, AI Tools Acceptable Use</div>
+        <div class="doc-bullet">Day 1: Collect your laptop from IT Services (Level 2, Room 204), meet your buddy, and have your welcome conversation with your manager</div>
+        <div class="doc-bullet">Days 2–3: Complete mandatory e-learning on Learning Hub — Information Security, Data Protection &amp; PDPA, Phishing Awareness, AI Tools Acceptable Use</div>
         <div class="doc-bullet">Days 4–5: Introduce yourself in the #introductions group and schedule your first 1-on-1 with your manager</div>
         <div class="doc-bullet">Best coffee is on Level 4. Subsidised lunch 12–2pm in the Level 1 canteen</div>
       </div>
@@ -369,9 +370,9 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <!-- REF FILES -->
     <div class="ref-bar">
       <div class="ref-label">Reference files provided</div>
-      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">Welcome_Letter.docx</div><div class="ref-desc">A letter from HR welcoming a new joiner, covering culture, values, and first-day logistics</div></div></div>
-      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">IT_Setup_Quickstart_Guide.pdf</div><div class="ref-desc">Step-by-step IT setup checklist covering device collection, account activation, MFA, VPN, and security training</div></div></div>
-      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">Culture_Deck_Talking_Points.pptx</div><div class="ref-desc">Talking points from the new joiner orientation covering values, working norms, facilities, and support networks</div></div></div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 1A Welcome Letter.docx</div><div class="ref-desc">A letter from HR welcoming a new joiner, covering culture, values, and first-day logistics</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 1B IT Onboarding Quickstart Guide.pdf</div><div class="ref-desc">Step-by-step IT setup checklist covering device collection, account activation, MFA, VPN, and security training</div></div></div>
+      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 1C Culture Deck.pptx</div><div class="ref-desc">Talking points from the new joiner orientation covering values, working norms, facilities, and support networks</div></div></div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -457,6 +458,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <div class="output-intro">
       <div class="output-intro-eyebrow">The mystery output</div>
       <div class="output-intro-title">Take a look — how would you recreate this in Copilot?</div>
+      <div style="font-size:12px;color:#888;font-style:italic;margin-top:0.4rem;line-height:1.55">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</div>
     </div>
     <div class="output-card">
       <div class="output-card-titlebar">
@@ -500,9 +502,9 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
             <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">6</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Marketing</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Digital Advertising</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">2,500</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">3,100</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fdf0f0;color:#A32D2D;font-weight:500;text-align:right">+600</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff3cd;color:#633806;font-weight:500;text-align:center">&#9650; OVER</td></tr>
             <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">7</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Marketing</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Travel — Conference</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">1,200</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">0</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:right;color:#3B6D11;background:#fff">-1,200</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:center;color:#3B6D11;background:#fff">—</td></tr>
             <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">8</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">HR</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Contractor — Recruitment</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">3,500</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">3,500</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:right;color:#1f1f1f;background:#fff">0</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:center;color:#3B6D11;background:#fff">—</td></tr>
-            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">9</td><td colspan="3" style="background:#e8e8e8;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">January total</td><td style="background:#e8e8e8;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">204,710</td><td style="background:#e8e8e8;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">207,468</td><td style="background:#fdf0f0;color:#A32D2D;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">+2,758</td><td style="background:#fff3cd;color:#633806;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:center">&#9650; +1.3%</td></tr>
+            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">9</td><td colspan="3" style="background:#e8e8e8;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">January total</td><td style="background:#e8e8e8;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">214,010</td><td style="background:#e8e8e8;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">216,683</td><td style="background:#fdf0f0;color:#A32D2D;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">+2,673</td><td style="background:#fff3cd;color:#633806;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:center">&#9650; +1.2%</td></tr>
             <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">10</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Marketing</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Mar-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Brand Photography (unplanned)</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">0</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">2,800</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fdf0f0;color:#A32D2D;font-weight:500;text-align:right">+2,800</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff3cd;color:#633806;font-weight:500;text-align:center">&#9650; OVER</td></tr>
-            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">11</td><td colspan="3" style="background:#404040;color:#fff;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px">Q1 2025 grand total</td><td style="background:#404040;color:#fff;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">621,300</td><td style="background:#404040;color:#fff;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">629,840</td><td style="background:#fdf0f0;color:#A32D2D;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">+8,540</td><td style="background:#fff3cd;color:#633806;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:center">&#9650; +1.4%</td></tr>
+            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">11</td><td colspan="3" style="background:#404040;color:#fff;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px">Q1 2025 grand total</td><td style="background:#404040;color:#fff;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">650,630</td><td style="background:#404040;color:#fff;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">654,996</td><td style="background:#fdf0f0;color:#A32D2D;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">+4,366</td><td style="background:#fff3cd;color:#633806;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:center">&#9650; +0.7%</td></tr>
           </tbody>
         </table>
         <div style="background:#f3f2f1;border-top:0.5px solid #d0cece;padding:4px 12px;display:flex;gap:4px">
@@ -516,7 +518,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <!-- REF FILES -->
     <div class="ref-bar">
       <div class="ref-label">Reference files provided</div>
-      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">Raw_Dept_Spend_Q1_2025.csv</div><div class="ref-desc">63 rows of raw expenditure data across 5 departments and 3 months, with columns for cost centre, category, vendor, PO number, approver, and notes</div></div></div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 2 Multi Dept Raw Budget Data.xlsx</div><div class="ref-desc">66 rows of raw expenditure data across 5 departments and 3 months, with columns for cost centre, sub-category, headcount, budgeted and actual amounts, PO number, vendor, approver, and notes</div></div></div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -539,7 +541,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <button class="mc-opt" onclick="answer(this,'q2c2',false,'q2c2-fb-correct','q2c2-fb-wrong')">Create a summary table of our Q1 department spending with a total row at the bottom.</button>
         <button class="mc-opt" onclick="answer(this,'q2c2',true,'q2c2-fb-correct','q2c2-fb-wrong')">Based on this data, create a monthly budget tracker by department showing budgeted vs actual spend, variance, and a flag for any category that has overspent by more than 10%.</button>
       </div>
-      <div class="mc-feedback correct-fb" id="q2c2-fb-correct">Spot on. The richer prompt produced a richer output — not just a summary, but a structured tracker with variance calculations, percentage overruns, and conditional flags for categories exceeding 10% overspend. The raw data had 63 rows with 12 columns including PO numbers, vendors, and approvers. Copilot extracted only what was needed, grouped it by department, and applied the logic without being given a formula.</div>
+      <div class="mc-feedback correct-fb" id="q2c2-fb-correct">Spot on. The richer prompt produced a richer output — not just a summary, but a structured tracker with variance calculations, percentage overruns, and conditional flags for categories exceeding 10% overspend. The raw data had 66 rows across 12 columns including PO numbers, vendors, and approvers. Copilot extracted only what was needed, grouped it by department, and applied the logic without being given a formula.</div>
       <div class="mc-feedback wrong-fb" id="q2c2-fb-wrong">That prompt would produce a basic summary — but not this. Notice the variance column, the percentage calculations, and the &#9650; OVER flags that only appear when overspend exceeds 10%. That conditional logic had to be specified. The second prompt is more precise: it names the columns it wants, specifies the flagging threshold, and references the source data file. More specific input = more useful output.</div>
       <button class="mc-reset" id="reset-q2c2" onclick="resetQ('q2c2','q2c2-fb-correct','q2c2-fb-wrong','reset-q2c2')">Try again</button>
     </div>
@@ -555,7 +557,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         </div>
         <div class="reveal-card">
           <div class="reveal-card-label">Difficulty</div>
-          <div class="reveal-card-val">Medium — the output looks clean and structured, hiding the messy 63-row raw data it came from</div>
+          <div class="reveal-card-val">Medium — the output looks clean and structured, hiding the messy 66-row raw data it came from</div>
         </div>
         <div class="reveal-card" style="grid-column:1/-1">
           <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
@@ -563,7 +565,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         </div>
       </div>
       <div class="reveal-points-label">Why this is impressive</div>
-      <div class="reveal-point">The raw CSV had 63 rows across 12 columns — including PO numbers, vendor names, approver names, and messy notes. Copilot ignored everything irrelevant and extracted only what was needed</div>
+      <div class="reveal-point">The raw Excel file had 66 rows across 12 columns — including PO numbers, vendor names, approver names, and messy notes. Copilot ignored everything irrelevant and extracted only what was needed</div>
       <div class="reveal-point">The 10% variance flag required conditional logic. Copilot inferred the formula and applied it without being given a single Excel function</div>
       <div class="reveal-point">The clean, structured tracker looks nothing like the source data — Copilot did the grouping, aggregation, and formatting automatically</div>
       <div class="reveal-point">What would normally require a confident Excel user 30–45 minutes of pivot tables and conditional formatting took Copilot seconds</div>
@@ -602,45 +604,45 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <div class="output-intro">
       <div class="output-intro-eyebrow">The mystery output</div>
       <div class="output-intro-title">Take a look — how would you recreate this in Copilot?</div>
+      <div style="font-size:12px;color:#888;font-style:italic;margin-top:0.4rem;line-height:1.55">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</div>
     </div>
     <div class="output-card">
       <div class="output-card-titlebar">
         <div class="oc-dot"></div><div class="oc-dot"></div><div class="oc-dot"></div>
-        <span class="oc-fname">Sales_Analysis_FY2023</span>
+        <span class="oc-fname">Hybrid_Survey_Analysis_Q4FY2024</span>
       </div>
       <div class="doc-body">
-        <div class="doc-title" style="font-family:'Segoe UI',Arial,sans-serif;font-size:17px">Sales performance analysis — FY2023</div>
-        <div class="doc-sub">Generated from source data &nbsp;·&nbsp; 60 records across 5 regions, 12 months</div>
+        <div class="doc-title" style="font-family:'Segoe UI',Arial,sans-serif;font-size:17px">Hybrid Working Pulse Survey — Key Findings</div>
+        <div class="doc-sub">Q4 FY2024 &nbsp;·&nbsp; 287 respondents &nbsp;·&nbsp; 5 departments &nbsp;·&nbsp; Apex Corporate Solutions</div>
 
-        <div class="doc-h2" style="text-transform:uppercase;letter-spacing:0.06em;font-size:11px;border-bottom:1px solid #e0e0e0;padding-bottom:4px">Top 3 performing regions</div>
+        <div class="doc-h2" style="text-transform:uppercase;letter-spacing:0.06em;font-size:11px;border-bottom:1px solid #e0e0e0;padding-bottom:4px">Top 3 areas of strongest agreement</div>
         <table class="doc-table" style="margin:0.6rem 0 0.85rem">
-          <thead><tr><th>Rank</th><th>Region</th><th>Total net revenue (SGD)</th><th>Units sold</th><th>Top salesperson</th></tr></thead>
+          <thead><tr><th>Rank</th><th>Survey item</th><th>% in agreement</th></tr></thead>
           <tbody>
-            <tr><td style="text-align:center;font-weight:600;color:#333">1</td><td>Central</td><td style="text-align:right">937,580</td><td style="text-align:right">2,423</td><td>Evelyn Chua</td></tr>
-            <tr><td style="text-align:center;font-weight:600;color:#333">2</td><td>North</td><td style="text-align:right">884,960</td><td style="text-align:right">1,307</td><td>Alice Tan</td></tr>
-            <tr><td style="text-align:center;font-weight:600;color:#333">3</td><td>South</td><td style="text-align:right">856,100</td><td style="text-align:right">1,248</td><td>Brian Lim</td></tr>
+            <tr><td style="text-align:center;font-weight:600;color:#333">1</td><td>My manager trusts me to work effectively from home</td><td style="text-align:right">81%</td></tr>
+            <tr><td style="text-align:center;font-weight:600;color:#333">2</td><td>Hybrid working has improved my work-life balance</td><td style="text-align:right">73%</td></tr>
+            <tr><td style="text-align:center;font-weight:600;color:#333">3</td><td>I feel more connected to my team on days I am in the office</td><td style="text-align:right">73%</td></tr>
           </tbody>
         </table>
-        <div style="background:#f5f5f5;border-left:3px solid #888;padding:0.65rem 0.85rem;margin-bottom:0.85rem;font-size:12px;color:#444;line-height:1.65">Central leads all regions driven by consistently high Software Licence volumes and strong Q4 performance from Evelyn Chua. The Central region recorded its highest single month in December (SGD 80,320 net revenue).</div>
+        <div style="background:#f5f5f5;border-left:3px solid #888;padding:0.65rem 0.85rem;margin-bottom:0.85rem;font-size:12px;color:#444;line-height:1.65">Manager trust scores highest across all ten survey items — 81% of respondents agree their manager trusts them to work effectively from home. Work-life balance improvement and in-office connection both score 73%, suggesting the current hybrid model is culturally well-embedded.</div>
 
-        <div class="doc-h2" style="text-transform:uppercase;letter-spacing:0.06em;font-size:11px;border-bottom:1px solid #e0e0e0;padding-bottom:4px">Revenue drop flags — months exceeding 15% decline</div>
+        <div class="doc-h2" style="text-transform:uppercase;letter-spacing:0.06em;font-size:11px;border-bottom:1px solid #e0e0e0;padding-bottom:4px">Items warranting attention</div>
         <table class="doc-table" style="margin:0.6rem 0 0.85rem">
-          <thead><tr><th>Region</th><th>Month</th><th>Prior month revenue</th><th>This month revenue</th><th>Decline</th></tr></thead>
+          <thead><tr><th>Survey item</th><th>% agree</th><th>% disagree</th><th>Signal</th></tr></thead>
           <tbody>
-            <tr><td>North</td><td>Jul-23</td><td style="text-align:right">138,000</td><td style="text-align:right">61,600</td><td style="color:#A32D2D;font-weight:600;text-align:right">-55.4%</td></tr>
-            <tr><td>Central</td><td>Jul-23</td><td style="text-align:right">86,250</td><td style="text-align:right">43,520</td><td style="color:#A32D2D;font-weight:600;text-align:right">-49.6%</td></tr>
-            <tr><td>West</td><td>Jul-23</td><td style="text-align:right">98,000</td><td style="text-align:right">69,000</td><td style="color:#A32D2D;font-weight:600;text-align:right">-29.6%</td></tr>
-            <tr><td>East</td><td>Aug-23</td><td style="text-align:right">79,200</td><td style="text-align:right">50,400</td><td style="color:#A32D2D;font-weight:600;text-align:right">-36.4%</td></tr>
+            <tr><td>I would consider leaving if required to return to full-time office</td><td style="text-align:right">47%</td><td style="text-align:right">32%</td><td style="color:#A32D2D;font-weight:600">Retention risk</td></tr>
+            <tr><td>I feel included in team discussions regardless of where I am</td><td style="text-align:right">56%</td><td style="color:#A32D2D;font-weight:600;text-align:right">24%</td><td style="color:#A32D2D;font-weight:600">Inclusion gap</td></tr>
+            <tr><td>Hybrid working has had a positive impact on company productivity</td><td style="text-align:right">56%</td><td style="color:#A32D2D;font-weight:600;text-align:right">17%</td><td style="color:#A32D2D;font-weight:600">Perception gap</td></tr>
           </tbody>
         </table>
-        <div style="background:#fdf0f0;border-left:3px solid #A32D2D;padding:0.65rem 0.85rem;margin-bottom:0.85rem;font-size:12px;color:#A32D2D;line-height:1.65">July 2023 shows a broad revenue dip across all regions — likely reflecting a mid-year seasonal pattern rather than a structural issue. All affected regions recovered strongly by September–October 2023.</div>
+        <div style="background:#fdf0f0;border-left:3px solid #A32D2D;padding:0.65rem 0.85rem;margin-bottom:0.85rem;font-size:12px;color:#A32D2D;line-height:1.65">The retention signal is the most significant finding — 47% of staff indicate they would consider leaving if required to return full-time. Any changes to the hybrid policy warrant careful communication and a phased approach.</div>
 
-        <div class="doc-h2" style="text-transform:uppercase;letter-spacing:0.06em;font-size:11px;border-bottom:1px solid #e0e0e0;padding-bottom:4px">Key trends</div>
-        <div class="doc-bullet">Software Licences is the highest-volume category, accounting for 42% of all units sold across the year</div>
-        <div class="doc-bullet">Q4 (Oct–Dec 2023) was the strongest quarter — net revenue was 34% higher than Q3</div>
-        <div class="doc-bullet">Managed Services commands the highest unit price (SGD 1,800) and showed consistent growth in H2 2023</div>
-        <div class="doc-bullet">Returns are highest in Software Licences (avg. 6.2% return rate) — worth reviewing the fulfilment process</div>
-        <div class="doc-bullet">The Direct channel consistently outperforms Partner and Online in Consulting Services, suggesting client preference for direct engagement on high-value deals</div>
+        <div class="doc-h2" style="text-transform:uppercase;letter-spacing:0.06em;font-size:11px;border-bottom:1px solid #e0e0e0;padding-bottom:4px">Key themes</div>
+        <div class="doc-bullet">Better focus at home is the most-cited benefit (143 mentions, 50% of respondents) — commute savings rank second at 112 mentions</div>
+        <div class="doc-bullet">98 respondents miss informal in-office interaction — spontaneous conversation and in-person collaboration energy remain valued</div>
+        <div class="doc-bullet">Finance records the lowest satisfaction score (7.1/10), with "feeling isolated on home days" as its top challenge; HR and Technology score highest at 7.9 and 7.8</div>
+        <div class="doc-bullet">Career visibility concerns were raised by 44 staff — worth addressing in manager guidance to ensure hybrid equity</div>
+        <div class="doc-bullet">HR and Technology both prefer 2 in-office days vs. 3 for Operations, Finance, and Marketing — department preferences diverge on the optimal split</div>
       </div>
       <div style="background:#f3f2f1;border-top:0.5px solid #d0cece;padding:4px 12px;display:flex;gap:4px">
         <div style="font-size:11px;color:#666;padding:3px 12px;border:0.5px solid #d0cece;border-radius:2px 2px 0 0;background:#f3f2f1">Sheet 1</div>
@@ -652,7 +654,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <!-- REF FILES -->
     <div class="ref-bar">
       <div class="ref-label">Reference files provided</div>
-      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">Sales_Raw_Data_FY2023.csv</div><div class="ref-desc">60 rows of unprocessed sales transactions across 5 regions, 5 salespeople, 4 product categories, and 12 months — including units sold, pricing, returns, channels, and discounts</div></div></div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 3 Internal Staff Survey Results.xlsx</div><div class="ref-desc">Apex staff pulse survey on hybrid working — 287 respondents across 5 departments, covering 10 Likert-scale questions, department satisfaction scores and preferred office arrangements, and open-response themes</div></div></div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -666,17 +668,17 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <button class="mc-opt" onclick="answer(this,'q1c3',false,'q1c3-fb-correct','q1c3-fb-wrong')">Microsoft Word — this is clearly a written analytical report with headings, tables, and narrative commentary</button>
         <button class="mc-opt" onclick="answer(this,'q1c3',true,'q1c3-fb-correct','q1c3-fb-wrong')">Microsoft Excel — Copilot in Excel generated this written analysis directly from a raw data file on a second sheet</button>
       </div>
-      <div class="mc-feedback correct-fb" id="q1c3-fb-correct">Got it! This is the hard one — the output looks exactly like a Word document, which is precisely the point. The subtle giveaway is the sheet tabs at the bottom: Sheet 1 contains the raw data, and Sheet 2 (currently active) contains this Copilot-generated analysis. Copilot in Excel can produce written narrative analysis — not just tables — directly from your data.</div>
-      <div class="mc-feedback wrong-fb" id="q1c3-fb-wrong">This is the trick of Challenge #3 — the output is designed to look like a Word document. But look at the bottom of the output: there are sheet tabs. Sheet 1 holds the raw CSV data. Sheet 2 — the active one — is where Copilot wrote this analysis. Copilot in Excel doesn't just crunch numbers; it can produce written narrative reports, ranked tables, and trend commentary directly from a data file.</div>
+      <div class="mc-feedback correct-fb" id="q1c3-fb-correct">Got it! This is the hard one — the output looks exactly like a Word document, which is precisely the point. The subtle giveaway is the sheet tabs at the bottom: Sheet 1 contains the raw survey data, and Sheet 2 (currently active) contains this Copilot-generated analysis. Copilot in Excel can produce written narrative analysis — not just tables — directly from your data.</div>
+      <div class="mc-feedback wrong-fb" id="q1c3-fb-wrong">This is the trick of Challenge #3 — the output is designed to look like a Word document. But look at the bottom of the output: there are sheet tabs. Sheet 1 holds the raw survey data. Sheet 2 — the active one — is where Copilot wrote this analysis. Copilot in Excel doesn't just crunch numbers; it can produce written narrative reports, ranked tables, and trend commentary directly from a data file.</div>
       <button class="mc-reset" id="reset-q1c3" onclick="resetQ('q1c3','q1c3-fb-correct','q1c3-fb-wrong','reset-q1c3')">Try again</button>
 
       <div class="mc-question" style="margin-top:1.1rem">Q2: Which prompt most likely produced this output?</div>
       <div class="mc-options" id="q2c3">
-        <button class="mc-opt" onclick="answer(this,'q2c3',true,'q2c3-fb-correct','q2c3-fb-wrong')">Analyse this sales data. Identify the top 3 performing regions, flag any months with more than 15% drop in revenue, and summarise the key trends.</button>
-        <button class="mc-opt" onclick="answer(this,'q2c3',false,'q2c3-fb-correct','q2c3-fb-wrong')">Write a sales performance report for FY2023 covering regional rankings, revenue trends, and any notable anomalies.</button>
+        <button class="mc-opt" onclick="answer(this,'q2c3',true,'q2c3-fb-correct','q2c3-fb-wrong')">Analyse this survey data. Identify the top 3 areas of strongest agreement, flag any items where disagreement is significant, and summarise the key themes from the open responses.</button>
+        <button class="mc-opt" onclick="answer(this,'q2c3',false,'q2c3-fb-correct','q2c3-fb-wrong')">Write a summary of our staff hybrid working survey findings, covering what employees think about the current policy and any areas for improvement.</button>
       </div>
-      <div class="mc-feedback correct-fb" id="q2c3-fb-correct">Exactly right. The prompt is data-first — it tells Copilot to analyse the attached data rather than write a generic report. The 15% threshold for revenue drops is a specific analytical instruction that produced the precise flagging table you see. This is the difference between asking Copilot to write something and asking it to analyse something — the latter produces far more grounded, specific, and useful output.</div>
-      <div class="mc-feedback wrong-fb" id="q2c3-fb-wrong">That prompt would produce a plausible report — but a generic one with made-up or hallucinated figures. The actual output contains very specific numbers: -55.4% for North in July, SGD 937,580 for Central's full-year revenue. Those figures came from the raw data, not from the prompt. The first option is a data-first prompt — it instructs Copilot to analyse the attached file and apply a specific threshold (15%). That's what grounded the output in real numbers.</div>
+      <div class="mc-feedback correct-fb" id="q2c3-fb-correct">Exactly right. The prompt is data-first — it tells Copilot to analyse the attached data rather than write a generic report. Specific analytical instructions (rank by agreement, flag significant disagreement, summarise open themes) are what produced the structured, grounded findings you see. This is the difference between asking Copilot to write something and asking it to analyse something — the latter produces output you can actually act on.</div>
+      <div class="mc-feedback wrong-fb" id="q2c3-fb-wrong">That prompt would produce a plausible-sounding report — but with generic, estimated figures rather than real data. The actual output contains very specific numbers: 81% manager trust, 47% would consider leaving, 143 mentions of focus as a benefit. Those figures came from the raw survey file, not from the prompt. The first option is a data-first prompt — it instructs Copilot to analyse the attached file and apply specific analytical criteria. That's what grounded the output in real numbers.</div>
       <button class="mc-reset" id="reset-q2c3" onclick="resetQ('q2c3','q2c3-fb-correct','q2c3-fb-wrong','reset-q2c3')">Try again</button>
     </div>
 
@@ -695,17 +697,17 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         </div>
         <div class="reveal-card" style="grid-column:1/-1">
           <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
-          <div class="reveal-card-val">"Analyse this sales data. Identify the top 3 performing regions, flag any months with more than 15% drop in revenue, and summarise the key trends."</div>
+          <div class="reveal-card-val">"Analyse this survey data. Identify the top 3 areas of strongest agreement, flag any items where disagreement is significant, and summarise the key themes from the open responses."</div>
         </div>
       </div>
       <div class="reveal-points-label">Why this is impressive</div>
-      <div class="reveal-point">Copilot performed cross-regional aggregation, month-on-month percentage calculations, and trend identification — all from a raw 60-row CSV, with no pivot tables or formulas written by hand</div>
-      <div class="reveal-point">The 15% revenue drop threshold was applied as conditional logic across all regions and all months simultaneously — a task that would require complex formula work to replicate manually</div>
-      <div class="reveal-point">Copilot didn't just find numbers — it interpreted them, noting the July dip was likely seasonal and that all regions recovered by Q4. That's analytical judgment, not just calculation</div>
-      <div class="reveal-point">The output looks like a polished analyst report. The source was a raw data file. Copilot bridged the entire gap between the two</div>
+      <div class="reveal-point">Copilot processed 10 Likert-scale survey questions across 287 respondents, aggregated agree and disagree percentages, and ranked them — from a raw data table with no pre-calculated totals</div>
+      <div class="reveal-point">The concern flagging required Copilot to identify which items had significant disagreement and interpret what they signalled — retention risk, inclusion gaps, perception differences — not just report the numbers</div>
+      <div class="reveal-point">It connected quantitative survey scores with open-response themes, surfacing patterns across both structured and unstructured data in a single pass</div>
+      <div class="reveal-point">The output looks like a polished HR analyst deliverable. The source was a raw survey data table. Copilot bridged the entire gap between the two</div>
       <div class="lesson-box">
         <div class="lesson-label">The takeaway</div>
-        <div class="lesson-text">Copilot in Excel is a data analyst, not just a spreadsheet tool. If you regularly produce performance reports, sales summaries, or trend analyses from raw data exports, this is one of the most powerful things Copilot can do. The key is to be analytical in your prompt — tell it what to look for, what thresholds matter, and what questions you need answered. Copilot will do the calculation and the writing.</div>
+        <div class="lesson-text">Staff survey data is often collected but underanalysed — responses sit in a spreadsheet while insights take days to extract manually. Copilot can turn raw survey data into a structured, readable findings report in seconds. If you run engagement surveys, pulse checks, or any kind of structured feedback collection at Apex, this is a high-value use case to try right now.</div>
       </div>
     </div>
 
@@ -738,6 +740,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <div class="output-intro">
       <div class="output-intro-eyebrow">The mystery output</div>
       <div class="output-intro-title">Take a look — how would you recreate this in Copilot?</div>
+      <div style="font-size:12px;color:#888;font-style:italic;margin-top:0.4rem;line-height:1.55">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</div>
     </div>
     <div class="output-card">
       <div class="output-card-titlebar">
@@ -791,10 +794,10 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
               </div>
               <div>
                 <div style="font-size:10px;font-weight:600;color:#333;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px;padding-bottom:3px;border-bottom:1.5px solid #555">Our own data</div>
-                <div style="font-size:10px;color:#333;line-height:1.6;padding-left:10px;margin-bottom:3px">&#9658; 69% of Apex staff say hybrid improved their work-life balance</div>
-                <div style="font-size:10px;color:#333;line-height:1.6;padding-left:10px;margin-bottom:3px">&#9658; Technology leads satisfaction (7.8/10); Finance lowest (7.1/10)</div>
-                <div style="font-size:10px;color:#333;line-height:1.6;padding-left:10px;margin-bottom:3px">&#9658; 47% cite commute savings as a significant personal benefit</div>
-                <div style="font-size:10px;color:#333;line-height:1.6;padding-left:10px;margin-bottom:3px">&#9658; 87% would use AI tools more with proper training</div>
+                <div style="font-size:10px;color:#333;line-height:1.6;padding-left:10px;margin-bottom:3px">&#9658; 73% of Apex staff say hybrid improved their work-life balance</div>
+                <div style="font-size:10px;color:#333;line-height:1.6;padding-left:10px;margin-bottom:3px">&#9658; HR leads satisfaction (7.9/10); Technology second (7.8); Finance lowest (7.1)</div>
+                <div style="font-size:10px;color:#333;line-height:1.6;padding-left:10px;margin-bottom:3px">&#9658; 47% would consider leaving Apex if required to return to full-time office</div>
+                <div style="font-size:10px;color:#333;line-height:1.6;padding-left:10px;margin-bottom:3px">&#9658; 81% say their manager trusts them to work effectively from home</div>
               </div>
             </div>
             <div style="display:flex;gap:7px">
@@ -803,11 +806,11 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
                 <div style="font-size:9px;color:#666;line-height:1.3">Lower quit rates<br>(Bloom et al., 2024)</div>
               </div>
               <div style="background:#f5f5f5;border-radius:4px;padding:5px 8px;text-align:center;flex:1;border:0.5px solid #e0e0e0">
-                <div style="font-size:15px;font-weight:600;color:#333">61%</div>
+                <div style="font-size:15px;font-weight:600;color:#333">56%</div>
                 <div style="font-size:9px;color:#666;line-height:1.3">Report positive<br>productivity impact</div>
               </div>
               <div style="background:#f5f5f5;border-radius:4px;padding:5px 8px;text-align:center;flex:1;border:0.5px solid #e0e0e0">
-                <div style="font-size:15px;font-weight:600;color:#333">7.5</div>
+                <div style="font-size:15px;font-weight:600;color:#333">7.6</div>
                 <div style="font-size:9px;color:#666;line-height:1.3">Avg Apex staff<br>satisfaction (out of 10)</div>
               </div>
               <div style="background:#f5f5f5;border-radius:4px;padding:5px 8px;text-align:center;flex:1;border:0.5px solid #e0e0e0">
@@ -827,9 +830,10 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <!-- REF FILES -->
     <div class="ref-bar">
       <div class="ref-label">Reference files provided</div>
-      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">Bloom_et_al_2024_Nature_Article.docx</div><div class="ref-desc">Full academic article from Nature (2024) reporting a 6-month randomised trial on hybrid working — covering productivity, retention, and job satisfaction findings</div></div></div>
-      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">McKinsey_HBS_Hybrid_Research.pdf</div><div class="ref-desc">Two research pieces: McKinsey's global analysis of office attendance patterns and an HBS field experiment on how the number of in-office days affects output novelty and collaboration</div></div></div>
-      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">Apex_Staff_Survey_Q4_FY2024.csv</div><div class="ref-desc">Internal pulse survey of 287 Apex employees on hybrid working attitudes, satisfaction scores by department, and preferred working arrangements</div></div></div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 4A Bloom et al (2024) Nature How hybrid working from home works out.pdf</div><div class="ref-desc">Full academic article from Nature (2024) reporting a 6-month randomised trial on hybrid working — covering productivity, retention, and job satisfaction findings</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 4B McKinsey (2023) Empty spaces and hybrid places.pdf</div><div class="ref-desc">McKinsey's global analysis of office attendance patterns and the economics of hybrid working</div></div></div>
+      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 4C Choudhury (2022) HBS Hybrid Work the Best of Both Worlds.pdf</div><div class="ref-desc">HBS field experiment on how the number of in-office days affects output novelty, collaboration, and career outcomes</div></div></div>
+      <div class="ref-item"><span class="ref-icon">D</span><div><div class="ref-text">REF 4D Internal Staff Survey Results.xlsx</div><div class="ref-desc">Apex internal hybrid work survey (Q4 FY2024) — 287 respondents across five departments, covering satisfaction scores, productivity impact, and retention intent</div></div></div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -843,17 +847,17 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <button class="mc-opt" onclick="answer(this,'q1c4',true,'q1c4-fb-correct','q1c4-fb-wrong')">Microsoft PowerPoint — the slide panel on the left, two-column layout, stat boxes, and footer are all hallmarks of a deck</button>
         <button class="mc-opt" onclick="answer(this,'q1c4',false,'q1c4-fb-correct','q1c4-fb-wrong')">Microsoft Word — this looks like a structured report with sections, columns, and a data summary table</button>
       </div>
-      <div class="mc-feedback correct-fb" id="q1c4-fb-correct">Correct! The section thumbnails on the left, the dark title bar, the two-column bullet layout, the stat boxes, and the "2 of 5" footer are all classic deck conventions. Copilot in PowerPoint synthesised a journal article, a consulting report, and an internal staff survey into a coherent, structured deck — correctly treating the internal survey data as "our own" evidence distinct from the external research.</div>
+      <div class="mc-feedback correct-fb" id="q1c4-fb-correct">Correct! The section thumbnails on the left, the dark title bar, the two-column bullet layout, the stat boxes, and the "2 of 5" footer are all classic deck conventions. Copilot in PowerPoint synthesised three external research files and an internal staff survey into a coherent, structured deck — correctly treating the internal survey data as "our own" evidence distinct from the external research.</div>
       <div class="mc-feedback wrong-fb" id="q1c4-fb-wrong">Look again at the left side of the output — there are five section thumbnails arranged vertically, each labelled with a section number. That's a slide panel. The dark title bar, two-column layout with bullet points, and stat boxes at the bottom are all deck conventions. This was generated in PowerPoint, not Word. The key clue is the structural chrome around the content, not just the content itself.</div>
       <button class="mc-reset" id="reset-q1c4" onclick="resetQ('q1c4','q1c4-fb-correct','q1c4-fb-wrong','reset-q1c4')">Try again</button>
 
       <div class="mc-question" style="margin-top:1.1rem">Q2: Which prompt most likely produced this output?</div>
       <div class="mc-options" id="q2c4">
         <button class="mc-opt" onclick="answer(this,'q2c4',false,'q2c4-fb-correct','q2c4-fb-wrong')">Create a 5-section deck on the benefits of hybrid working for a corporate organisation. Include an opening, evidence, key benefits, our survey results, and recommendations.</button>
-        <button class="mc-opt" onclick="answer(this,'q2c4',true,'q2c4-fb-correct','q2c4-fb-wrong')">I have three files — an academic study, a consulting research digest, and our own staff survey. Synthesise them into a 5-section deck on the benefits of hybrid working, using both external evidence and our internal data.</button>
+        <button class="mc-opt" onclick="answer(this,'q2c4',true,'q2c4-fb-correct','q2c4-fb-wrong')">I have four files — an academic study, a consulting research digest, and our own staff survey. Synthesise them into a 5-section deck on the benefits of hybrid working, using both external evidence and our internal data.</button>
       </div>
-      <div class="mc-feedback correct-fb" id="q2c4-fb-correct">Exactly right. The difference between the two prompts is the reference files. The first prompt asks Copilot to write from scratch — it would produce generic content with no specific numbers. The second grounds Copilot in real documents, which is why the output contains precise figures: the 33% quit rate reduction from the Nature study, the 7.5 Apex satisfaction score from the internal survey, and the McKinsey attendance statistics. Real files produce real content.</div>
-      <div class="mc-feedback wrong-fb" id="q2c4-fb-wrong">That prompt would produce a reasonable deck — but a generic one. Notice the stat boxes: 33% lower quit rates (from the Bloom et al. Nature study), 7.5 average Apex satisfaction score (from the internal survey), 61% reporting positive productivity impact (from McKinsey). None of those figures could come from a prompt alone. The second option explicitly references the three uploaded source files, which is what grounded the output in real, specific data.</div>
+      <div class="mc-feedback correct-fb" id="q2c4-fb-correct">Exactly right. The difference between the two prompts is the reference files. The first prompt asks Copilot to write from scratch — it would produce generic content with no specific numbers. The second grounds Copilot in real documents, which is why the output contains precise figures: the 33% quit rate reduction from the Nature study, the 7.6 Apex satisfaction score from the internal survey, and the McKinsey attendance statistics. Real files produce real content.</div>
+      <div class="mc-feedback wrong-fb" id="q2c4-fb-wrong">That prompt would produce a reasonable deck — but a generic one. Notice the stat boxes: 33% lower quit rates (from the Bloom et al. Nature study), 7.6 average Apex satisfaction score (from the internal survey), 56% reporting positive productivity impact (from the internal survey). None of those figures could come from a prompt alone. The second option explicitly references the three uploaded source files, which is what grounded the output in real, specific data.</div>
       <button class="mc-reset" id="reset-q2c4" onclick="resetQ('q2c4','q2c4-fb-correct','q2c4-fb-wrong','reset-q2c4')">Try again</button>
     </div>
 
@@ -872,11 +876,11 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         </div>
         <div class="reveal-card" style="grid-column:1/-1">
           <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
-          <div class="reveal-card-val">"I have three files — an academic study, a consulting research digest, and our own staff survey. Synthesise them into a 5-section deck on the benefits of hybrid working, using both external evidence and our internal data."</div>
+          <div class="reveal-card-val">"I have four files — an academic study, a consulting research digest, and our own staff survey. Synthesise them into a 5-section deck on the benefits of hybrid working, using both external evidence and our internal data."</div>
         </div>
       </div>
       <div class="reveal-points-label">Why this is impressive</div>
-      <div class="reveal-point">Copilot read a journal article, a consulting report, and a CSV survey file — three completely different formats and voices — and wove them into a single coherent narrative</div>
+      <div class="reveal-point">Copilot read three academic and consulting PDFs and an internal staff survey — four completely different formats and voices — and wove them into a single coherent narrative</div>
       <div class="reveal-point">It correctly distinguished between "external evidence" (the published research) and "our own data" (the internal survey), presenting them in separate columns without being told to</div>
       <div class="reveal-point">The stat boxes at the bottom synthesise the most impactful numbers across all three sources into a single visual summary — a design decision Copilot made independently</div>
       <div class="reveal-point">A consultant would charge several hours to produce this deck. Copilot produced it in seconds from files that already existed in your organisation</div>
@@ -915,6 +919,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <div class="output-intro">
       <div class="output-intro-eyebrow">The mystery output</div>
       <div class="output-intro-title">Take a look — how would you recreate this in Copilot?</div>
+      <div style="font-size:12px;color:#888;font-style:italic;margin-top:0.4rem;line-height:1.55">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</div>
     </div>
     <div class="output-card">
       <div class="output-card-titlebar">
@@ -936,7 +941,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         </div>
         <div style="display:flex;gap:1rem;margin-bottom:1.1rem;padding-bottom:1.1rem;border-bottom:0.5px solid #f0f0f0">
           <div style="min-width:60px;font-size:10px;font-weight:600;color:#555;padding-top:2px;text-transform:uppercase;letter-spacing:0.06em;line-height:1.4">Part 2<br>Context</div>
-          <div style="font-size:12px;color:#333;line-height:1.8;flex:1">Our three closest competitors have each made significant investments in process automation and AI-assisted delivery in the past 18 months. We are not behind yet — but the window is closing. Our diagnostic found that 81 staff are already using personal AI accounts on work tasks without formal guidance. They are getting productivity benefits, but we are carrying the data risk. A sanctioned, governed AI rollout is not just a capability investment; it is a risk mitigation measure.</div>
+          <div style="font-size:12px;color:#333;line-height:1.8;flex:1">Our three closest competitors have each made significant investments in process automation and AI-assisted delivery in the past 18 months. We are not behind yet — but the window is closing. Our diagnostic found that 54% of our staff are already using personal AI accounts on work tasks without formal guidance. They are getting productivity benefits, but we are carrying the data risk. A sanctioned, governed AI rollout is not just a capability investment; it is a risk mitigation measure.</div>
         </div>
         <div style="display:flex;gap:1rem;margin-bottom:1.1rem;padding-bottom:1.1rem;border-bottom:0.5px solid #f0f0f0">
           <div style="min-width:60px;font-size:10px;font-weight:600;color:#555;padding-top:2px;text-transform:uppercase;letter-spacing:0.06em;line-height:1.4">Part 3<br>Pillars</div>
@@ -956,9 +961,9 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <!-- REF FILES -->
     <div class="ref-bar">
       <div class="ref-label">Reference files provided</div>
-      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">Board_Strategy_Briefing_Talking_Points.pptx</div><div class="ref-desc">Detailed talking points prepared for the Board covering the strategic rationale, three pillars, financial summary, and governance for the FY2025–2027 transformation programme</div></div></div>
-      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">Digital_Readiness_Diagnostic_Report.docx</div><div class="ref-desc">Internal diagnostic report covering process fragmentation findings, data silo risks, AI readiness gaps, technology debt, and change readiness scores by department</div></div></div>
-      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">Leadership_Email_Thread_March2025.pdf</div><div class="ref-desc">An email exchange between five senior leaders discussing AI rollout priorities, Finance migration concerns, the AI Champions programme design, and Q2 planning ahead of the strategy offsite</div></div></div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 5A Board Strategy Presentation.pptx</div><div class="ref-desc">Detailed talking points prepared for the Board covering the strategic rationale, three pillars, financial summary, and governance for the FY2025–2027 transformation programme</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 5B Speaker Notes.docx</div><div class="ref-desc">Internal diagnostic report covering process fragmentation findings, data silo risks, AI readiness gaps, technology debt, and change readiness scores by department</div></div></div>
+      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 5C Leadership Email Thread.msg</div><div class="ref-desc">An email exchange between five senior leaders discussing AI rollout priorities, Finance migration concerns, the AI Champions programme design, and Q2 planning ahead of the strategy offsite</div></div></div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -1044,6 +1049,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <div class="output-intro">
       <div class="output-intro-eyebrow">The mystery output</div>
       <div class="output-intro-title">Take a look — how would you recreate this in Copilot?</div>
+      <div style="font-size:12px;color:#888;font-style:italic;margin-top:0.4rem;line-height:1.55">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</div>
     </div>
     <div class="output-card">
       <div class="output-card-titlebar">
@@ -1102,9 +1108,9 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <!-- REF FILES -->
     <div class="ref-bar">
       <div class="ref-label">Reference files provided</div>
-      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">Pre_Meeting_Email_Thread.pdf</div><div class="ref-desc">Email exchange before the meeting — includes the agenda and late flags from Jason and Marcus about issues to raise</div></div></div>
-      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">Meeting_Transcript_8Apr2025.txt</div><div class="ref-desc">Full verbatim transcript of the Q3 Planning & Budget Review meeting, covering six attendees and multiple agenda items</div></div></div>
-      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">Post_Meeting_Chat_Log.txt</div><div class="ref-desc">Chat messages sent after the meeting confirming vendor decisions, revised scope, licence costs, and headcount next steps — some action items only finalised here</div></div></div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 6A Q3 Planning  Budget Review.msg</div><div class="ref-desc">Pre-meeting email thread — Sandra's agenda, Marcus's flag on the contractor cost overrun, and Jason's heads-up on the CRM compatibility issue</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 6B Meeting Transcript.docx</div><div class="ref-desc">Auto-generated Teams transcript of the 37-minute meeting, covering all agenda items, discussion, and decisions. In a real Teams meeting this is generated automatically — it has been exported here for the demo.</div></div></div>
+      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 6C Post-Meeting Chat Log.docx</div><div class="ref-desc">Teams channel chat exported from the 48 minutes following the meeting — includes Derek's middleware cost confirmation and Sandra's full action item summary</div></div></div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -1125,10 +1131,10 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="mc-question" style="margin-top:1.1rem">Q2: Action item #4 — Derek Tan's middleware licence task — was NOT mentioned in the meeting transcript. Where did it come from?</div>
       <div class="mc-options" id="q2c6">
         <button class="mc-opt" onclick="answer(this,'q2c6',false,'q2c6-fb-correct','q2c6-fb-wrong')">Copilot inferred it from the meeting context — it knew the licence would need renewing based on the CRM discussion</button>
-        <button class="mc-opt" onclick="answer(this,'q2c6',true,'q2c6-fb-correct','q2c6-fb-wrong')">It was confirmed in the post-meeting chat log — Derek posted the cost estimate and next steps there after the meeting ended</button>
+        <button class="mc-opt" onclick="answer(this,'q2c6',true,'q2c6-fb-correct','q2c6-fb-wrong')">It was confirmed in the post-meeting chat log — Derek posted the SGD 3,200 cost and Sandra formally assigned it as an action item there</button>
       </div>
-      <div class="mc-feedback correct-fb" id="q2c6-fb-correct">Exactly right — and this is the real insight of Challenge #6. The post-meeting chat log is Reference File C. After the meeting, Derek confirmed the SGD 3,200 renewal cost in the chat, and the team finalised several other decisions there too. Copilot read all three documents and reconciled the full picture — including commitments that were only made after the meeting officially ended. A manual note-taker would almost certainly have missed this.</div>
-      <div class="mc-feedback wrong-fb" id="q2c6-fb-wrong">Copilot doesn't infer or hallucinate action items — it extracts them from the documents provided. Derek's middleware task was confirmed in Reference File C: the post-meeting chat log. After the meeting ended, Derek posted that the 30-day renewal would cost SGD 3,200, and the team wrapped up several other decisions in that same thread. Copilot read all three documents — the pre-meeting emails, the transcript, and the post-meeting chat — and assembled the complete picture, including what happened after the call ended.</div>
+      <div class="mc-feedback correct-fb" id="q2c6-fb-correct">Exactly right — and this is the real insight of Challenge #6. In the transcript, Derek flagged the middleware licence renewal but didn't have the cost yet. After the meeting, he confirmed SGD 3,200 in the Teams channel chat — and Sandra assigned it as a formal action item there too. Copilot read all three documents and assembled the complete picture, including decisions that were only finalised after the meeting officially ended. A human note-taker working from the transcript alone would have missed this entirely. Note: in a real Teams meeting, the transcript is auto-generated — no need to export it manually.</div>
+      <div class="mc-feedback wrong-fb" id="q2c6-fb-wrong">Copilot doesn't infer or hallucinate action items — it extracts them from the documents provided. In the transcript, Derek raised the middleware licence but didn't yet have the cost. After the meeting ended, he posted the confirmed figure — SGD 3,200 — in the Teams channel chat, and Sandra formally assigned the action item there. Copilot read all three documents and caught what happened after the call ended. Note: in a real Teams meeting, the transcript is generated automatically by Teams — you wouldn't need to export it separately.</div>
       <button class="mc-reset" id="reset-q2c6" onclick="resetQ('q2c6','q2c6-fb-correct','q2c6-fb-wrong','reset-q2c6')">Try again</button>
     </div>
 
@@ -1139,11 +1145,11 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="reveal-grid">
         <div class="reveal-card">
           <div class="reveal-card-label">App used</div>
-          <div class="reveal-card-val">Microsoft Teams — Copilot generated the recap from three separate documents and posted it to the channel</div>
+          <div class="reveal-card-val">Microsoft Teams — Copilot synthesised a pre-meeting email thread, the meeting transcript, and the post-meeting chat into a single complete recap</div>
         </div>
         <div class="reveal-card">
           <div class="reveal-card-label">Difficulty</div>
-          <div class="reveal-card-val">Medium — the action item format is a recognisable Teams Copilot signature, but the multi-source trick is easy to miss</div>
+          <div class="reveal-card-val">Medium — the chat bubble layout and AI badge identify Teams, but the multi-source trick and the post-meeting chat detail are easy to miss</div>
         </div>
         <div class="reveal-card" style="grid-column:1/-1">
           <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
@@ -1152,12 +1158,12 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       </div>
       <div class="reveal-points-label">Why this is impressive</div>
       <div class="reveal-point">Copilot reconciled three separate documents — a pre-meeting email thread, a live transcript, and a post-meeting chat log — and assembled a single, complete picture of what was decided and who owns what</div>
-      <div class="reveal-point">Action item #4 (Derek's middleware licence task) only existed in the post-meeting chat — it was never discussed in the transcript. Copilot caught it because it read all three documents, not just the transcript</div>
-      <div class="reveal-point">Several decisions were only finalised in the chat after the meeting ended. A human note-taker working from the transcript alone would have produced an incomplete and potentially misleading set of action items</div>
-      <div class="reveal-point">The output assigns owners and due dates to every action item — detail that was scattered across the three documents and required synthesis, not just extraction</div>
+      <div class="reveal-point">Action item #4 (Derek's middleware licence task) only existed in the post-meeting chat — it was raised but unresolved in the transcript. Copilot caught the confirmed cost and owner because it read all three documents, not just the transcript</div>
+      <div class="reveal-point">In a real Teams meeting, the transcript is generated automatically — you wouldn't need to export it at all. Copilot reads it directly alongside the meeting chat and produces the recap in one click from the Recap tab</div>
+      <div class="reveal-point">The output assigns owners and due dates to every action item — detail that was scattered across three documents and required synthesis, not just extraction</div>
       <div class="lesson-box">
         <div class="lesson-label">The takeaway</div>
-        <div class="lesson-text">Meetings don't end when the call ends. Decisions get updated, action items get clarified, and commitments get made in the chat thread that follows. Copilot is the only participant that reads everything — before, during, and after — and produces a complete record. If you have ever sent a follow-up email only to realise you missed something from the chat, this is the capability that solves that problem.</div>
+        <div class="lesson-text">Meetings don't end when the call ends. Decisions get updated, costs get confirmed, and action items get clarified in the chat thread that follows. Copilot is the only participant that reads everything — before, during, and after — and produces a complete record. In Teams, this happens automatically as long as transcription is on: just open the meeting's Recap tab and the summary is already there. If your organisation hasn't enabled automatic transcription yet, that single setting change could save every meeting attendee the 10 minutes of note-taking that currently happens afterwards.</div>
       </div>
     </div>
 
@@ -1190,6 +1196,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <div class="output-intro">
       <div class="output-intro-eyebrow">The mystery output</div>
       <div class="output-intro-title">Take a look — how would you recreate this in Copilot?</div>
+      <div style="font-size:12px;color:#888;font-style:italic;margin-top:0.4rem;line-height:1.55">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</div>
     </div>
     <div class="output-card">
       <div class="output-card-titlebar">
@@ -1200,9 +1207,9 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div style="padding:14px 20px 10px;border-bottom:0.5px solid #e8e8e8;background:#fff">
         <div style="font-size:14px;font-weight:600;color:#1f1f1f;margin-bottom:7px">RE: Unacceptable Delays — Project Phoenix Delivery</div>
         <div style="font-size:12px;color:#666;line-height:1.8">
-          <span style="font-weight:600;color:#333">To:</span> Raymond Hartley &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ef9dc1878e9d9b838a96af9f86818a9c9b9d8a8a9b889d809a9fc18c8082">[email&#160;protected]</a>&gt;<br>
+          <span style="font-weight:600;color:#333">To:</span> Raymond Hartley &lt;r.hartley@pinestreetgroup.com&gt;<br>
           <span style="font-weight:600;color:#333">CC:</span> Linda Wee; Gary Soh<br>
-          <span style="font-weight:600;color:#333">From:</span> Sandra Lim &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5320323d3721327d3f3a3e133223362b303c21237d303c3e">[email&#160;protected]</a>&gt;<br>
+          <span style="font-weight:600;color:#333">From:</span> Sandra Lim &lt;s.lim@apexcorp.com&gt;<br>
           <span style="font-weight:600;color:#333">Status:</span> <span style="color:#888;font-style:italic">Draft — AI-generated, review before sending</span>
         </div>
       </div>
@@ -1224,7 +1231,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
           <strong style="color:#333">Sandra Lim</strong><br>
           People &amp; Culture — escalation lead, Project Phoenix<br>
           Apex Corporate Solutions<br>
-          +65 6438 2201 &nbsp;·&nbsp; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="89fae8e7edfbe8a7e5e0e4c9e8f9ecf1eae6fbf9a7eae6e4">[email&#160;protected]</a>
+          +65 6438 2201 &nbsp;·&nbsp; s.lim@apexcorp.com
         </div>
       </div>
     </div>
@@ -1232,9 +1239,8 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <!-- REF FILES -->
     <div class="ref-bar">
       <div class="ref-label">Reference files provided</div>
-      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">Client_Complaint_Email_Hartley.msg</div><div class="ref-desc">A formal complaint from Pine Street Group's COO demanding written acknowledgement of a project delay, a revised schedule, and senior escalation — with a response deadline of Wednesday 9 April</div></div></div>
-      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">Internal_Escalation_Email_JasonOng.msg</div><div class="ref-desc">An internal email from the project manager explaining the root causes of the delay and the revised internal delivery timeline — not intended for the client</div></div></div>
-      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">Project_Phoenix_Briefing_Note.docx</div><div class="ref-desc">An internal briefing note covering contract value, penalty clause exposure, the client relationship context, and the recommended tone and content for the response</div></div></div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 7A Customer Complaint.msg</div><div class="ref-desc">A formal complaint from Pine Street Group's COO demanding written acknowledgement of a project delay, a revised schedule, and senior escalation — with a response deadline of Wednesday 9 April</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 7B Internal Coord.msg</div><div class="ref-desc">An internal email from the project manager explaining the root causes of the delay and the revised internal delivery timeline — not intended for the client</div></div></div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -1257,8 +1263,8 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <button class="mc-opt" onclick="answer(this,'q2c7',false,'q2c7-fb-correct','q2c7-fb-wrong')">Copilot estimated a reasonable delivery date based on the context of the complaint and the delay described</button>
         <button class="mc-opt" onclick="answer(this,'q2c7',true,'q2c7-fb-correct','q2c7-fb-wrong')">It came from the internal escalation email — Jason Ong stated that the report would be ready for client delivery by Thursday 10 April at 10am</button>
       </div>
-      <div class="mc-feedback correct-fb" id="q2c7-fb-correct">Exactly right. Jason's internal email — Reference File B — contained the revised delivery estimate that the team had agreed internally. Copilot read that internal document, extracted the committed date, and used it to anchor the client response. Critically, it did this without revealing any other internal detail from Jason's email — the reasons for the delay were reframed appropriately for a client audience. Copilot used internal context without leaking it.</div>
-      <div class="mc-feedback wrong-fb" id="q2c7-fb-wrong">Copilot doesn't estimate or guess dates — that would be dangerous in a client-facing context. The specific date and time came from Reference File B: Jason Ong's internal escalation email, in which he stated the report would be ready for client delivery by Thursday 10 April at 10am. Copilot read that internal document, extracted the commitment, and used it to anchor the reply — without revealing any of the other sensitive internal detail Jason had shared. That's a meaningful distinction: it used the information without exposing it.</div>
+      <div class="mc-feedback correct-fb" id="q2c7-fb-correct">Exactly right. Jason's internal email — REF 7B — contained the revised delivery estimate that the team had agreed internally. Copilot read that internal document, extracted the committed date, and used it to anchor the client response. Critically, it did this without revealing any other internal detail from Jason's email — the reasons for the delay were reframed appropriately for a client audience. Copilot used internal context without leaking it.</div>
+      <div class="mc-feedback wrong-fb" id="q2c7-fb-wrong">Copilot doesn't estimate or guess dates — that would be dangerous in a client-facing context. The specific date and time came from REF 7B: Jason Ong's internal escalation email, in which he stated the report would be ready for client delivery by Thursday 10 April at 10am. Copilot read that internal document, extracted the commitment, and used it to anchor the reply — without revealing any of the other sensitive internal detail Jason had shared. That's a meaningful distinction: it used the information without exposing it.</div>
       <button class="mc-reset" id="reset-q2c7" onclick="resetQ('q2c7','q2c7-fb-correct','q2c7-fb-wrong','reset-q2c7')">Try again</button>
     </div>
 
@@ -1269,7 +1275,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="reveal-grid">
         <div class="reveal-card">
           <div class="reveal-card-label">App used</div>
-          <div class="reveal-card-val">Microsoft Outlook — Copilot drafted the reply using three reference files and placed it in the Drafts folder for review</div>
+          <div class="reveal-card-val">Microsoft Outlook — Copilot drafted the reply using two reference files and placed it in the Drafts folder for review</div>
         </div>
         <div class="reveal-card">
           <div class="reveal-card-label">Difficulty</div>
@@ -1309,7 +1315,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
   <div class="challenge-hero">
     <div class="challenge-num">Challenge #8 &nbsp;·&nbsp; Difficulty: Hard</div>
     <div class="challenge-title">Which app made this? What was the prompt?</div>
-    <div class="challenge-sub">Six sources. Three files. One output. The most ambitious of all eight — try to recreate it in Copilot.</div>
+    <div class="challenge-sub">Four sources. Four files. One output. The most ambitious of all eight — try to recreate it in Copilot.</div>
     <div class="challenge-sub-tip">No Copilot device? Try the multiple choice below. Got Copilot? The questions make good hints.</div>
     <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
   </div>
@@ -1320,6 +1326,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <div class="output-intro">
       <div class="output-intro-eyebrow">The mystery output</div>
       <div class="output-intro-title">Take a look — how would you recreate this in Copilot?</div>
+      <div style="font-size:12px;color:#888;font-style:italic;margin-top:0.4rem;line-height:1.55">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</div>
     </div>
     <div class="output-card">
       <div class="output-card-titlebar">
@@ -1329,21 +1336,22 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <!-- subtle input pane hint -->
       <div style="background:#f8f5fc;border-bottom:0.5px solid #e0d4ec;padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
         <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#9b6ab5">Source files</span>
-        <span style="font-size:11px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;padding:2px 8px;color:#444">Academic_Research_Articles.docx</span>
-        <span style="font-size:11px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;padding:2px 8px;color:#444">Corporate_Research_Reports.pdf</span>
-        <span style="font-size:11px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;padding:2px 8px;color:#444">Apex_AI_Pulse_Survey.xlsx</span>
+        <span style="font-size:11px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;padding:2px 8px;color:#444">REF 8A Generative AI at Work.pdf</span>
+        <span style="font-size:11px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;padding:2px 8px;color:#444">REF 8B Generative AI FRBSL.pdf</span>
+        <span style="font-size:11px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;padding:2px 8px;color:#444">REF 8C 2024_Work_Trend_Index_Annual_Report.pdf</span>
+        <span style="font-size:11px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;padding:2px 8px;color:#444">REF 8D Apex AI Pulse Survey.xlsx</span>
         <div style="margin-left:auto;display:flex;align-items:center;gap:5px">
           <div style="width:14px;height:14px;border-radius:50%;background:#e0d4ec;display:flex;align-items:center;justify-content:center">
             <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4.5L3 6L6.5 2.5" stroke="#7719AA" stroke-width="1.2" stroke-linecap="round"/></svg>
           </div>
           <span style="font-size:11px;font-weight:600;color:#7719AA">AI output</span>
-          <span style="font-size:10px;color:#aaa">· 6 sources across 3 files</span>
+          <span style="font-size:10px;color:#aaa">· 4 sources across 4 files</span>
         </div>
       </div>
       <!-- document body -->
       <div style="padding:1.5rem 1.85rem;background:#fff">
         <div style="font-size:16px;font-weight:600;color:#1f1f1f;margin-bottom:0.2rem">AI and office productivity: a briefing for Apex Corporate Solutions</div>
-        <div style="font-size:11px;color:#999;margin-bottom:1.1rem;padding-bottom:0.75rem;border-bottom:0.5px solid #e8e8e8">April 2025 &nbsp;·&nbsp; AI-generated from 6 sources across 3 files &nbsp;·&nbsp; 4 academic studies · 3 corporate reports · 1 internal staff survey</div>
+        <div style="font-size:11px;color:#999;margin-bottom:1.1rem;padding-bottom:0.75rem;border-bottom:0.5px solid #e8e8e8">April 2025 &nbsp;·&nbsp; AI-generated from 4 sources across 4 files &nbsp;·&nbsp; 2 academic/research papers · 1 corporate report · 1 internal AI pulse survey</div>
 
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#666;margin:0 0 0.4rem;border-bottom:0.5px solid #e8e8e8;padding-bottom:3px">Overview</div>
         <div style="font-size:12px;color:#1f1f1f;line-height:1.8;margin-bottom:0.85rem">Generative AI has crossed a meaningful threshold in the workplace. Adoption has grown faster than any prior general-purpose technology — reaching approximately 40% of the US working-age population within two years of launch, compared with a three-year timeline for the personal computer to reach 20%. <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px;margin-left:2px">Bick et al. 2025</span> Within Apex, our Q1 FY2025 pulse survey confirms the wave has arrived: 23% of staff already use AI tools in their daily work, and 71% say they would do so if given proper training and guidance.</div>
@@ -1352,10 +1360,10 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; Productivity gains are consistently measured: AI assistance improves individual output by 14–34%, with the largest gains among less experienced workers <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px">Brynjolfsson et al. 2023</span></div>
         <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; Knowledge workers using AI report saving an average of 5.4% of their working hours — roughly 2.2 hours per week — rising to 4+ hours among daily users <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px">Bick et al. 2025</span></div>
         <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; For Apex specifically, staff identified email drafting, report writing, and meeting follow-up as the highest-value use cases — an estimated 8.65 automatable hours per staff member per week <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px">Apex survey 2025</span></div>
-        <div style="background:#f5f5f5;border-left:2px solid #ccc;padding:0.65rem 0.9rem;margin:0.75rem 0 0.85rem;font-size:12px;color:#555;line-height:1.65">McKinsey estimates generative AI could add SGD 3.5–6 trillion in annual value globally. The highest-value applications — document drafting, information synthesis, data analysis, and communication — are precisely the tasks Apex staff flagged as their biggest time burdens. <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px">McKinsey 2023</span></div>
+        <div style="background:#f5f5f5;border-left:2px solid #ccc;padding:0.65rem 0.9rem;margin:0.75rem 0 0.85rem;font-size:12px;color:#555;line-height:1.65">79% of leaders agree their company needs to adopt AI to stay competitive — yet 60% worry their organisation's leadership lacks a plan to implement it. Meanwhile, Microsoft 365 users spend 60% of their time on emails, chats, and meetings — precisely the tasks Apex staff flagged as their highest time burdens. <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px">Microsoft WTI 2024</span></div>
 
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#666;margin:0 0 0.4rem;border-bottom:0.5px solid #e8e8e8;padding-bottom:3px">Risks and concerns</div>
-        <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; 78% of AI-using workers globally bring their own tools to work without employer knowledge — at Apex, 81 staff confirmed using personal accounts on work tasks, creating data and IP exposure <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px">Microsoft WTI 2024</span></div>
+        <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; 78% of AI-using workers globally bring their own tools to work without employer knowledge <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px">Microsoft WTI 2024</span> — at Apex, 54% of staff confirmed using personal accounts on work tasks, creating data and IP exposure <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px">Apex survey 2025</span></div>
         <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; Only 23% of Apex staff feel confident using AI, yet 60% of business leaders globally admit their organisation lacks a clear AI plan — ungoverned adoption is a present risk <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px">Apex survey; Microsoft WTI 2024</span></div>
         <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.85rem">&#9658;&nbsp; Accuracy and verification concerns are cited by 34% of Apex staff as a reason for hesitation — structured guidance on when and how to check AI outputs is needed</div>
 
@@ -1370,24 +1378,25 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <!-- REF FILES -->
     <div class="ref-bar">
       <div class="ref-label">Reference files provided</div>
-      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">Academic_Research_Articles.docx</div><div class="ref-desc">Two full academic articles: a QJE study on generative AI's productivity impact on customer support agents (14–34% gains), and a St. Louis Fed paper tracking AI adoption rates and time savings across the US workforce</div></div></div>
-      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">Corporate_Research_Reports.pdf</div><div class="ref-desc">Three corporate research reports — Microsoft's 2024 Work Trend Index on AI adoption and the "BYOAI" risk, and two McKinsey reports on the economic value of generative AI and the emergence of agentic AI</div></div></div>
-      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">Apex_AI_Pulse_Survey_Q1FY2025.xlsx</div><div class="ref-desc">Internal survey of 287 Apex staff covering current AI tool usage, confidence levels, informal ungoverned usage risks, and an estimated 8.65 hours per week of automatable tasks per person</div></div></div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 8A Generative AI at Work.pdf</div><div class="ref-desc">NBER working paper by Brynjolfsson, Li & Raymond (2023) — randomised study of 5,179 customer support agents reporting 14–34% productivity gains from AI assistance</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 8B Generative AI FRBSL.pdf</div><div class="ref-desc">St. Louis Fed article (2025) summarising Bick et al. research on AI adoption rates and time savings across the US workforce — approximately 40% adoption within two years and average 5.4% time savings per worker</div></div></div>
+      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 8C 2024_Work_Trend_Index_Annual_Report.pdf</div><div class="ref-desc">Microsoft's 2024 Work Trend Index — 75% of knowledge workers now use AI, 78% bring their own tools to work (BYOAI), and 60% of leaders say their organisation lacks a plan to implement AI</div></div></div>
+      <div class="ref-item"><span class="ref-icon">D</span><div><div class="ref-text">REF 8D Apex AI Pulse Survey.xlsx</div><div class="ref-desc">Apex internal AI readiness survey (Q1 FY2025, n=287) — confidence scores by department, top use cases, estimated automatable hours per week, and barriers to adoption</div></div></div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
     <div class="mc-section">
       <div class="mc-eyebrow">Not near a Copilot device?</div>
       <div class="mc-title">Try the multiple choice challenge instead</div>
-      <div class="mc-sub">The most ambitious challenge. Six sources synthesised into one output — and a question about where the recommendation really came from.</div>
+      <div class="mc-sub">The most ambitious challenge. Four sources synthesised into one output — and a question about where the recommendation really came from.</div>
 
       <div class="mc-question">Q1: Which Microsoft app generated this output?</div>
       <div class="mc-options" id="q1c8">
         <button class="mc-opt" onclick="answer(this,'q1c8',false,'q1c8-fb-correct','q1c8-fb-wrong')">Microsoft Word — this is a structured research briefing document with sections, citations, and a callout box</button>
         <button class="mc-opt" onclick="answer(this,'q1c8',true,'q1c8-fb-correct','q1c8-fb-wrong')">Microsoft Copilot Notebook — a long-context workspace tool designed to synthesise large volumes of source material into structured outputs</button>
       </div>
-      <div class="mc-feedback correct-fb" id="q1c8-fb-correct">Correct — and this is the hardest app to identify precisely because the output looks exactly like a Word document. The giveaway is the source file strip at the top: three file chips showing the uploaded documents, and the "AI output · 6 sources across 3 files" label on the right. Copilot Notebook is designed for exactly this task — processing large, unstructured source material and producing a coherent, well-organised output from it.</div>
-      <div class="mc-feedback wrong-fb" id="q1c8-fb-wrong">A completely understandable guess — the output is indistinguishable from a Word document in terms of content and layout. The tell is at the very top of the output: a strip showing three file chips (the uploaded source documents) and an "AI output · 6 sources across 3 files" label. That's the Copilot Notebook interface. Unlike Word's Copilot, Notebook is built specifically for long-context synthesis — it can hold and reason across much larger volumes of source material than a standard document editor.</div>
+      <div class="mc-feedback correct-fb" id="q1c8-fb-correct">Correct — and this is the hardest app to identify precisely because the output looks exactly like a Word document. The giveaway is the source file strip at the top: four file chips showing the uploaded documents, and the "AI output · 4 sources across 4 files" label on the right. Copilot Notebook is designed for exactly this task — processing large, unstructured source material and producing a coherent, well-organised output from it.</div>
+      <div class="mc-feedback wrong-fb" id="q1c8-fb-wrong">A completely understandable guess — the output is indistinguishable from a Word document in terms of content and layout. The tell is at the very top of the output: a strip showing four file chips (the uploaded source documents) and an "AI output · 4 sources across 4 files" label. That's the Copilot Notebook interface. Unlike Word's Copilot, Notebook is built specifically for long-context synthesis — it can hold and reason across much larger volumes of source material than a standard document editor.</div>
       <button class="mc-reset" id="reset-q1c8" onclick="resetQ('q1c8','q1c8-fb-correct','q1c8-fb-wrong','reset-q1c8')">Try again</button>
 
       <div class="mc-question" style="margin-top:1.1rem">Q2: The "Recommended next steps" section suggests prioritising Finance and Operations for AI support. That recommendation didn't come from any of the academic or corporate research. Where did it come from?</div>
@@ -1395,8 +1404,8 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <button class="mc-opt" onclick="answer(this,'q2c8',false,'q2c8-fb-correct','q2c8-fb-wrong')">Copilot generated a logical recommendation based on the types of tasks typically found in Finance and Operations roles</button>
         <button class="mc-opt" onclick="answer(this,'q2c8',true,'q2c8-fb-correct','q2c8-fb-wrong')">It came from the Apex internal survey — which showed Finance and Operations had the lowest AI confidence scores and the highest volume of manual workflows</button>
       </div>
-      <div class="mc-feedback correct-fb" id="q2c8-fb-correct">Exactly right — and this is the most important insight of the entire booth. The recommendation is not generic advice from a research paper. It is grounded in Apex's own data: the internal pulse survey showed Finance scored 2.1/5 on AI confidence and Operations scored 2.3/5 — the two lowest in the organisation. Copilot read that internal data, cross-referenced it with the external research on where AI delivers the most value, and produced a recommendation that is specific to Apex. That is the difference between a generic briefing and a useful one.</div>
-      <div class="mc-feedback wrong-fb" id="q2c8-fb-wrong">Copilot doesn't generate generic recommendations — it grounds them in evidence. The Finance and Operations recommendation came directly from Reference File C: the Apex internal pulse survey. Finance scored 2.1/5 on AI confidence and Operations scored 2.3/5 — the two lowest departments in the organisation. Copilot read that internal data, connected it to the external research on where AI delivers the most productivity value, and produced a recommendation that is specific to Apex rather than generic advice that could apply to any organisation. That connection between external research and internal data is what Notebook is built to make.</div>
+      <div class="mc-feedback correct-fb" id="q2c8-fb-correct">Exactly right — and this is the most important insight of the entire booth. The recommendation is not generic advice from a research paper. It is grounded in Apex's own data: REF 8D (the Apex AI Pulse Survey) showed Finance scored 2.1/5 on AI confidence and Operations scored 2.3/5 — the two lowest in the organisation. Copilot read that internal data, cross-referenced it with the external research on where AI delivers the most value, and produced a recommendation that is specific to Apex. That is the difference between a generic briefing and a useful one.</div>
+      <div class="mc-feedback wrong-fb" id="q2c8-fb-wrong">Copilot doesn't generate generic recommendations — it grounds them in evidence. The Finance and Operations recommendation came directly from REF 8D: the Apex AI Pulse Survey. Finance scored 2.1/5 on AI confidence and Operations scored 2.3/5 — the two lowest departments in the organisation. Copilot read that internal data, connected it to the external research on where AI delivers the most productivity value, and produced a recommendation that is specific to Apex rather than generic advice that could apply to any organisation. That connection between external research and internal data is what Notebook is built to make.</div>
       <button class="mc-reset" id="reset-q2c8" onclick="resetQ('q2c8','q2c8-fb-correct','q2c8-fb-wrong','reset-q2c8')">Try again</button>
     </div>
 
@@ -1407,7 +1416,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="reveal-grid">
         <div class="reveal-card">
           <div class="reveal-card-label">App used</div>
-          <div class="reveal-card-val">Microsoft Copilot Notebook — a long-context workspace that synthesised 6 sources across 3 files into a single structured briefing</div>
+          <div class="reveal-card-val">Microsoft Copilot Notebook — a long-context workspace that synthesised 4 sources across 4 files into a single structured briefing</div>
         </div>
         <div class="reveal-card">
           <div class="reveal-card-label">Difficulty</div>
@@ -1419,7 +1428,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         </div>
       </div>
       <div class="reveal-points-label">Why this is impressive</div>
-      <div class="reveal-point">Copilot Notebook processed 6 distinct sources — two academic papers, three corporate reports, and one internal staff survey — across three files in different formats, and synthesised them into a single briefing with a consistent voice and structure</div>
+      <div class="reveal-point">Copilot Notebook processed 4 distinct sources — two academic and research papers, one corporate report, and one internal staff survey — across four files in different formats, and synthesised them into a single briefing with a consistent voice and structure</div>
       <div class="reveal-point">The inline citations (Brynjolfsson et al., Bick et al., McKinsey, Apex survey) show Copilot tracking which claim came from which source — a level of source awareness that goes beyond simple summarisation</div>
       <div class="reveal-point">The "Recommended next steps" section is not generic AI advice — it is grounded in Apex's specific survey data, connecting external evidence to internal reality in a way that makes the output immediately actionable for this organisation</div>
       <div class="reveal-point">A strategy analyst would spend one to two days producing a briefing of this quality and specificity. Copilot produced a credible first draft in under a minute — and the internal data that makes it specific to Apex was already sitting in a spreadsheet</div>
