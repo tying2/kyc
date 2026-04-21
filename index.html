@@ -295,12 +295,16 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="apps">
         <div class="app word" onclick="goToApp([1])" style="cursor:pointer" title="Try the Word challenge">Word</div>
         <div class="app excel" onclick="goToApp([2,3])" style="cursor:pointer" title="Try an Excel challenge">Excel</div>
-        <div class="app ppt" onclick="goToApp([4,5])" style="cursor:pointer" title="Try a PowerPoint challenge">PowerPoint</div>
+        <div class="app ppt" onclick="goToApp([4])" style="cursor:pointer" title="Try a PowerPoint challenge">PowerPoint</div>
         <div class="app teams" onclick="goToApp([6])" style="cursor:pointer" title="Try the Teams challenge">Teams</div>
         <div class="app outlook" onclick="goToApp([7])" style="cursor:pointer" title="Try the Outlook challenge">Outlook</div>
-        <div class="app notebook" onclick="goToApp([8])" style="cursor:pointer" title="Try the Copilot Notebook challenge">Copilot Notebook</div>
+        <div class="app notebook" onclick="goToApp([5,8])" style="cursor:pointer" title="Try a Copilot Notebook challenge">Copilot Notebook</div>
       </div>
       <div class="hint">One of these did it. Your job is to figure out which one — or pick your favourite app to start.</div>
+    </div>
+    <div style="text-align:center;padding:0.6rem 0 1rem">
+      <button onclick="toggleCommonThread()" id="common-thread-btn" style="background:none;border:none;color:rgba(15,43,91,0.45);font-size:12px;font-family:'Segoe UI',Arial,sans-serif;cursor:pointer;text-decoration:underline;text-underline-offset:3px;letter-spacing:0.01em">↓ What do all 8 challenges have in common?</button>
+      <div id="common-thread-panel" style="display:none;max-width:680px;margin:0.75rem auto 0;background:#fff;border-radius:10px;padding:1rem 1.35rem;text-align:left;font-size:13px;color:#2a3a55;line-height:1.75;border-top:3px solid #378ADD">Every output in this booth was produced by combining a clear prompt with real source material that already existed inside the organisation. No challenge required Copilot to make things up or work from scratch. The pattern is always the same: identify the task, gather the relevant files, write a specific prompt, and let Copilot do the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution. That is what working smarter looks like in practice.</div>
     </div>
   </div>
   <div class="accent-bar"></div>
@@ -348,14 +352,12 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <div class="doc-bullet">Activate your Microsoft 365 account at portal.office.com</div>
         <div class="doc-bullet">Set up Multi-Factor Authentication using the Authenticator app</div>
         <div class="doc-bullet">Install the GlobalConnect VPN before your first home working day</div>
-        <div class="doc-bullet">Submit software access requests via the IT Service Portal — allow 2 working days</div>
+        <div class="doc-bullet">Submit software access requests via the IT Service Portal</div>
         <div class="doc-h2">Key contacts</div>
         <table class="doc-table">
           <thead><tr><th>Name</th><th>Role</th><th>Email</th><th>Ext.</th></tr></thead>
           <tbody>
             <tr><td>Sandra Lim</td><td>HR Business Partner</td><td>sandra.lim@apexcorp.com</td><td>2201</td></tr>
-            <tr><td>Derek Tan</td><td>IT Services Lead</td><td>derek.tan@apexcorp.com</td><td>1801</td></tr>
-            <tr><td>Michael Boo</td><td>IT Security</td><td>michael.boo@apexcorp.com</td><td>1803</td></tr>
             <tr><td>IT Help Desk</td><td>IT Services</td><td>helpdesk@apexcorp.com</td><td>1800</td></tr>
           </tbody>
         </table>
@@ -383,20 +385,20 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
 
       <div class="mc-question">Q1: Which Microsoft app do you think was used to generate this output?</div>
       <div class="mc-options" id="q1c1">
-        <button class="mc-opt" onclick="answer(this,'q1c1',true,'q1c1-fb-correct','q1c1-fb-wrong')">Microsoft Word — Copilot in Word can synthesise content from multiple uploaded files into a single structured document</button>
-        <button class="mc-opt" onclick="answer(this,'q1c1',false,'q1c1-fb-correct','q1c1-fb-wrong')">Microsoft OneNote — Copilot in OneNote is ideal for compiling notes from different sources into a single page</button>
+        <button class="mc-opt" onclick="answer(this,'q1c1',true,'q1c1-fb-correct','q1c1-fb-wrong')">Word — Copilot in Word can synthesise content from multiple uploaded files into a single structured document</button>
+        <button class="mc-opt" onclick="answer(this,'q1c1',false,'q1c1-fb-correct','q1c1-fb-wrong')">PowerPoint — the output is structured in sections like a slide deck, and one of the reference files is a culture presentation</button>
       </div>
-      <div class="mc-feedback correct-fb" id="q1c1-fb-correct">Correct! This is a Word document — you can tell from the structured heading hierarchy, table formatting, and document-style layout. Word's Copilot can accept multiple uploaded files and synthesise them into a single coherent document, even when those files are in different formats.</div>
-      <div class="mc-feedback wrong-fb" id="q1c1-fb-wrong">Not quite — while OneNote can organise notes, this output has the structure of a formal Word document: section headings, a formatted contacts table, and a professional tone. The giveaway is the document layout and the way information from three very different source files has been unified into one polished piece.</div>
+      <div class="mc-feedback correct-fb" id="q1c1-fb-correct">Correct! This is a Word document — you can tell from the structured heading hierarchy, table formatting, and document-style layout. Copilot in Word can accept multiple uploaded files and synthesise them into a single coherent document, even when those files are in different formats.</div>
+      <div class="mc-feedback wrong-fb" id="q1c1-fb-wrong">Good instinct — REF 1C is a PowerPoint culture deck, so it's tempting to think this came from PowerPoint. But look at the content density: each section has full paragraphs, a four-column contacts table, and detailed bullet points running several lines each — far more than any slide could hold. PowerPoint outputs are built around concise points and white space. This output has the heading hierarchy, table formatting, and document flow of a Word file. The filename 'Apex_Onboarding_Guide' in the title bar is the final giveaway — this is a Word document, not a deck.</div>
       <button class="mc-reset" id="reset-q1c1" onclick="resetQ('q1c1','q1c1-fb-correct','q1c1-fb-wrong','reset-q1c1')">Try again</button>
 
       <div class="mc-question" style="margin-top:1.1rem">Q2: Which of these prompts is most likely to have produced this output?</div>
       <div class="mc-options" id="q2c1">
-        <button class="mc-opt" onclick="answer(this,'q2c1',false,'q2c1-fb-correct','q2c1-fb-wrong')">Write an onboarding guide for a new employee at a corporate company. Include sections on culture, IT setup, key contacts, and first-week tips.</button>
-        <button class="mc-opt" onclick="answer(this,'q2c1',true,'q2c1-fb-correct','q2c1-fb-wrong')">I have three files — a welcome letter, an IT setup guide, and a culture deck. Synthesise all of them into a single, well-structured onboarding guide for a new employee joining Apex Corporate Solutions.</button>
+        <button class="mc-opt" onclick="answer(this,'q2c1',false,'q2c1-fb-correct','q2c1-fb-wrong')">Write a new employee onboarding guide for Apex Corporate Solutions.</button>
+        <button class="mc-opt" onclick="answer(this,'q2c1',true,'q2c1-fb-correct','q2c1-fb-wrong')">Synthesise these three files into a concise new employee onboarding guide in bullet form, within 1–2 pages. Include sections on culture, IT setup, key contacts and first-week tips.</button>
       </div>
-      <div class="mc-feedback correct-fb" id="q2c1-fb-correct">Exactly right. The key difference is the reference files. A generic prompt would produce a generic guide. By providing three real source documents, Copilot was able to include Apex-specific details — actual staff names, real extensions, the Level 4 coffee tip — that no amount of prompting alone could have produced. This is the power of grounding Copilot in your own content.</div>
-      <div class="mc-feedback wrong-fb" id="q2c1-fb-wrong">This prompt would produce a decent onboarding guide — but a generic one. Notice that the output contains very specific details: real staff names, actual email addresses, room numbers, even the tip about the Level 4 coffee machine. None of that could come from a prompt alone. The second option — which references three specific uploaded files — is what produced this output. Specificity of input drives specificity of output.</div>
+      <div class="mc-feedback correct-fb" id="q2c1-fb-correct">Exactly right. The key difference is the reference files and the format instructions. By uploading three real source documents and specifying the structure, Copilot was able to include Apex-specific details — actual staff names, real email addresses, room numbers, the Level 4 coffee tip — that a generic prompt could never have produced. This is the power of grounding Copilot in your own content.</div>
+      <div class="mc-feedback wrong-fb" id="q2c1-fb-wrong">That prompt would produce something — but it would be generic, wordy, and Apex-shaped only in name. Without reference files, Copilot has nothing real to draw from and may fill the gaps with invented details — wrong names, placeholder contacts, or made-up procedures that look plausible but aren't accurate. Notice the output contains very specific details: real staff names, actual email addresses, room numbers, even the Level 4 coffee tip. None of that could come from a prompt alone. The second option uploads three real source documents and specifies bullet form and a page limit — that combination is what produced this focused, grounded output.</div>
       <button class="mc-reset" id="reset-q2c1" onclick="resetQ('q2c1','q2c1-fb-correct','q2c1-fb-wrong','reset-q2c1')">Try again</button>
     </div>
 
@@ -407,7 +409,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="reveal-grid">
         <div class="reveal-card">
           <div class="reveal-card-label">App used</div>
-          <div class="reveal-card-val">Microsoft Word — Copilot in Word</div>
+          <div class="reveal-card-val">Word — Copilot in Word</div>
         </div>
         <div class="reveal-card">
           <div class="reveal-card-label">Difficulty</div>
@@ -415,7 +417,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         </div>
         <div class="reveal-card" style="grid-column:1/-1">
           <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
-          <div class="reveal-card-val">"I have three files — a welcome letter, an IT setup guide, and a culture deck. Synthesise all of them into a single, well-structured onboarding guide for a new employee joining Apex Corporate Solutions."</div>
+          <div class="reveal-card-val">"Synthesise these three files into a concise new employee onboarding guide in bullet form, within 1–2 pages. Include sections on culture, IT setup, key contacts and first-week tips."</div>
         </div>
       </div>
       <div class="reveal-points-label">Why this is impressive</div>
@@ -497,14 +499,12 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
           <tbody>
             <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">2</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Operations</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Salaries &amp; Benefits</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">49,200</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">49,850</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:right;color:#3B6D11;background:#fff">+650</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:center;color:#3B6D11;background:#fff">—</td></tr>
             <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">3</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Operations</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Travel &amp; Accommodation</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">400</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">310</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:right;color:#3B6D11;background:#fff">-90</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:center;color:#3B6D11;background:#fff">—</td></tr>
-            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">4</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Technology</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Salaries &amp; Benefits</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">54,000</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">55,400</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fdf0f0;color:#A32D2D;font-weight:500;text-align:right">+1,400</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff3cd;color:#633806;font-weight:500;text-align:center">&#9650; OVER</td></tr>
-            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">5</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Technology</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Hardware (unplanned)</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">0</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">1,450</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fdf0f0;color:#A32D2D;font-weight:500;text-align:right">+1,450</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff3cd;color:#633806;font-weight:500;text-align:center">&#9650; OVER</td></tr>
-            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">6</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Marketing</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Digital Advertising</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">2,500</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">3,100</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fdf0f0;color:#A32D2D;font-weight:500;text-align:right">+600</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff3cd;color:#633806;font-weight:500;text-align:center">&#9650; OVER</td></tr>
+            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">4</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Technology</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Salaries &amp; Benefits</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">54,000</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">55,400</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:right;color:#3B6D11;background:#fff">+1,400</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:center;color:#3B6D11;background:#fff">—</td></tr>
+            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">5</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Technology</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">IT Equipment &amp; Licences</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">4,200</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">5,650</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fdf0f0;color:#A32D2D;font-weight:500;text-align:right">+1,450</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff3cd;color:#633806;font-weight:500;text-align:center">&#9650; OVER</td></tr>
+            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">6</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Marketing</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Marketing &amp; Events</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">4,000</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">4,600</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fdf0f0;color:#A32D2D;font-weight:500;text-align:right">+600</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff3cd;color:#633806;font-weight:500;text-align:center">&#9650; OVER</td></tr>
             <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">7</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Marketing</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Travel — Conference</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">1,200</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">0</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:right;color:#3B6D11;background:#fff">-1,200</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:center;color:#3B6D11;background:#fff">—</td></tr>
             <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">8</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">HR</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Jan-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Contractor — Recruitment</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">3,500</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">3,500</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:right;color:#1f1f1f;background:#fff">0</td><td style="border:0.5px solid #d0cece;padding:4px 8px;text-align:center;color:#3B6D11;background:#fff">—</td></tr>
-            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">9</td><td colspan="3" style="background:#e8e8e8;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">January total</td><td style="background:#e8e8e8;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">214,010</td><td style="background:#e8e8e8;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">216,683</td><td style="background:#fdf0f0;color:#A32D2D;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">+2,673</td><td style="background:#fff3cd;color:#633806;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:center">&#9650; +1.2%</td></tr>
-            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">10</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Marketing</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Mar-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Brand Photography (unplanned)</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">0</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">2,800</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fdf0f0;color:#A32D2D;font-weight:500;text-align:right">+2,800</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff3cd;color:#633806;font-weight:500;text-align:center">&#9650; OVER</td></tr>
-            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">11</td><td colspan="3" style="background:#404040;color:#fff;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px">Q1 2025 grand total</td><td style="background:#404040;color:#fff;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">650,630</td><td style="background:#404040;color:#fff;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">654,996</td><td style="background:#fdf0f0;color:#A32D2D;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:right">+4,366</td><td style="background:#fff3cd;color:#633806;font-weight:500;border:0.5px solid #d0cece;padding:4px 8px;text-align:center">&#9650; +0.7%</td></tr>
+            <tr><td style="background:#f3f2f1;border:0.5px solid #d0cece;padding:3px 5px;text-align:center;font-size:11px;color:#666">9</td><td style="background:#f0f0f0;font-weight:500;color:#333;border:0.5px solid #d0cece;padding:4px 8px">Marketing</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Mar-25</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f">Marketing &amp; Events</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">2,500</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff;color:#1f1f1f;text-align:right">5,000</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fdf0f0;color:#A32D2D;font-weight:500;text-align:right">+2,500</td><td style="border:0.5px solid #d0cece;padding:4px 8px;background:#fff3cd;color:#633806;font-weight:500;text-align:center">&#9650; OVER</td></tr>
           </tbody>
         </table>
         <div style="background:#f3f2f1;border-top:0.5px solid #d0cece;padding:4px 12px;display:flex;gap:4px">
@@ -529,8 +529,8 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
 
       <div class="mc-question">Q1: Which Microsoft app do you think was used to generate this output?</div>
       <div class="mc-options" id="q1c2">
-        <button class="mc-opt" onclick="answer(this,'q1c2',false,'q1c2-fb-correct','q1c2-fb-wrong')">Microsoft Word — the output looks like a written report with tables, which Word handles well</button>
-        <button class="mc-opt" onclick="answer(this,'q1c2',true,'q1c2-fb-correct','q1c2-fb-wrong')">Microsoft Excel — Copilot in Excel can read raw data files and build structured trackers with calculated columns and conditional flags</button>
+        <button class="mc-opt" onclick="answer(this,'q1c2',false,'q1c2-fb-correct','q1c2-fb-wrong')">Word — the output looks like a written report with tables, which Word handles well</button>
+        <button class="mc-opt" onclick="answer(this,'q1c2',true,'q1c2-fb-correct','q1c2-fb-wrong')">Excel — Copilot in Excel can read raw data files and build structured trackers with calculated columns and conditional flags</button>
       </div>
       <div class="mc-feedback correct-fb" id="q1c2-fb-correct">Correct! Despite looking like it could be a Word table, this is an Excel output. The row and column headers, formula bar, and sheet tabs are the giveaways. Copilot in Excel can ingest a raw CSV, understand the structure, group rows by department, calculate variance, and apply conditional flags — all from a single prompt.</div>
       <div class="mc-feedback wrong-fb" id="q1c2-fb-wrong">A reasonable guess — the table formatting does look document-like. But look closely: there are row numbers, column letters, a formula bar, and sheet tabs at the bottom. This is an Excel output. The key insight is that Copilot in Excel doesn't just format data — it analyses it, groups it, calculates variance, and applies conditional logic like the &#9650; OVER flags, all from a single natural-language instruction.</div>
@@ -553,7 +553,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="reveal-grid">
         <div class="reveal-card">
           <div class="reveal-card-label">App used</div>
-          <div class="reveal-card-val">Microsoft Excel — Copilot in Excel</div>
+          <div class="reveal-card-val">Excel — Copilot in Excel</div>
         </div>
         <div class="reveal-card">
           <div class="reveal-card-label">Difficulty</div>
@@ -630,12 +630,12 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <table class="doc-table" style="margin:0.6rem 0 0.85rem">
           <thead><tr><th>Survey item</th><th>% agree</th><th>% disagree</th><th>Signal</th></tr></thead>
           <tbody>
-            <tr><td>I would consider leaving if required to return to full-time office</td><td style="text-align:right">47%</td><td style="text-align:right">32%</td><td style="color:#A32D2D;font-weight:600">Retention risk</td></tr>
+            <tr><td>I find it harder to collaborate with colleagues on home working days</td><td style="text-align:right">33%</td><td style="color:#A32D2D;font-weight:600;text-align:right">43%</td><td style="color:#A32D2D;font-weight:600">Collaboration challenge</td></tr>
+            <tr><td>I would consider leaving if required to return to full-time office</td><td style="text-align:right">47%</td><td style="color:#A32D2D;font-weight:600;text-align:right">32%</td><td style="color:#A32D2D;font-weight:600">Retention risk</td></tr>
             <tr><td>I feel included in team discussions regardless of where I am</td><td style="text-align:right">56%</td><td style="color:#A32D2D;font-weight:600;text-align:right">24%</td><td style="color:#A32D2D;font-weight:600">Inclusion gap</td></tr>
-            <tr><td>Hybrid working has had a positive impact on company productivity</td><td style="text-align:right">56%</td><td style="color:#A32D2D;font-weight:600;text-align:right">17%</td><td style="color:#A32D2D;font-weight:600">Perception gap</td></tr>
           </tbody>
         </table>
-        <div style="background:#fdf0f0;border-left:3px solid #A32D2D;padding:0.65rem 0.85rem;margin-bottom:0.85rem;font-size:12px;color:#A32D2D;line-height:1.65">The retention signal is the most significant finding — 47% of staff indicate they would consider leaving if required to return full-time. Any changes to the hybrid policy warrant careful communication and a phased approach.</div>
+        <div style="background:#fdf0f0;border-left:3px solid #A32D2D;padding:0.65rem 0.85rem;margin-bottom:0.85rem;font-size:12px;color:#A32D2D;line-height:1.65">Collaboration and retention are the two most pressing signals — one in three staff find it harder to collaborate on home working days, and 47% would consider leaving if required to return full-time. Both findings warrant attention in hybrid policy design and communications.</div>
 
         <div class="doc-h2" style="text-transform:uppercase;letter-spacing:0.06em;font-size:11px;border-bottom:1px solid #e0e0e0;padding-bottom:4px">Key themes</div>
         <div class="doc-bullet">Better focus at home is the most-cited benefit (143 mentions, 50% of respondents) — commute savings rank second at 112 mentions</div>
@@ -665,8 +665,8 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
 
       <div class="mc-question">Q1: Which Microsoft app do you think generated this output?</div>
       <div class="mc-options" id="q1c3">
-        <button class="mc-opt" onclick="answer(this,'q1c3',false,'q1c3-fb-correct','q1c3-fb-wrong')">Microsoft Word — this is clearly a written analytical report with headings, tables, and narrative commentary</button>
-        <button class="mc-opt" onclick="answer(this,'q1c3',true,'q1c3-fb-correct','q1c3-fb-wrong')">Microsoft Excel — Copilot in Excel generated this written analysis directly from a raw data file on a second sheet</button>
+        <button class="mc-opt" onclick="answer(this,'q1c3',false,'q1c3-fb-correct','q1c3-fb-wrong')">Word — this is clearly a written analytical report with headings, tables, and narrative commentary</button>
+        <button class="mc-opt" onclick="answer(this,'q1c3',true,'q1c3-fb-correct','q1c3-fb-wrong')">Excel — Copilot in Excel generated this written analysis directly from a raw data file on a second sheet</button>
       </div>
       <div class="mc-feedback correct-fb" id="q1c3-fb-correct">Got it! This is the hard one — the output looks exactly like a Word document, which is precisely the point. The subtle giveaway is the sheet tabs at the bottom: Sheet 1 contains the raw survey data, and Sheet 2 (currently active) contains this Copilot-generated analysis. Copilot in Excel can produce written narrative analysis — not just tables — directly from your data.</div>
       <div class="mc-feedback wrong-fb" id="q1c3-fb-wrong">This is the trick of Challenge #3 — the output is designed to look like a Word document. But look at the bottom of the output: there are sheet tabs. Sheet 1 holds the raw survey data. Sheet 2 — the active one — is where Copilot wrote this analysis. Copilot in Excel doesn't just crunch numbers; it can produce written narrative reports, ranked tables, and trend commentary directly from a data file.</div>
@@ -674,7 +674,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
 
       <div class="mc-question" style="margin-top:1.1rem">Q2: Which prompt most likely produced this output?</div>
       <div class="mc-options" id="q2c3">
-        <button class="mc-opt" onclick="answer(this,'q2c3',true,'q2c3-fb-correct','q2c3-fb-wrong')">Analyse this survey data. Identify the top 3 areas of strongest agreement, flag any items where disagreement is significant, and summarise the key themes from the open responses.</button>
+        <button class="mc-opt" onclick="answer(this,'q2c3',true,'q2c3-fb-correct','q2c3-fb-wrong')">Analyse this survey data. Identify the top 3 areas of strongest agreement, flag any items where disagreement is significant as items warranting attention and note what each signals for the organisation, and summarise the key themes from the open responses.</button>
         <button class="mc-opt" onclick="answer(this,'q2c3',false,'q2c3-fb-correct','q2c3-fb-wrong')">Write a summary of our staff hybrid working survey findings, covering what employees think about the current policy and any areas for improvement.</button>
       </div>
       <div class="mc-feedback correct-fb" id="q2c3-fb-correct">Exactly right. The prompt is data-first — it tells Copilot to analyse the attached data rather than write a generic report. Specific analytical instructions (rank by agreement, flag significant disagreement, summarise open themes) are what produced the structured, grounded findings you see. This is the difference between asking Copilot to write something and asking it to analyse something — the latter produces output you can actually act on.</div>
@@ -689,7 +689,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="reveal-grid">
         <div class="reveal-card">
           <div class="reveal-card-label">App used</div>
-          <div class="reveal-card-val">Microsoft Excel — Copilot in Excel (analysis written to Sheet 2 from raw data on Sheet 1)</div>
+          <div class="reveal-card-val">Excel — Copilot in Excel (analysis written to Sheet 2 from raw data on Sheet 1)</div>
         </div>
         <div class="reveal-card">
           <div class="reveal-card-label">Difficulty</div>
@@ -697,7 +697,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         </div>
         <div class="reveal-card" style="grid-column:1/-1">
           <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
-          <div class="reveal-card-val">"Analyse this survey data. Identify the top 3 areas of strongest agreement, flag any items where disagreement is significant, and summarise the key themes from the open responses."</div>
+          <div class="reveal-card-val">"Analyse this survey data. Identify the top 3 areas of strongest agreement, flag any items where disagreement is significant as items warranting attention and note what each signals for the organisation, and summarise the key themes from the open responses."</div>
         </div>
       </div>
       <div class="reveal-points-label">Why this is impressive</div>
@@ -707,7 +707,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="reveal-point">The output looks like a polished HR analyst deliverable. The source was a raw survey data table. Copilot bridged the entire gap between the two</div>
       <div class="lesson-box">
         <div class="lesson-label">The takeaway</div>
-        <div class="lesson-text">Staff survey data is often collected but underanalysed — responses sit in a spreadsheet while insights take days to extract manually. Copilot can turn raw survey data into a structured, readable findings report in seconds. If you run engagement surveys, pulse checks, or any kind of structured feedback collection at Apex, this is a high-value use case to try right now.</div>
+        <div class="lesson-text">Staff survey data is often collected but underanalysed — responses sit in a spreadsheet while insights take days to extract manually. Copilot can turn raw survey data into a structured, readable findings report in seconds. If you run engagement surveys, pulse checks, or any kind of structured feedback collection at Apex, this is a high-value use case to try right now. One practical note: for complex data files with multiple sections — like this one, which has Likert responses, department breakdowns, and open-response themes across separate tables — a single prompt may not surface everything. Follow-up prompts like "Now break the results down by department" are normal and expected. Think of it as a conversation, not a one-shot command.</div>
       </div>
     </div>
 
@@ -727,7 +727,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <div style="display:flex;align-items:center;gap:12px"><div class="challenge-badge">Challenge 4 of 8</div><div style="display:flex;gap:5px"><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot prog-dot-active" style="width:8px;height:8px;border-radius:50%;background:rgba(126,200,244,0.9);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div><div class="prog-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:background .2s"></div></div></div>
   </div>
   <div class="challenge-hero">
-    <div class="challenge-num">Challenge #4 &nbsp;·&nbsp; Difficulty: Easy</div>
+    <div class="challenge-num">Challenge #4 &nbsp;·&nbsp; Difficulty: Hard</div>
     <div class="challenge-title">Which app made this? What was the prompt?</div>
     <div class="challenge-sub">Take a look at the output below, then try to recreate it in Copilot using the reference files.</div>
     <div class="challenge-sub-tip">No Copilot device? Try the multiple choice below. Got Copilot? The questions make good hints.</div>
@@ -844,8 +844,8 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
 
       <div class="mc-question">Q1: Which Microsoft app generated this output?</div>
       <div class="mc-options" id="q1c4">
-        <button class="mc-opt" onclick="answer(this,'q1c4',true,'q1c4-fb-correct','q1c4-fb-wrong')">Microsoft PowerPoint — the slide panel on the left, two-column layout, stat boxes, and footer are all hallmarks of a deck</button>
-        <button class="mc-opt" onclick="answer(this,'q1c4',false,'q1c4-fb-correct','q1c4-fb-wrong')">Microsoft Word — this looks like a structured report with sections, columns, and a data summary table</button>
+        <button class="mc-opt" onclick="answer(this,'q1c4',true,'q1c4-fb-correct','q1c4-fb-wrong')">PowerPoint — the slide panel on the left, two-column layout, stat boxes, and footer are all hallmarks of a deck</button>
+        <button class="mc-opt" onclick="answer(this,'q1c4',false,'q1c4-fb-correct','q1c4-fb-wrong')">Word — this looks like a structured report with sections, columns, and a data summary table</button>
       </div>
       <div class="mc-feedback correct-fb" id="q1c4-fb-correct">Correct! The section thumbnails on the left, the dark title bar, the two-column bullet layout, the stat boxes, and the "2 of 5" footer are all classic deck conventions. Copilot in PowerPoint synthesised three external research files and an internal staff survey into a coherent, structured deck — correctly treating the internal survey data as "our own" evidence distinct from the external research.</div>
       <div class="mc-feedback wrong-fb" id="q1c4-fb-wrong">Look again at the left side of the output — there are five section thumbnails arranged vertically, each labelled with a section number. That's a slide panel. The dark title bar, two-column layout with bullet points, and stat boxes at the bottom are all deck conventions. This was generated in PowerPoint, not Word. The key clue is the structural chrome around the content, not just the content itself.</div>
@@ -854,10 +854,10 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="mc-question" style="margin-top:1.1rem">Q2: Which prompt most likely produced this output?</div>
       <div class="mc-options" id="q2c4">
         <button class="mc-opt" onclick="answer(this,'q2c4',false,'q2c4-fb-correct','q2c4-fb-wrong')">Create a 5-section deck on the benefits of hybrid working for a corporate organisation. Include an opening, evidence, key benefits, our survey results, and recommendations.</button>
-        <button class="mc-opt" onclick="answer(this,'q2c4',true,'q2c4-fb-correct','q2c4-fb-wrong')">I have four files — an academic study, a consulting research digest, and our own staff survey. Synthesise them into a 5-section deck on the benefits of hybrid working, using both external evidence and our internal data.</button>
+        <button class="mc-opt" onclick="answer(this,'q2c4',true,'q2c4-fb-correct','q2c4-fb-wrong')">Create a 5-section deck on the benefits of hybrid working covering: an opening, external research evidence, internal survey findings, key benefits of hybrid working, and recommendations.</button>
       </div>
-      <div class="mc-feedback correct-fb" id="q2c4-fb-correct">Exactly right. The difference between the two prompts is the reference files. The first prompt asks Copilot to write from scratch — it would produce generic content with no specific numbers. The second grounds Copilot in real documents, which is why the output contains precise figures: the 33% quit rate reduction from the Nature study, the 7.6 Apex satisfaction score from the internal survey, and the McKinsey attendance statistics. Real files produce real content.</div>
-      <div class="mc-feedback wrong-fb" id="q2c4-fb-wrong">That prompt would produce a reasonable deck — but a generic one. Notice the stat boxes: 33% lower quit rates (from the Bloom et al. Nature study), 7.6 average Apex satisfaction score (from the internal survey), 56% reporting positive productivity impact (from the internal survey). None of those figures could come from a prompt alone. The second option explicitly references the three uploaded source files, which is what grounded the output in real, specific data.</div>
+      <div class="mc-feedback correct-fb" id="q2c4-fb-correct">Exactly right. The difference between the two prompts is the reference files. The first prompt asks Copilot to write from scratch — it would produce generic content with no specific numbers. The second grounds Copilot in real documents, which is why the output contains precise figures: the 33% quit rate reduction from the Nature study, the 7.6 Apex satisfaction score from the internal survey, and the McKinsey attendance statistics. Real files produce real content. One caveat: replicating the exact layout of this slide — the two-column evidence breakdown, the stat boxes, the specific figures — is genuinely hard. Copilot's PowerPoint output varies with every attempt, and getting this level of detail typically takes several iterations and follow-up prompts.</div>
+      <div class="mc-feedback wrong-fb" id="q2c4-fb-wrong">That prompt would produce a reasonable deck — but a generic one. Notice the stat boxes: 33% lower quit rates (from the Bloom et al. Nature study), 7.6 average Apex satisfaction score (from the internal survey), 56% reporting positive productivity impact (from the internal survey). None of those figures could come from a prompt alone. The second option explicitly references the four uploaded source files, which is what grounded the output in real, specific data.</div>
       <button class="mc-reset" id="reset-q2c4" onclick="resetQ('q2c4','q2c4-fb-correct','q2c4-fb-wrong','reset-q2c4')">Try again</button>
     </div>
 
@@ -868,15 +868,15 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="reveal-grid">
         <div class="reveal-card">
           <div class="reveal-card-label">App used</div>
-          <div class="reveal-card-val">Microsoft PowerPoint — Copilot in PowerPoint</div>
+          <div class="reveal-card-val">PowerPoint — Copilot in PowerPoint</div>
         </div>
         <div class="reveal-card">
           <div class="reveal-card-label">Difficulty</div>
-          <div class="reveal-card-val">Easy — section thumbnails, two-column layout, and stat boxes are recognisable deck conventions</div>
+          <div class="reveal-card-val">Hard — the deck structure and stat boxes are recognisable, but synthesising four very different source files into a coherent narrative is not obvious</div>
         </div>
         <div class="reveal-card" style="grid-column:1/-1">
           <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
-          <div class="reveal-card-val">"I have four files — an academic study, a consulting research digest, and our own staff survey. Synthesise them into a 5-section deck on the benefits of hybrid working, using both external evidence and our internal data."</div>
+          <div class="reveal-card-val">"Create a 5-section deck on the benefits of hybrid working covering: an opening, external research evidence, internal survey findings, key benefits of hybrid working, and recommendations."</div>
         </div>
       </div>
       <div class="reveal-points-label">Why this is impressive</div>
@@ -908,7 +908,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
   <div class="challenge-hero">
     <div class="challenge-num">Challenge #5 &nbsp;·&nbsp; Difficulty: Hard</div>
     <div class="challenge-title">Which app made this? What was the prompt?</div>
-    <div class="challenge-sub">Nothing about this output looks like what it actually is. Read carefully, then try to recreate it in Copilot.</div>
+    <div class="challenge-sub">Three files, one prompt, five sections of spoken-word content. The files are in the sidebar — try to recreate this in Copilot.</div>
     <div class="challenge-sub-tip">No Copilot device? Try the multiple choice below. Got Copilot? The questions make good hints.</div>
     <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
   </div>
@@ -924,14 +924,19 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <div class="output-card">
       <div class="output-card-titlebar">
         <div class="oc-dot"></div><div class="oc-dot"></div><div class="oc-dot"></div>
-        <span class="oc-fname">Digital_Transformation_Strategy</span>
+        <span class="oc-fname">copilot.microsoft.com/notebook</span>
       </div>
-      <!-- view bar -->
-      <div style="background:#f0f0f0;border-bottom:0.5px solid #d0cece;padding:5px 16px;font-size:11px;color:#666;display:flex;gap:16px">
-        <span style="font-weight:600;color:#333">Extended view</span>
-        <span>Standard</span><span>Outline</span><span>Overview</span>
-      </div>
-      <div style="padding:1.5rem 1.85rem;background:#fff">
+      <!-- three-column Copilot Notebook layout -->
+      <div style="display:flex;background:#fff">
+        <!-- left sidebar: references panel -->
+        <div style="width:160px;min-width:160px;background:#f8f5fc;border-right:0.5px solid #e0d4ec;padding:12px 10px;flex-shrink:0">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9b6ab5;margin-bottom:8px">References</div>
+          <div style="font-size:10px;color:#444;padding:5px 7px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;margin-bottom:5px;line-height:1.4">📊 REF 5A Board Strategy Presentation.pptx</div>
+          <div style="font-size:10px;color:#444;padding:5px 7px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;margin-bottom:5px;line-height:1.4">📄 REF 5B Digital Readiness Diagnostic Report.docx</div>
+          <div style="font-size:10px;color:#444;padding:5px 7px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;line-height:1.4">✉️ REF 5C Leadership Email Thread.msg</div>
+        </div>
+        <!-- main content area -->
+        <div style="flex:1;padding:1.5rem 1.85rem;background:#fff;overflow:auto">
         <div style="font-size:15px;font-weight:600;color:#333;margin-bottom:0.2rem">Talking points — Digital transformation strategy</div>
         <div style="font-size:11px;color:#888;margin-bottom:1.4rem;padding-bottom:0.9rem;border-bottom:0.5px solid #e0e0e0">10-minute address to senior leadership &nbsp;·&nbsp; April 2025</div>
 
@@ -945,7 +950,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         </div>
         <div style="display:flex;gap:1rem;margin-bottom:1.1rem;padding-bottom:1.1rem;border-bottom:0.5px solid #f0f0f0">
           <div style="min-width:60px;font-size:10px;font-weight:600;color:#555;padding-top:2px;text-transform:uppercase;letter-spacing:0.06em;line-height:1.4">Part 3<br>Pillars</div>
-          <div style="font-size:12px;color:#333;line-height:1.8;flex:1">Our roadmap runs across three pillars in parallel, not in sequence. Digitising core operations creates the clean, connected data that elevating client experience depends on. Building AI-ready talent makes both other pillars sustainable. I also want to acknowledge the Finance team's legitimate concerns about migration timing — we have committed to co-designing the migration schedule with Mei Lin's team rather than imposing it.</div>
+          <div style="font-size:12px;color:#333;line-height:1.8;flex:1">Our roadmap runs across three pillars in parallel, not in sequence. Digitising core operations creates the clean, connected data that elevating client experience depends on. Building AI-ready talent makes both other pillars sustainable. I also want to acknowledge the Finance team's legitimate concerns about migration timing — we have committed to co-designing the migration schedule with Priya's team, with Mei Lin — her senior analyst — involved from the start, not as an afterthought.</div>
         </div>
         <div style="display:flex;gap:1rem;margin-bottom:1.1rem;padding-bottom:1.1rem;border-bottom:0.5px solid #f0f0f0">
           <div style="min-width:60px;font-size:10px;font-weight:600;color:#555;padding-top:2px;text-transform:uppercase;letter-spacing:0.06em;line-height:1.4">Part 4<br>Investment</div>
@@ -953,16 +958,17 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         </div>
         <div style="display:flex;gap:1rem">
           <div style="min-width:60px;font-size:10px;font-weight:600;color:#555;padding-top:2px;text-transform:uppercase;letter-spacing:0.06em;line-height:1.4">Part 5<br>Close</div>
-          <div style="font-size:12px;color:#333;line-height:1.8;flex:1">Transformation programmes succeed or fail on accountability, not ambition. The Steering Committee will be chaired by Christopher personally, with quarterly reviews and a monthly dashboard shared with the Board. The first formal review is Q3 FY2025. If we are behind, you will hear it from us directly. We are not going to manage this programme from behind a polished document that smooths over the reality. Thank you.</div>
+          <div style="font-size:12px;color:#333;line-height:1.8;flex:1">Transformation programmes succeed or fail on accountability, not ambition. The Steering Committee will be chaired by Christopher personally, with quarterly reviews and a monthly dashboard shared with the Board. If we are behind, you will hear it from us directly. We are not going to manage this programme from behind a polished document that smooths over the reality. Thank you.</div>
         </div>
-      </div>
-    </div>
+        </div><!-- end main content -->
+      </div><!-- end three-column layout -->
+    </div><!-- end output-card -->
 
     <!-- REF FILES -->
     <div class="ref-bar">
       <div class="ref-label">Reference files provided</div>
       <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 5A Board Strategy Presentation.pptx</div><div class="ref-desc">Detailed talking points prepared for the Board covering the strategic rationale, three pillars, financial summary, and governance for the FY2025–2027 transformation programme</div></div></div>
-      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 5B Speaker Notes.docx</div><div class="ref-desc">Internal diagnostic report covering process fragmentation findings, data silo risks, AI readiness gaps, technology debt, and change readiness scores by department</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 5B Digital Readiness Diagnostic Report.docx</div><div class="ref-desc">Internal digital readiness diagnostic report covering process fragmentation, data silo risks, AI readiness gaps, technology debt, and change readiness scores by department</div></div></div>
       <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 5C Leadership Email Thread.msg</div><div class="ref-desc">An email exchange between five senior leaders discussing AI rollout priorities, Finance migration concerns, the AI Champions programme design, and Q2 planning ahead of the strategy offsite</div></div></div>
     </div>
 
@@ -974,20 +980,20 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
 
       <div class="mc-question">Q1: Which Microsoft app generated this output?</div>
       <div class="mc-options" id="q1c5">
-        <button class="mc-opt" onclick="answer(this,'q1c5',false,'q1c5-fb-correct','q1c5-fb-wrong')">Microsoft Word — this is a structured document with labelled sections, dense prose, and a clear hierarchy</button>
-        <button class="mc-opt" onclick="answer(this,'q1c5',true,'q1c5-fb-correct','q1c5-fb-wrong')">Microsoft PowerPoint — this is the Notes view of a deck, showing talking points written for each section rather than slide content</button>
+        <button class="mc-opt" onclick="answer(this,'q1c5',false,'q1c5-fb-correct','q1c5-fb-wrong')">Word — this is a structured document with labelled sections, dense prose, and a clear hierarchy</button>
+        <button class="mc-opt" onclick="answer(this,'q1c5',true,'q1c5-fb-correct','q1c5-fb-wrong')">Copilot Notebook — this was generated in Copilot's dedicated notebook interface by uploading three reference files</button>
       </div>
-      <div class="mc-feedback correct-fb" id="q1c5-fb-correct">You got it — and this is the hardest challenge for a reason. There are no bullets, no slide titles, and no visual layout clues. The giveaway is the view bar at the top: "Extended view / Standard / Outline / Overview" — those are deck navigation options, not document views. The Part 1–5 labels correspond to slides, and the dense prose is what the presenter would say aloud, not what appears on screen. Copilot generated the spoken word from three written documents.</div>
-      <div class="mc-feedback wrong-fb" id="q1c5-fb-wrong">A completely understandable guess — this is Challenge #5 for a reason. Look at the view bar at the very top: "Extended view / Standard / Outline / Overview". Those are navigation modes for a deck, not a document. The "Part 1–5" labels are slides. The dense prose blocks are talking points — what the presenter says aloud, not what appears on screen. Copilot generated five sections of spoken-word content from three very different written documents, and none of it looks like a deck at all.</div>
+      <div class="mc-feedback correct-fb" id="q1c5-fb-correct">You got it — and this is the hardest challenge for a reason. The output looks exactly like a Word document. The giveaways are at the top: the URL bar shows "copilot.microsoft.com/notebook" and the header shows 3 files attached. Copilot Notebook is designed precisely for this kind of task — upload multiple source documents, write a single prompt, and receive long-form, fully grounded output. The Part 1–5 structure came from Copilot deciding how to organise the address, not from any template.</div>
+      <div class="mc-feedback wrong-fb" id="q1c5-fb-wrong">A completely understandable guess — this is Challenge #5 for a reason. The dense prose and labelled sections look exactly like a Word document. The giveaway is subtle: look at the URL bar at the very top — it reads "copilot.microsoft.com/notebook" — and the header shows 3 files attached. This is Copilot Notebook, not Word. Copilot Notebook is a dedicated interface for generating long-form content from uploaded files — it produced this entire five-part address from a single prompt, drawing on three very different source documents simultaneously.</div>
       <button class="mc-reset" id="reset-q1c5" onclick="resetQ('q1c5','q1c5-fb-correct','q1c5-fb-wrong','reset-q1c5')">Try again</button>
 
       <div class="mc-question" style="margin-top:1.1rem">Q2: Which prompt most likely produced this output?</div>
       <div class="mc-options" id="q2c5">
         <button class="mc-opt" onclick="answer(this,'q2c5',false,'q2c5-fb-correct','q2c5-fb-wrong')">Write talking points for a 10-minute leadership presentation on our digital transformation strategy covering our three pillars, financials, and governance.</button>
-        <button class="mc-opt" onclick="answer(this,'q2c5',true,'q2c5-fb-correct','q2c5-fb-wrong')">Based on these three files, generate detailed talking points for a 10-minute address to senior leadership on our digital transformation strategy.</button>
+        <button class="mc-opt" onclick="answer(this,'q2c5',true,'q2c5-fb-correct','q2c5-fb-wrong')">Generate detailed talking points for a 10-minute address to senior leadership on our digital transformation strategy.</button>
       </div>
-      <div class="mc-feedback correct-fb" id="q2c5-fb-correct">Correct. The key is "based on these three files" — that single phrase is what makes the output credible. Notice Part 3 mentions Mei Lin by name and references the Finance team's specific concerns about month-end migration timing. That detail came from the leadership email thread, not from any prompt instruction. Copilot read candid internal emails and incorporated the human tensions they contained into a polished leadership address — without being told to.</div>
-      <div class="mc-feedback wrong-fb" id="q2c5-fb-wrong">That prompt would produce plausible but generic talking points. Notice Part 3 of the output: it mentions Mei Lin by name and specifically references the Finance team's concerns about month-end disruption during migration. That detail came from a candid internal email — it was not in any prompt instruction. The second prompt — which references the three uploaded files — is what gave Copilot access to those real internal conversations and allowed it to weave them into the address naturally.</div>
+      <div class="mc-feedback correct-fb" id="q2c5-fb-correct">Correct. The prompt itself is simple — what makes the output credible is that the three reference files were already loaded into Copilot Notebook before the prompt was typed. Notice Part 3 references Priya's Finance team concerns about month-end migration timing, and mentions Mei Lin by name. That detail came from a candid internal email — Copilot read it and judged it relevant without being told to include it. The files do the heavy lifting; the prompt just directs the task.</div>
+      <div class="mc-feedback wrong-fb" id="q2c5-fb-wrong">That prompt would produce plausible but generic talking points — three pillars, financials, governance all sound right, but none of the specific detail would be there. Notice Part 3 of the output: it references Priya's Finance team concerns about month-end migration timing and mentions Mei Lin by name. That came from a candid internal email loaded into Copilot Notebook. The second prompt works because the files are already in the Notebook context — Copilot draws on all three documents without needing to be told what's in each one.</div>
       <button class="mc-reset" id="reset-q2c5" onclick="resetQ('q2c5','q2c5-fb-correct','q2c5-fb-wrong','reset-q2c5')">Try again</button>
     </div>
 
@@ -998,15 +1004,15 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="reveal-grid">
         <div class="reveal-card">
           <div class="reveal-card-label">App used</div>
-          <div class="reveal-card-val">Microsoft PowerPoint — Copilot generated talking points in the Notes view, one section per slide</div>
+          <div class="reveal-card-val">Copilot Notebook — Copilot synthesised three uploaded reference files into a single, structured leadership address</div>
         </div>
         <div class="reveal-card">
           <div class="reveal-card-label">Difficulty</div>
-          <div class="reveal-card-val">Hard — the output contains no slide structure, titles, or bullets. Nothing about it looks like a deck</div>
+          <div class="reveal-card-val">Hard — the output looks exactly like a Word document. The only clues are the URL bar and the file attachment indicator at the top</div>
         </div>
         <div class="reveal-card" style="grid-column:1/-1">
           <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
-          <div class="reveal-card-val">"Based on these three files, generate detailed talking points for a 10-minute address to senior leadership on our digital transformation strategy."</div>
+          <div class="reveal-card-val">"Generate detailed talking points for a 10-minute address to senior leadership on our digital transformation strategy."</div>
         </div>
       </div>
       <div class="reveal-points-label">Why this is impressive</div>
@@ -1017,6 +1023,10 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="lesson-box">
         <div class="lesson-label">The takeaway</div>
         <div class="lesson-text">Copilot can read between the lines. When you give it real internal documents — including candid emails and working notes — it does not just extract facts. It understands context, acknowledges tensions, and produces output that reflects the real situation rather than a sanitised version of it. If you regularly have to brief senior stakeholders or prepare leadership communications, this is a capability worth exploring. Your files already contain the story — Copilot can help you tell it.</div>
+      </div>
+      <div class="lesson-box" style="margin-top:0.75rem;border-color:rgba(126,200,244,0.35);background:rgba(126,200,244,0.07)">
+        <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
+        <div class="lesson-text">1. Go to <strong>copilot.microsoft.com/notebook</strong> in your browser.<br>2. Upload all three reference files: <strong>REF 5A</strong> (board presentation), <strong>REF 5B</strong> (diagnostic report), and <strong>REF 5C</strong> (leadership email thread).<br>3. Use the prompt above. Copilot will draw on all three documents simultaneously and generate a grounded, structured address — no file-by-file instructions needed.</div>
       </div>
     </div>
 
@@ -1072,7 +1082,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
           </div>
 
           <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px">Summary</div>
-          <div style="font-size:12px;color:#1f1f1f;line-height:1.7;margin-bottom:0.75rem">The team reviewed Q3 budget performance (currently tracking at 108% of projection), addressed a two-week delay risk on the CRM migration, and agreed a path forward on the office supplies vendor contract. Five action items were assigned across four team members with deadlines between Wednesday 9 April and Friday 11 April.</div>
+          <div style="font-size:12px;color:#1f1f1f;line-height:1.7;margin-bottom:0.75rem">The team reviewed Q3 budget performance (currently tracking at 108% of projection), addressed a two-week delay risk on the CRM migration, and agreed a path forward on the office supplies vendor contract. Five action items were assigned across five team members with deadlines between Wednesday 9 April and Friday 11 April.</div>
 
           <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:5px">Key decisions</div>
           <div style="font-size:12px;color:#1f1f1f;line-height:1.65;padding-left:14px;position:relative;margin-bottom:4px">&#10003;&nbsp; CRM migration to proceed as partial rollout on 15 October covering core modules; Phase 2 targeted 14 November</div>
@@ -1121,8 +1131,8 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
 
       <div class="mc-question">Q1: Which Microsoft app generated this output?</div>
       <div class="mc-options" id="q1c6">
-        <button class="mc-opt" onclick="answer(this,'q1c6',false,'q1c6-fb-correct','q1c6-fb-wrong')">Microsoft Outlook — this looks like an email summary sent after a meeting, with decisions and action items listed</button>
-        <button class="mc-opt" onclick="answer(this,'q1c6',true,'q1c6-fb-correct','q1c6-fb-wrong')">Microsoft Teams — this is a Copilot-generated meeting recap posted in a team conversation thread</button>
+        <button class="mc-opt" onclick="answer(this,'q1c6',false,'q1c6-fb-correct','q1c6-fb-wrong')">Outlook — this looks like an email summary sent after a meeting, with decisions and action items listed</button>
+        <button class="mc-opt" onclick="answer(this,'q1c6',true,'q1c6-fb-correct','q1c6-fb-wrong')">Teams — this is a Copilot-generated meeting recap posted in a team conversation thread</button>
       </div>
       <div class="mc-feedback correct-fb" id="q1c6-fb-correct">Correct! The chat bubble layout, the filename format, and the "AI-generated recap" badge are all hallmarks of a Teams Copilot output. In Teams, Copilot can summarise a meeting and post the recap directly into the channel conversation — making it immediately visible and actionable for the whole team, not just the recipients of an email.</div>
       <div class="mc-feedback wrong-fb" id="q1c6-fb-wrong">A reasonable guess — the structured format of decisions and action items does look email-like. But look at the layout: the content sits inside a chat bubble with a rounded corner, posted against a light grey background. That's a Teams conversation thread, not an email compose window. The "AI-generated recap" badge and the filename format confirm it. Teams Copilot posts the recap directly into the channel so the whole team sees it immediately.</div>
@@ -1145,15 +1155,15 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="reveal-grid">
         <div class="reveal-card">
           <div class="reveal-card-label">App used</div>
-          <div class="reveal-card-val">Microsoft Teams — Copilot synthesised a pre-meeting email thread, the meeting transcript, and the post-meeting chat into a single complete recap</div>
+          <div class="reveal-card-val">Teams — Copilot synthesised a pre-meeting email thread, the meeting transcript, and the post-meeting chat into a single complete recap</div>
         </div>
         <div class="reveal-card">
           <div class="reveal-card-label">Difficulty</div>
           <div class="reveal-card-val">Medium — the chat bubble layout and AI badge identify Teams, but the multi-source trick and the post-meeting chat detail are easy to miss</div>
         </div>
         <div class="reveal-card" style="grid-column:1/-1">
-          <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
-          <div class="reveal-card-val">"Summarise this meeting and the related communications. List the key decisions made, and provide all action items with owners and due dates."</div>
+          <div class="reveal-card-label">Prompt used</div>
+          <div class="reveal-card-val">In a real Teams meeting with transcription enabled, no prompt is needed — Copilot generates the recap automatically in the Recap tab after the meeting ends. For this demo, upload the three reference files into Copilot chat and try: "Summarise this meeting and the related communications. List the key decisions made, and provide all action items with owners and due dates."</div>
         </div>
       </div>
       <div class="reveal-points-label">Why this is impressive</div>
@@ -1221,7 +1231,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <p style="margin-bottom:0.6rem">Let me address your four requests directly:</p>
         <ol style="padding-left:1.4rem;margin-bottom:0.8rem">
           <li style="margin-bottom:0.5rem"><strong>Root cause:</strong> The delay was caused by two compounding factors — an unexpected delay in receiving the legacy data extract during the Easter period, and the unplanned absence of our senior analyst due to hospitalisation leave. Neither excuses the delay, and both reflect gaps in our contingency planning that I am personally committed to addressing.</li>
-          <li style="margin-bottom:0.5rem"><strong>Revised schedule:</strong> The system integration report will be delivered to you by <strong>Thursday, 10 April 2025 at 10:00 AM</strong>. This is a firm commitment, not an estimate.</li>
+          <li style="margin-bottom:0.5rem"><strong>Revised schedule:</strong> The system integration report will be delivered to you by <strong>Thursday, 10 April 2025</strong>. This is a firm commitment, not an estimate.</li>
           <li style="margin-bottom:0.5rem"><strong>Steps to prevent recurrence:</strong> We are implementing three immediate measures — a dedicated backup resource for all Tier 1 client projects, a formal early-warning protocol requiring notification within 24 hours of any delivery risk, and a weekly status update cadence for Project Phoenix for the remainder of the engagement.</li>
           <li style="margin-bottom:0.5rem"><strong>Senior escalation:</strong> I am taking over as your primary point of contact for the duration of Phase 1. My direct line is +65 6438 2201. You have my personal commitment to the successful delivery of this project.</li>
         </ol>
@@ -1240,7 +1250,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <div class="ref-bar">
       <div class="ref-label">Reference files provided</div>
       <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 7A Customer Complaint.msg</div><div class="ref-desc">A formal complaint from Pine Street Group's COO demanding written acknowledgement of a project delay, a revised schedule, and senior escalation — with a response deadline of Wednesday 9 April</div></div></div>
-      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 7B Internal Coord.msg</div><div class="ref-desc">An internal email from the project manager explaining the root causes of the delay and the revised internal delivery timeline — not intended for the client</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 7B Internal Coord.msg</div><div class="ref-desc">An internal email thread: the project manager flags the root causes of the delay and the revised delivery estimate; the senior leader replies with instructions on how to handle the formal complaint — not intended for the client</div></div></div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -1251,20 +1261,20 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
 
       <div class="mc-question">Q1: Which Microsoft app generated this output?</div>
       <div class="mc-options" id="q1c7">
-        <button class="mc-opt" onclick="answer(this,'q1c7',false,'q1c7-fb-correct','q1c7-fb-wrong')">Microsoft Word — this is a formal letter drafted from source documents, which is a classic Word task</button>
-        <button class="mc-opt" onclick="answer(this,'q1c7',true,'q1c7-fb-correct','q1c7-fb-wrong')">Microsoft Outlook — this is an email draft sitting in the Drafts folder, generated by Copilot ready for review before sending</button>
+        <button class="mc-opt" onclick="answer(this,'q1c7',false,'q1c7-fb-correct','q1c7-fb-wrong')">Word — this is a formal letter drafted from source documents, which is a classic Word task</button>
+        <button class="mc-opt" onclick="answer(this,'q1c7',true,'q1c7-fb-correct','q1c7-fb-wrong')">Outlook — this is an email draft sitting in the Drafts folder, generated by Copilot ready for review before sending</button>
       </div>
       <div class="mc-feedback correct-fb" id="q1c7-fb-correct">Correct! The email header format — To, CC, From, Subject — and the "Draft — AI-generated, review before sending" status label are the giveaways. This was generated in Outlook, sitting ready in the Drafts folder. Copilot in Outlook can draft a reply using uploaded reference files, not just the email thread itself — making it far more capable than a simple "reply" suggestion.</div>
       <div class="mc-feedback wrong-fb" id="q1c7-fb-wrong">This looks like a formal letter, but the format gives it away — notice the To, CC, From, and Subject fields at the top, and the "Draft — AI-generated, review before sending" status. This is an email sitting in the Drafts folder in Outlook, not a Word document. The key difference matters practically: Copilot in Outlook generated this reply with awareness of the full email context, the attached reference files, and the expectation that a human would review it before hitting send.</div>
       <button class="mc-reset" id="reset-q1c7" onclick="resetQ('q1c7','q1c7-fb-correct','q1c7-fb-wrong','reset-q1c7')">Try again</button>
 
-      <div class="mc-question" style="margin-top:1.1rem">Q2: The reply commits to delivering the report by "Thursday, 10 April 2025 at 10:00 AM". That specific date and time did not appear in the client's complaint. Where did it come from?</div>
+      <div class="mc-question" style="margin-top:1.1rem">Q2: The reply commits to delivering the report by "Thursday, 10 April 2025". That specific date did not appear in the client's complaint. Where did it come from?</div>
       <div class="mc-options" id="q2c7">
         <button class="mc-opt" onclick="answer(this,'q2c7',false,'q2c7-fb-correct','q2c7-fb-wrong')">Copilot estimated a reasonable delivery date based on the context of the complaint and the delay described</button>
-        <button class="mc-opt" onclick="answer(this,'q2c7',true,'q2c7-fb-correct','q2c7-fb-wrong')">It came from the internal escalation email — Jason Ong stated that the report would be ready for client delivery by Thursday 10 April at 10am</button>
+        <button class="mc-opt" onclick="answer(this,'q2c7',true,'q2c7-fb-correct','q2c7-fb-wrong')">It came from the internal escalation email — Jason Ong stated that the report would be ready for client delivery by Thursday 10 April</button>
       </div>
       <div class="mc-feedback correct-fb" id="q2c7-fb-correct">Exactly right. Jason's internal email — REF 7B — contained the revised delivery estimate that the team had agreed internally. Copilot read that internal document, extracted the committed date, and used it to anchor the client response. Critically, it did this without revealing any other internal detail from Jason's email — the reasons for the delay were reframed appropriately for a client audience. Copilot used internal context without leaking it.</div>
-      <div class="mc-feedback wrong-fb" id="q2c7-fb-wrong">Copilot doesn't estimate or guess dates — that would be dangerous in a client-facing context. The specific date and time came from REF 7B: Jason Ong's internal escalation email, in which he stated the report would be ready for client delivery by Thursday 10 April at 10am. Copilot read that internal document, extracted the commitment, and used it to anchor the reply — without revealing any of the other sensitive internal detail Jason had shared. That's a meaningful distinction: it used the information without exposing it.</div>
+      <div class="mc-feedback wrong-fb" id="q2c7-fb-wrong">Copilot doesn't estimate or guess dates — that would be dangerous in a client-facing context. The specific date came from REF 7B: Jason Ong's internal escalation email, in which he stated the report would be ready for client delivery by Thursday 10 April. Copilot read that internal document, extracted the commitment, and used it to anchor the reply — without revealing any of the other sensitive internal detail Jason had shared. That's a meaningful distinction: it used the information without exposing it.</div>
       <button class="mc-reset" id="reset-q2c7" onclick="resetQ('q2c7','q2c7-fb-correct','q2c7-fb-wrong','reset-q2c7')">Try again</button>
     </div>
 
@@ -1275,7 +1285,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="reveal-grid">
         <div class="reveal-card">
           <div class="reveal-card-label">App used</div>
-          <div class="reveal-card-val">Microsoft Outlook — Copilot drafted the reply using two reference files and placed it in the Drafts folder for review</div>
+          <div class="reveal-card-val">Outlook — Copilot drafted the reply using two reference files and placed it in the Drafts folder for review</div>
         </div>
         <div class="reveal-card">
           <div class="reveal-card-label">Difficulty</div>
@@ -1283,14 +1293,14 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         </div>
         <div class="reveal-card" style="grid-column:1/-1">
           <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
-          <div class="reveal-card-val">"Draft a professional reply to this client complaint. Acknowledge the delay, apologise sincerely, give a firm revised delivery date, and outline three specific steps we are taking. Do not reference any internal documents."</div>
+          <div class="reveal-card-val">"Project Phoenix — draft a professional reply to this client complaint. Acknowledge the delay, apologise sincerely, and address each of their four requests directly: root cause, a firm revised delivery date, steps to prevent recurrence, and senior escalation. Draw on the internal documents for context, but do not name, cite, or quote from them in the reply."</div>
         </div>
       </div>
       <div class="reveal-points-label">Why this is impressive</div>
       <div class="reveal-point">Copilot read an external complaint and two confidential internal documents — and produced a reply that used the internal context without revealing it. The instruction "do not reference any internal documents" was followed precisely</div>
-      <div class="reveal-point">The delivery commitment of "Thursday 10 April at 10:00 AM" came from Jason's internal email — a specific, traceable fact that no amount of prompt engineering alone could have produced</div>
+      <div class="reveal-point">The delivery commitment of "Thursday 10 April" came from Jason's internal email — a specific, traceable fact that no amount of prompt engineering alone could have produced</div>
       <div class="reveal-point">The reply addresses all four of the client's specific demands — root cause, revised schedule, prevention steps, and senior escalation — because Copilot read the complaint carefully enough to extract and respond to each one</div>
-      <div class="reveal-point">The briefing note contained sensitive commercial details including penalty clause exposure and contract value. None of that appeared in the reply — Copilot used context to inform tone and urgency without leaking confidential information</div>
+      <div class="reveal-point">The internal email thread (REF 7B) contained sensitive commercial details — including Sandra's instruction to quietly review the penalty clause in Section 7.3. None of that appeared in the reply — Copilot used the internal context to inform tone and urgency without leaking confidential information</div>
       <div class="lesson-box">
         <div class="lesson-label">The takeaway</div>
         <div class="lesson-text">Copilot can hold the line between what it knows and what it shares. When drafting client-facing communications under pressure, the hardest thing is not writing the words — it is knowing what internal context to use, what to protect, and what commitments are safe to make. By grounding Copilot in real internal documents while instructing it on what not to reveal, you get a reply that is both credible and commercially safe. That is a combination that takes an experienced professional significant time to produce alone.</div>
@@ -1333,28 +1343,23 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <div class="oc-dot"></div><div class="oc-dot"></div><div class="oc-dot"></div>
         <span class="oc-fname">AI_Productivity_Briefing — workspace</span>
       </div>
-      <!-- subtle input pane hint -->
-      <div style="background:#f8f5fc;border-bottom:0.5px solid #e0d4ec;padding:8px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-        <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#9b6ab5">Source files</span>
-        <span style="font-size:11px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;padding:2px 8px;color:#444">REF 8A Generative AI at Work.pdf</span>
-        <span style="font-size:11px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;padding:2px 8px;color:#444">REF 8B Generative AI FRBSL.pdf</span>
-        <span style="font-size:11px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;padding:2px 8px;color:#444">REF 8C 2024_Work_Trend_Index_Annual_Report.pdf</span>
-        <span style="font-size:11px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;padding:2px 8px;color:#444">REF 8D Apex AI Pulse Survey.xlsx</span>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:5px">
-          <div style="width:14px;height:14px;border-radius:50%;background:#e0d4ec;display:flex;align-items:center;justify-content:center">
-            <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4.5L3 6L6.5 2.5" stroke="#7719AA" stroke-width="1.2" stroke-linecap="round"/></svg>
-          </div>
-          <span style="font-size:11px;font-weight:600;color:#7719AA">AI output</span>
-          <span style="font-size:10px;color:#aaa">· 4 sources across 4 files</span>
+      <!-- three-column Copilot Notebook layout -->
+      <div style="display:flex;background:#fff">
+        <!-- left sidebar: references panel -->
+        <div style="width:160px;min-width:160px;background:#f8f5fc;border-right:0.5px solid #e0d4ec;padding:12px 10px;flex-shrink:0">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9b6ab5;margin-bottom:8px">References</div>
+          <div style="font-size:10px;color:#444;padding:5px 7px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;margin-bottom:5px;line-height:1.4">📄 REF 8A Generative AI at Work.pdf</div>
+          <div style="font-size:10px;color:#444;padding:5px 7px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;margin-bottom:5px;line-height:1.4">📄 REF 8B Generative AI FRBSL.pdf</div>
+          <div style="font-size:10px;color:#444;padding:5px 7px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;margin-bottom:5px;line-height:1.4">📄 REF 8C 2024 Work Trend Index.pdf</div>
+          <div style="font-size:10px;color:#444;padding:5px 7px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;line-height:1.4">📊 REF 8D Apex AI Pulse Survey.xlsx</div>
         </div>
-      </div>
-      <!-- document body -->
-      <div style="padding:1.5rem 1.85rem;background:#fff">
+        <!-- main content area -->
+        <div style="flex:1;padding:1.5rem 1.85rem;background:#fff;overflow:auto">
         <div style="font-size:16px;font-weight:600;color:#1f1f1f;margin-bottom:0.2rem">AI and office productivity: a briefing for Apex Corporate Solutions</div>
         <div style="font-size:11px;color:#999;margin-bottom:1.1rem;padding-bottom:0.75rem;border-bottom:0.5px solid #e8e8e8">April 2025 &nbsp;·&nbsp; AI-generated from 4 sources across 4 files &nbsp;·&nbsp; 2 academic/research papers · 1 corporate report · 1 internal AI pulse survey</div>
 
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#666;margin:0 0 0.4rem;border-bottom:0.5px solid #e8e8e8;padding-bottom:3px">Overview</div>
-        <div style="font-size:12px;color:#1f1f1f;line-height:1.8;margin-bottom:0.85rem">Generative AI has crossed a meaningful threshold in the workplace. Adoption has grown faster than any prior general-purpose technology — reaching approximately 40% of the US working-age population within two years of launch, compared with a three-year timeline for the personal computer to reach 20%. <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px;margin-left:2px">Bick et al. 2025</span> Within Apex, our Q1 FY2025 pulse survey confirms the wave has arrived: 23% of staff already use AI tools in their daily work, and 71% say they would do so if given proper training and guidance.</div>
+        <div style="font-size:12px;color:#1f1f1f;line-height:1.8;margin-bottom:0.85rem">Generative AI has crossed a meaningful threshold in the workplace. Adoption has grown faster than any prior general-purpose technology — reaching approximately 40% of the US working-age population within two years of launch, compared with a three-year timeline for the personal computer to reach 20%. <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px;margin-left:2px">Bick et al. 2025</span> Within Apex, our Q1 FY2025 pulse survey confirms the wave has arrived: only 23% of staff feel confident using AI tools in their daily work, yet 71% say they would do so if given proper training and guidance.</div>
 
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#666;margin:0 0 0.4rem;border-bottom:0.5px solid #e8e8e8;padding-bottom:3px">Key benefits</div>
         <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; Productivity gains are consistently measured: AI assistance improves individual output by 14–34%, with the largest gains among less experienced workers <span style="font-size:10px;color:#9b6ab5;background:#f4edfb;border-radius:999px;padding:1px 6px">Brynjolfsson et al. 2023</span></div>
@@ -1372,8 +1377,9 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; Design the AI Champions programme as a 90-day cohort experience — avoid the 2-hour training model that has failed in prior internal programmes</div>
         <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;margin-bottom:0.3rem">&#9658;&nbsp; Define success metrics beyond training completion: track behavioural adoption and weekly time savings per staff member</div>
         <div style="font-size:12px;color:#1f1f1f;line-height:1.75;padding-left:1.1rem;position:relative;">&#9658;&nbsp; Prioritise Finance and Operations for targeted support — both show below-average AI confidence and represent the highest-volume manual workflows</div>
-      </div>
-    </div>
+      </div><!-- end main content -->
+    </div><!-- end three-column layout -->
+    </div><!-- end output-card -->
 
     <!-- REF FILES -->
     <div class="ref-bar">
@@ -1392,11 +1398,11 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
 
       <div class="mc-question">Q1: Which Microsoft app generated this output?</div>
       <div class="mc-options" id="q1c8">
-        <button class="mc-opt" onclick="answer(this,'q1c8',false,'q1c8-fb-correct','q1c8-fb-wrong')">Microsoft Word — this is a structured research briefing document with sections, citations, and a callout box</button>
-        <button class="mc-opt" onclick="answer(this,'q1c8',true,'q1c8-fb-correct','q1c8-fb-wrong')">Microsoft Copilot Notebook — a long-context workspace tool designed to synthesise large volumes of source material into structured outputs</button>
+        <button class="mc-opt" onclick="answer(this,'q1c8',false,'q1c8-fb-correct','q1c8-fb-wrong')">Word — this is a structured research briefing document with sections, citations, and a callout box</button>
+        <button class="mc-opt" onclick="answer(this,'q1c8',true,'q1c8-fb-correct','q1c8-fb-wrong')">Copilot Notebook — a long-context workspace tool designed to synthesise large volumes of source material into structured outputs</button>
       </div>
-      <div class="mc-feedback correct-fb" id="q1c8-fb-correct">Correct — and this is the hardest app to identify precisely because the output looks exactly like a Word document. The giveaway is the source file strip at the top: four file chips showing the uploaded documents, and the "AI output · 4 sources across 4 files" label on the right. Copilot Notebook is designed for exactly this task — processing large, unstructured source material and producing a coherent, well-organised output from it.</div>
-      <div class="mc-feedback wrong-fb" id="q1c8-fb-wrong">A completely understandable guess — the output is indistinguishable from a Word document in terms of content and layout. The tell is at the very top of the output: a strip showing four file chips (the uploaded source documents) and an "AI output · 4 sources across 4 files" label. That's the Copilot Notebook interface. Unlike Word's Copilot, Notebook is built specifically for long-context synthesis — it can hold and reason across much larger volumes of source material than a standard document editor.</div>
+      <div class="mc-feedback correct-fb" id="q1c8-fb-correct">Correct — and this is the hardest app to identify precisely because the output looks exactly like a Word document. The giveaway is the left sidebar: a purple-tinted References panel listing the four uploaded source files. That's the Copilot Notebook interface — a three-column workspace with references on the left, generated content in the centre, and chat on the right. It's designed specifically for long-context synthesis across large volumes of source material.</div>
+      <div class="mc-feedback wrong-fb" id="q1c8-fb-wrong">A completely understandable guess — the output is indistinguishable from a Word document in terms of content and layout. The tell is the left sidebar: a purple-tinted References panel listing the four uploaded source files. That's the Copilot Notebook interface — a three-column workspace with references on the left, generated content in the centre, and chat on the right. Unlike Word's Copilot, Notebook is built specifically for long-context synthesis — it can hold and reason across much larger volumes of source material simultaneously.</div>
       <button class="mc-reset" id="reset-q1c8" onclick="resetQ('q1c8','q1c8-fb-correct','q1c8-fb-wrong','reset-q1c8')">Try again</button>
 
       <div class="mc-question" style="margin-top:1.1rem">Q2: The "Recommended next steps" section suggests prioritising Finance and Operations for AI support. That recommendation didn't come from any of the academic or corporate research. Where did it come from?</div>
@@ -1416,7 +1422,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="reveal-grid">
         <div class="reveal-card">
           <div class="reveal-card-label">App used</div>
-          <div class="reveal-card-val">Microsoft Copilot Notebook — a long-context workspace that synthesised 4 sources across 4 files into a single structured briefing</div>
+          <div class="reveal-card-val">Copilot Notebook — a long-context workspace that synthesised 4 sources across 4 files into a single structured briefing</div>
         </div>
         <div class="reveal-card">
           <div class="reveal-card-label">Difficulty</div>
@@ -1424,17 +1430,18 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         </div>
         <div class="reveal-card" style="grid-column:1/-1">
           <div class="reveal-card-label" style="display:flex;align-items:center;justify-content:space-between">Prompt used <button class="copy-btn" onclick="copyPrompt(this)">Copy</button></div>
-          <div class="reveal-card-val">"Using these three files — academic research, corporate reports, and our own internal survey — create a structured briefing on AI and office productivity with sections on: Overview, Key Benefits, Risks and Concerns, and Recommended Next Steps for our organisation."</div>
+          <div class="reveal-card-val">"Using all four uploaded files — two academic research papers, a corporate research report, and our own internal AI pulse survey — create a structured briefing on AI and office productivity for Apex with sections on: Overview, Key Benefits, Risks and Concerns, and Recommended Next Steps."</div>
+          <div style="margin-top:0.75rem;padding-top:0.75rem;border-top:0.5px solid #e0d4ec;font-size:12px;color:#999;line-height:1.65"><strong style="color:#bbb">Note:</strong> When you upload files into Copilot Notebook, it automatically generates an AI summary as an introduction page — no prompt needed. This summary cannot be edited, but gives a useful at-a-glance overview of the uploaded content before you start prompting.</div>
         </div>
       </div>
       <div class="reveal-points-label">Why this is impressive</div>
       <div class="reveal-point">Copilot Notebook processed 4 distinct sources — two academic and research papers, one corporate report, and one internal staff survey — across four files in different formats, and synthesised them into a single briefing with a consistent voice and structure</div>
-      <div class="reveal-point">The inline citations (Brynjolfsson et al., Bick et al., McKinsey, Apex survey) show Copilot tracking which claim came from which source — a level of source awareness that goes beyond simple summarisation</div>
+      <div class="reveal-point">The inline citations (Brynjolfsson et al., Bick et al., Microsoft WTI, Apex survey) show Copilot tracking which claim came from which source — a level of source awareness that goes beyond simple summarisation</div>
       <div class="reveal-point">The "Recommended next steps" section is not generic AI advice — it is grounded in Apex's specific survey data, connecting external evidence to internal reality in a way that makes the output immediately actionable for this organisation</div>
       <div class="reveal-point">A strategy analyst would spend one to two days producing a briefing of this quality and specificity. Copilot produced a credible first draft in under a minute — and the internal data that makes it specific to Apex was already sitting in a spreadsheet</div>
       <div class="lesson-box">
-        <div class="lesson-label">The big finish — what all 8 challenges have in common</div>
-        <div class="lesson-text">Every output in this booth was produced by combining a clear prompt with real source material that already existed inside the organisation. No challenge required Copilot to make things up or work from scratch. The pattern is always the same: identify the task, gather the relevant files, write a specific prompt, and let Copilot do the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution. That is what working smarter looks like in practice.</div>
+        <div class="lesson-label">The takeaway</div>
+        <div class="lesson-text">The most actionable outputs come from combining external research with your organisation's own data. The Finance and Operations recommendation in this briefing didn't come from a research paper — it came from your own survey results, cross-referenced with what the research says about where AI delivers the most value. Copilot Notebook's long-context capability is what makes this possible: it holds all four sources in view simultaneously and finds the connections between them. That is the difference between a generic briefing and one your leadership can act on immediately.</div>
       </div>
     </div>
 
@@ -1499,6 +1506,18 @@ function showPage(id){
 function goHome(){
   currentChallenge = null;
   showPage('landing');
+}
+
+function toggleCommonThread(){
+  var panel = document.getElementById('common-thread-panel');
+  var btn = document.getElementById('common-thread-btn');
+  if(panel.style.display === 'none'){
+    panel.style.display = 'block';
+    btn.textContent = '↑ What do all 8 challenges have in common?';
+  } else {
+    panel.style.display = 'none';
+    btn.textContent = '↓ What do all 8 challenges have in common?';
+  }
 }
 
 function resetChallenge(cn){
