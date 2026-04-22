@@ -196,6 +196,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
 /* ref files */
 .ref-bar{background:#f0f4fa;border:0.5px solid #d0d8e8;border-radius:12px;padding:0.9rem 1.1rem;margin-bottom:1.5rem}
 .ref-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#666;margin-bottom:8px}
+.ref-note{font-size:11px;color:#999;font-style:italic;line-height:1.6;margin-top:10px;padding-top:8px;border-top:0.5px solid #e8e8e8}
 .ref-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:5px}
 .ref-item:last-child{margin-bottom:0}
 .ref-icon{font-size:10px;font-weight:700;color:#fff;background:#666;border-radius:3px;padding:1px 5px;flex-shrink:0;margin-top:1px}
@@ -236,6 +237,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
 .reveal-point{font-size:13px;color:rgba(255,255,255,0.85);line-height:1.65;padding-left:16px;position:relative;margin-bottom:5px}
 .reveal-point::before{content:"→";position:absolute;left:0;color:#7EC8F4;font-size:11px;top:2px}
 .lesson-box{background:#EBF4FF;border-left:4px solid #378ADD;border-radius:0 10px 10px 0;padding:0.85rem 1rem;margin-top:1rem}
+.common-thread{margin-top:1.25rem;padding-top:1rem;border-top:0.5px solid #dde6f0;font-size:12px;color:#8a9bb0;line-height:1.7;font-style:italic;text-align:center}
 .lesson-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#185FA5;margin-bottom:5px}
 .lesson-text{font-size:13px;color:#0C447C;line-height:1.65}
 
@@ -301,10 +303,6 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <div class="app notebook" onclick="goToApp([5,8])" style="cursor:pointer" title="Try a Copilot Notebook challenge">Copilot Notebook</div>
       </div>
       <div class="hint">One of these did it. Your job is to figure out which one — or pick your favourite app to start.</div>
-    </div>
-    <div style="text-align:center;padding:0.6rem 0 1rem">
-      <button onclick="toggleCommonThread()" id="common-thread-btn" style="background:none;border:none;color:rgba(15,43,91,0.45);font-size:12px;font-family:'Segoe UI',Arial,sans-serif;cursor:pointer;text-decoration:underline;text-underline-offset:3px;letter-spacing:0.01em">↓ What do all 8 challenges have in common?</button>
-      <div id="common-thread-panel" style="display:none;max-width:680px;margin:0.75rem auto 0;background:#fff;border-radius:10px;padding:1rem 1.35rem;text-align:left;font-size:13px;color:#2a3a55;line-height:1.75;border-top:3px solid #378ADD">Every output in this booth was produced by combining a clear prompt with real source material that already existed inside the organisation. No challenge required Copilot to make things up or work from scratch. The pattern is always the same: identify the task, gather the relevant files, write a specific prompt, and let Copilot do the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution. That is what working smarter looks like in practice.</div>
     </div>
   </div>
   <div class="accent-bar"></div>
@@ -375,6 +373,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 1A Welcome Letter.docx</div><div class="ref-desc">A letter from HR welcoming a new joiner, covering culture, values, and first-day logistics</div></div></div>
       <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 1B IT Onboarding Quickstart Guide.pdf</div><div class="ref-desc">Step-by-step IT setup checklist covering device collection, account activation, MFA, VPN, and security training</div></div></div>
       <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 1C Culture Deck.pptx</div><div class="ref-desc">Talking points from the new joiner orientation covering values, working norms, facilities, and support networks</div></div></div>
+      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -429,6 +428,12 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <div class="lesson-label">The takeaway</div>
         <div class="lesson-text">The most powerful prompts combine a clear instruction with rich source material. Copilot is not just a writing tool — it's a synthesis engine. Feed it your actual documents and it produces your actual content, not a generic template. Think about what files already exist in your organisation that Copilot could use to do the same for you.</div>
       </div>
+      <div class="lesson-box" style="margin-top:0.75rem;border-color:#7EC8F4;background:rgba(126,200,244,0.12)">
+        <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
+        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Open a new blank document in Word.<br>2. Open Copilot from the ribbon and upload all three reference files: <strong>REF 1A</strong> (welcome letter), <strong>REF 1B</strong> (IT quickstart guide), and <strong>REF 1C</strong> (culture deck).<br>3. Use the prompt above. Copilot will synthesise all three documents simultaneously into a single structured output.</div>
+      </div>
+
+      <div class="common-thread">Every challenge here follows the same pattern: a clear prompt, your M365 data, and Copilot doing the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution.</div>
     </div>
 
   </div>
@@ -573,6 +578,12 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <div class="lesson-label">The takeaway</div>
         <div class="lesson-text">Copilot in Excel is not just for formatting — it can analyse, aggregate, and apply logic to your data. The more specific your prompt (what columns to include, what thresholds to flag), the more precise the output. If you regularly build reports or trackers from raw data exports, this is one of the highest-value Copilot use cases available to you right now.</div>
       </div>
+      <div class="lesson-box" style="margin-top:0.75rem;border-color:#7EC8F4;background:rgba(126,200,244,0.12)">
+        <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
+        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Open <strong>REF 2A</strong> (Budget Tracker) directly in Excel.<br>2. Select any cell in the data, then open Copilot from the ribbon — it works on the open workbook automatically, no file upload needed.<br>3. Use the prompt above. Copilot will analyse the raw data and generate the tracker in a new sheet.</div>
+      </div>
+
+      <div class="common-thread">Every challenge here follows the same pattern: a clear prompt, your M365 data, and Copilot doing the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution.</div>
     </div>
 
   </div>
@@ -709,6 +720,12 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <div class="lesson-label">The takeaway</div>
         <div class="lesson-text">Staff survey data is often collected but underanalysed — responses sit in a spreadsheet while insights take days to extract manually. Copilot can turn raw survey data into a structured, readable findings report in seconds. If you run engagement surveys, pulse checks, or any kind of structured feedback collection at Apex, this is a high-value use case to try right now. One practical note: for complex data files with multiple sections — like this one, which has Likert responses, department breakdowns, and open-response themes across separate tables — a single prompt may not surface everything. Follow-up prompts like "Now break the results down by department" are normal and expected. Think of it as a conversation, not a one-shot command.</div>
       </div>
+      <div class="lesson-box" style="margin-top:0.75rem;border-color:#7EC8F4;background:rgba(126,200,244,0.12)">
+        <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
+        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Open <strong>REF 3A</strong> (Hybrid Working Survey) directly in Excel.<br>2. Open Copilot from the ribbon — it will analyse the data in the active workbook automatically.<br>3. Use the prompt above. For deeper insights, follow up with prompts like "Now break the results down by department" to explore further.</div>
+      </div>
+
+      <div class="common-thread">Every challenge here follows the same pattern: a clear prompt, your M365 data, and Copilot doing the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution.</div>
     </div>
 
   </div>
@@ -834,6 +851,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 4B McKinsey (2023) Empty spaces and hybrid places.pdf</div><div class="ref-desc">McKinsey's global analysis of office attendance patterns and the economics of hybrid working</div></div></div>
       <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 4C Choudhury (2022) HBS Hybrid Work the Best of Both Worlds.pdf</div><div class="ref-desc">HBS field experiment on how the number of in-office days affects output novelty, collaboration, and career outcomes</div></div></div>
       <div class="ref-item"><span class="ref-icon">D</span><div><div class="ref-text">REF 4D Internal Staff Survey Results.xlsx</div><div class="ref-desc">Apex internal hybrid work survey (Q4 FY2024) — 287 respondents across five departments, covering satisfaction scores, productivity impact, and retention intent</div></div></div>
+      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -853,11 +871,11 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
 
       <div class="mc-question" style="margin-top:1.1rem">Q2: Which prompt most likely produced this output?</div>
       <div class="mc-options" id="q2c4">
-        <button class="mc-opt" onclick="answer(this,'q2c4',false,'q2c4-fb-correct','q2c4-fb-wrong')">Create a 5-section deck on the benefits of hybrid working for a corporate organisation. Include an opening, evidence, key benefits, our survey results, and recommendations.</button>
+        <button class="mc-opt" onclick="answer(this,'q2c4',false,'q2c4-fb-correct','q2c4-fb-wrong')">Create a 5-section deck on the benefits of hybrid working for Apex. Include an introduction, the case for hybrid, key benefits, what our data shows, and recommended actions.</button>
         <button class="mc-opt" onclick="answer(this,'q2c4',true,'q2c4-fb-correct','q2c4-fb-wrong')">Create a 5-section deck on the benefits of hybrid working covering: an opening, external research evidence, internal survey findings, key benefits of hybrid working, and recommendations.</button>
       </div>
-      <div class="mc-feedback correct-fb" id="q2c4-fb-correct">Exactly right. The difference between the two prompts is the reference files. The first prompt asks Copilot to write from scratch — it would produce generic content with no specific numbers. The second grounds Copilot in real documents, which is why the output contains precise figures: the 33% quit rate reduction from the Nature study, the 7.6 Apex satisfaction score from the internal survey, and the McKinsey attendance statistics. Real files produce real content. One caveat: replicating the exact layout of this slide — the two-column evidence breakdown, the stat boxes, the specific figures — is genuinely hard. Copilot's PowerPoint output varies with every attempt, and getting this level of detail typically takes several iterations and follow-up prompts.</div>
-      <div class="mc-feedback wrong-fb" id="q2c4-fb-wrong">That prompt would produce a reasonable deck — but a generic one. Notice the stat boxes: 33% lower quit rates (from the Bloom et al. Nature study), 7.6 average Apex satisfaction score (from the internal survey), 56% reporting positive productivity impact (from the internal survey). None of those figures could come from a prompt alone. The second option explicitly references the four uploaded source files, which is what grounded the output in real, specific data.</div>
+      <div class="mc-feedback correct-fb" id="q2c4-fb-correct">Exactly right. The key is in the specificity: asking for "external research evidence" and "internal survey findings" as named sections told Copilot to treat the uploaded academic papers and the internal survey as distinct, separate sources — which is what produced the two-column evidence layout and precise figures like the 33% quit rate reduction and the 7.6 Apex satisfaction score. The wrong prompt would have produced something reasonable, but generic and unsourced. One caveat: even with the right prompt and files, replicating the exact layout takes several iterations — Copilot's PowerPoint output varies with every attempt.</div>
+      <div class="mc-feedback wrong-fb" id="q2c4-fb-wrong">That prompt would produce a reasonable deck — but a generic one with no specific data. The figures in the stat boxes — 33% lower quit rates (Bloom et al.), 7.6 average Apex satisfaction score, 56% reporting positive productivity impact — came from four uploaded reference files. But the prompt also needed to signal how to use them. Asking specifically for "external research evidence" and "internal survey findings" as distinct sections told Copilot to treat each source type separately, producing the two-column layout and precise citations.</div>
       <button class="mc-reset" id="reset-q2c4" onclick="resetQ('q2c4','q2c4-fb-correct','q2c4-fb-wrong','reset-q2c4')">Try again</button>
     </div>
 
@@ -888,6 +906,12 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <div class="lesson-label">The takeaway</div>
         <div class="lesson-text">Copilot in PowerPoint is at its most powerful when you give it real source material. Every organisation has research, reports, and survey data sitting in files that never make it into a deck because the effort of synthesis is too high. Copilot removes that barrier entirely. The next time you need to build a business case or evidence-based presentation, try uploading your source documents first — then prompt Copilot to synthesise, not just generate.</div>
       </div>
+      <div class="lesson-box" style="margin-top:0.75rem;border-color:#7EC8F4;background:rgba(126,200,244,0.12)">
+        <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
+        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Open PowerPoint and create a new blank presentation.<br>2. Open Copilot from the ribbon and upload all four reference files: <strong>REF 4A</strong>, <strong>REF 4B</strong>, <strong>REF 4C</strong> (academic and consulting PDFs), and <strong>REF 4D</strong> (internal survey).<br>3. Use the prompt above. Note: the exact layout will vary with every attempt — getting the stat boxes and column structure typically takes a few iterations and follow-up prompts.</div>
+      </div>
+
+      <div class="common-thread">Every challenge here follows the same pattern: a clear prompt, your M365 data, and Copilot doing the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution.</div>
     </div>
 
   </div>
@@ -970,6 +994,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 5A Board Strategy Presentation.pptx</div><div class="ref-desc">Detailed talking points prepared for the Board covering the strategic rationale, three pillars, financial summary, and governance for the FY2025–2027 transformation programme</div></div></div>
       <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 5B Digital Readiness Diagnostic Report.docx</div><div class="ref-desc">Internal digital readiness diagnostic report covering process fragmentation, data silo risks, AI readiness gaps, technology debt, and change readiness scores by department</div></div></div>
       <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 5C Leadership Email Thread.msg</div><div class="ref-desc">An email exchange between five senior leaders discussing AI rollout priorities, Finance migration concerns, the AI Champions programme design, and Q2 planning ahead of the strategy offsite</div></div></div>
+      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -1024,10 +1049,12 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <div class="lesson-label">The takeaway</div>
         <div class="lesson-text">Copilot can read between the lines. When you give it real internal documents — including candid emails and working notes — it does not just extract facts. It understands context, acknowledges tensions, and produces output that reflects the real situation rather than a sanitised version of it. If you regularly have to brief senior stakeholders or prepare leadership communications, this is a capability worth exploring. Your files already contain the story — Copilot can help you tell it.</div>
       </div>
-      <div class="lesson-box" style="margin-top:0.75rem;border-color:rgba(126,200,244,0.35);background:rgba(126,200,244,0.07)">
+      <div class="lesson-box" style="margin-top:0.75rem;border-color:#7EC8F4;background:rgba(126,200,244,0.12)">
         <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
-        <div class="lesson-text">1. Go to <strong>copilot.microsoft.com/notebook</strong> in your browser.<br>2. Upload all three reference files: <strong>REF 5A</strong> (board presentation), <strong>REF 5B</strong> (diagnostic report), and <strong>REF 5C</strong> (leadership email thread).<br>3. Use the prompt above. Copilot will draw on all three documents simultaneously and generate a grounded, structured address — no file-by-file instructions needed.</div>
+        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Go to <strong>copilot.microsoft.com/notebook</strong> in your browser.<br>2. Upload all three reference files: <strong>REF 5A</strong> (board presentation), <strong>REF 5B</strong> (diagnostic report), and <strong>REF 5C</strong> (leadership email thread).<br>3. Use the prompt above. Copilot will draw on all three documents simultaneously and generate a grounded, structured address — no file-by-file instructions needed.</div>
       </div>
+
+      <div class="common-thread">Every challenge here follows the same pattern: a clear prompt, your M365 data, and Copilot doing the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution.</div>
     </div>
 
   </div>
@@ -1121,6 +1148,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 6A Q3 Planning  Budget Review.msg</div><div class="ref-desc">Pre-meeting email thread — Sandra's agenda, Marcus's flag on the contractor cost overrun, and Jason's heads-up on the CRM compatibility issue</div></div></div>
       <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 6B Meeting Transcript.docx</div><div class="ref-desc">Auto-generated Teams transcript of the 37-minute meeting, covering all agenda items, discussion, and decisions. In a real Teams meeting this is generated automatically — it has been exported here for the demo.</div></div></div>
       <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 6C Post-Meeting Chat Log.docx</div><div class="ref-desc">Teams channel chat exported from the 48 minutes following the meeting — includes Derek's middleware cost confirmation and Sandra's full action item summary</div></div></div>
+      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -1175,6 +1203,12 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <div class="lesson-label">The takeaway</div>
         <div class="lesson-text">Meetings don't end when the call ends. Decisions get updated, costs get confirmed, and action items get clarified in the chat thread that follows. Copilot is the only participant that reads everything — before, during, and after — and produces a complete record. In Teams, this happens automatically as long as transcription is on: just open the meeting's Recap tab and the summary is already there. If your organisation hasn't enabled automatic transcription yet, that single setting change could save every meeting attendee the 10 minutes of note-taking that currently happens afterwards.</div>
       </div>
+      <div class="lesson-box" style="margin-top:0.75rem;border-color:#7EC8F4;background:rgba(126,200,244,0.12)">
+        <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
+        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">For real use: enable meeting transcription in Teams settings before your next meeting — Copilot generates the recap automatically in the Recap tab when the meeting ends, no prompt needed.<br><br>For this demo: upload <strong>REF 6A</strong> (pre-meeting email), <strong>REF 6B</strong> (meeting transcript), and <strong>REF 6C</strong> (post-meeting chat) into Copilot chat in Teams and use the prompt above.</div>
+      </div>
+
+      <div class="common-thread">Every challenge here follows the same pattern: a clear prompt, your M365 data, and Copilot doing the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution.</div>
     </div>
 
   </div>
@@ -1251,6 +1285,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="ref-label">Reference files provided</div>
       <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 7A Customer Complaint.msg</div><div class="ref-desc">A formal complaint from Pine Street Group's COO demanding written acknowledgement of a project delay, a revised schedule, and senior escalation — with a response deadline of Wednesday 9 April</div></div></div>
       <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 7B Internal Coord.msg</div><div class="ref-desc">An internal email thread: the project manager flags the root causes of the delay and the revised delivery estimate; the senior leader replies with instructions on how to handle the formal complaint — not intended for the client</div></div></div>
+      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -1305,6 +1340,12 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <div class="lesson-label">The takeaway</div>
         <div class="lesson-text">Copilot can hold the line between what it knows and what it shares. When drafting client-facing communications under pressure, the hardest thing is not writing the words — it is knowing what internal context to use, what to protect, and what commitments are safe to make. By grounding Copilot in real internal documents while instructing it on what not to reveal, you get a reply that is both credible and commercially safe. That is a combination that takes an experienced professional significant time to produce alone.</div>
       </div>
+      <div class="lesson-box" style="margin-top:0.75rem;border-color:#7EC8F4;background:rgba(126,200,244,0.12)">
+        <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
+        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Open Outlook and open the client complaint email (or start a reply).<br>2. Open Copilot from the compose window and upload both reference files: <strong>REF 7A</strong> (customer complaint) and <strong>REF 7B</strong> (internal email thread).<br>3. Use the prompt above. Copilot will draft the reply in the compose window for you to review and edit before sending.</div>
+      </div>
+
+      <div class="common-thread">Every challenge here follows the same pattern: a clear prompt, your M365 data, and Copilot doing the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution.</div>
     </div>
 
   </div>
@@ -1388,6 +1429,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 8B Generative AI FRBSL.pdf</div><div class="ref-desc">St. Louis Fed article (2025) summarising Bick et al. research on AI adoption rates and time savings across the US workforce — approximately 40% adoption within two years and average 5.4% time savings per worker</div></div></div>
       <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 8C 2024_Work_Trend_Index_Annual_Report.pdf</div><div class="ref-desc">Microsoft's 2024 Work Trend Index — 75% of knowledge workers now use AI, 78% bring their own tools to work (BYOAI), and 60% of leaders say their organisation lacks a plan to implement AI</div></div></div>
       <div class="ref-item"><span class="ref-icon">D</span><div><div class="ref-text">REF 8D Apex AI Pulse Survey.xlsx</div><div class="ref-desc">Apex internal AI readiness survey (Q1 FY2025, n=287) — confidence scores by department, top use cases, estimated automatable hours per week, and barriers to adoption</div></div></div>
+      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -1443,6 +1485,12 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <div class="lesson-label">The takeaway</div>
         <div class="lesson-text">The most actionable outputs come from combining external research with your organisation's own data. The Finance and Operations recommendation in this briefing didn't come from a research paper — it came from your own survey results, cross-referenced with what the research says about where AI delivers the most value. Copilot Notebook's long-context capability is what makes this possible: it holds all four sources in view simultaneously and finds the connections between them. That is the difference between a generic briefing and one your leadership can act on immediately.</div>
       </div>
+      <div class="lesson-box" style="margin-top:0.75rem;border-color:#7EC8F4;background:rgba(126,200,244,0.12)">
+        <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
+        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Go to <strong>copilot.microsoft.com/notebook</strong> in your browser.<br>2. Upload all four reference files: <strong>REF 8A</strong> and <strong>REF 8B</strong> (academic PDFs), <strong>REF 8C</strong> (Work Trend Index), and <strong>REF 8D</strong> (internal AI pulse survey).<br>3. Use the prompt above. Copilot will also auto-generate a summary page on upload — a useful overview before you start prompting.</div>
+      </div>
+
+      <div class="common-thread">Every challenge here follows the same pattern: a clear prompt, your M365 data, and Copilot doing the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution.</div>
     </div>
 
   </div>
@@ -1508,17 +1556,6 @@ function goHome(){
   showPage('landing');
 }
 
-function toggleCommonThread(){
-  var panel = document.getElementById('common-thread-panel');
-  var btn = document.getElementById('common-thread-btn');
-  if(panel.style.display === 'none'){
-    panel.style.display = 'block';
-    btn.textContent = '↑ What do all 8 challenges have in common?';
-  } else {
-    panel.style.display = 'none';
-    btn.textContent = '↓ What do all 8 challenges have in common?';
-  }
-}
 
 function resetChallenge(cn){
   // reset Q1
