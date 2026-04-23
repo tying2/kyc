@@ -240,6 +240,13 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
 .common-thread{margin-top:1.25rem;padding-top:1rem;border-top:0.5px solid #dde6f0;font-size:12px;color:#8a9bb0;line-height:1.7;font-style:italic;text-align:center}
 .lesson-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#185FA5;margin-bottom:5px}
 .lesson-text{font-size:13px;color:#0C447C;line-height:1.65}
+.nb-toggle{display:none;width:100%;background:#f8f5fc;border:none;border-bottom:0.5px solid #e0d4ec;padding:9px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9b6ab5;cursor:pointer;text-align:left;font-family:'Segoe UI',Arial,sans-serif}
+@media(max-width:640px){
+  .nb-layout{flex-direction:column!important}
+  .nb-sidebar{display:none!important;width:100%!important;min-width:0!important;border-right:none!important;border-bottom:0.5px solid #e0d4ec}
+  .nb-sidebar.nb-open{display:block!important}
+  .nb-toggle{display:block}
+}
 
 /* doc styles for output #1 */
 .doc-body{padding:2rem 2.5rem;background:#fff}
@@ -275,17 +282,16 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
   <div class="landing-body">
     <div class="steps">
       <div class="step s1">
-        <div class="step-num">Your mission</div>
-        <div class="step-text">Pick up a mystery output — something Copilot quietly made while you were in yet another meeting.</div>
+        <div class="step-num">The mystery</div>
+        <div class="step-text">A real Copilot output. The app and the prompt are the mystery — can you crack it?</div>
       </div>
       <div class="step s2">
-        <div class="step-num">Make your case</div>
-        <div class="step-text">Figure out which app produced it and what prompt you think got it there.</div>
+        <div class="step-num">Your verdict</div>
+        <div class="step-text">Two multiple choice questions — which app and what prompt? Pick your answers and find out.</div>
       </div>
       <div class="step s3">
         <div class="step-num">Face the truth</div>
-        <div class="step-text">Type your prompt into Copilot and see what comes out. Tweak and try again — you might just unlock a new superpower.</div>
-        <div class="step-sub">No Copilot device? Each challenge has a multiple choice quiz option — try it on your personal device.</div>
+        <div class="step-text">The answer drops. Were you right? Either way, grab the app and the prompt and go try it — Copilot's waiting.</div>
       </div>
       <div class="start-circle-wrap">
         <span class="start-circle-label">Start Challenge</span>
@@ -323,8 +329,8 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
   <div class="challenge-hero">
     <div class="challenge-num">Challenge #1 &nbsp;·&nbsp; Difficulty: Easy</div>
     <div class="challenge-title">Which app made this? What was the prompt?</div>
-    <div class="challenge-sub">Take a look at the output below, then try to recreate it in Copilot using the reference files.</div>
-    <div class="challenge-sub-tip">No Copilot device? Try the multiple choice below. Got Copilot? The questions make good hints.</div>
+    <div class="challenge-sub">Take a look — the app and the prompt are the mystery.</div>
+    <div class="challenge-sub-tip">Scroll down for the multiple choice — the answer reveal has the prompt and steps to try it yourself.</div>
     <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
   </div>
   <div class="challenge-wave"></div>
@@ -333,8 +339,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <!-- OUTPUT -->
     <div class="output-intro">
       <div class="output-intro-eyebrow">The mystery output</div>
-      <div class="output-intro-title">Take a look — how would you recreate this in Copilot?</div>
-      <div style="font-size:12px;color:#888;font-style:italic;margin-top:0.4rem;line-height:1.55">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</div>
+      <div class="output-intro-title">Take a look — what's your verdict?</div>
     </div>
     <div class="output-card">
       <div class="output-card-titlebar">
@@ -366,15 +371,6 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <div class="doc-bullet">Days 4–5: Introduce yourself in the #introductions group and schedule your first 1-on-1 with your manager</div>
         <div class="doc-bullet">Best coffee is on Level 4. Subsidised lunch 12–2pm in the Level 1 canteen</div>
       </div>
-    </div>
-
-    <!-- REF FILES -->
-    <div class="ref-bar">
-      <div class="ref-label">Reference files provided</div>
-      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 1A Welcome Letter.docx</div><div class="ref-desc">A letter from HR welcoming a new joiner, covering culture, values, and first-day logistics</div></div></div>
-      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 1B IT Onboarding Quickstart Guide.pdf</div><div class="ref-desc">Step-by-step IT setup checklist covering device collection, account activation, MFA, VPN, and security training</div></div></div>
-      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 1C Culture Deck.pptx</div><div class="ref-desc">Talking points from the new joiner orientation covering values, working norms, facilities, and support networks</div></div></div>
-      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -431,8 +427,16 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       </div>
       <div class="lesson-box" style="margin-top:0.75rem;border-color:#7EC8F4;background:rgba(126,200,244,0.12)">
         <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
-        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Open a new blank document in Word.<br>2. Open Copilot from the ribbon and upload all three reference files: <strong>REF 1A</strong> (welcome letter), <strong>REF 1B</strong> (IT quickstart guide), and <strong>REF 1C</strong> (culture deck).<br>3. Use the prompt above. Copilot will synthesise all three documents simultaneously into a single structured output.</div>
+        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Open a new blank document in Word.<br>2. Open Copilot from the ribbon and upload all three reference files: <strong>REF 1A</strong> (welcome letter), <strong>REF 1B</strong> (IT quickstart guide), and <strong>REF 1C</strong> (culture deck).<br>3. Use the prompt above. Copilot will synthesise all three documents simultaneously into a single structured output.<br><br><span style="font-size:11px;color:rgba(255,255,255,0.45);font-style:italic">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</span></div>
       </div>
+
+      <div class="ref-bar" style="margin-top:0.75rem">
+      <div class="ref-label">Reference files required to try it yourself</div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 1A Welcome Letter.docx</div><div class="ref-desc">A letter from HR welcoming a new joiner, covering culture, values, and first-day logistics</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 1B IT Onboarding Quickstart Guide.pdf</div><div class="ref-desc">Step-by-step IT setup checklist covering device collection, account activation, MFA, VPN, and security training</div></div></div>
+      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 1C Culture Deck.pptx</div><div class="ref-desc">Talking points from the new joiner orientation covering values, working norms, facilities, and support networks</div></div></div>
+      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
+    </div>
 
       <div class="common-thread">Every challenge here follows the same pattern: a clear prompt, your M365 data, and Copilot doing the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution.</div>
     </div>
@@ -455,8 +459,8 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
   <div class="challenge-hero">
     <div class="challenge-num">Challenge #2 &nbsp;·&nbsp; Difficulty: Medium</div>
     <div class="challenge-title">Which app made this? What was the prompt?</div>
-    <div class="challenge-sub">Take a look at the output below, then try to recreate it in Copilot using the reference files.</div>
-    <div class="challenge-sub-tip">No Copilot device? Try the multiple choice below. Got Copilot? The questions make good hints.</div>
+    <div class="challenge-sub">Take a look — the app and the prompt are the mystery.</div>
+    <div class="challenge-sub-tip">Scroll down for the multiple choice — the answer reveal has the prompt and steps to try it yourself.</div>
     <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
   </div>
   <div class="challenge-wave"></div>
@@ -465,8 +469,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <!-- OUTPUT -->
     <div class="output-intro">
       <div class="output-intro-eyebrow">The mystery output</div>
-      <div class="output-intro-title">Take a look — how would you recreate this in Copilot?</div>
-      <div style="font-size:12px;color:#888;font-style:italic;margin-top:0.4rem;line-height:1.55">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</div>
+      <div class="output-intro-title">Take a look — what's your verdict?</div>
     </div>
     <div class="output-card">
       <div class="output-card-titlebar">
@@ -519,12 +522,6 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
           <div style="font-size:11px;color:#666;padding:3px 12px;border:0.5px solid #d0cece;border-radius:2px 2px 0 0;background:#f3f2f1">Sheet 3</div>
         </div>
       </div>
-    </div>
-
-    <!-- REF FILES -->
-    <div class="ref-bar">
-      <div class="ref-label">Reference files provided</div>
-      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 2 Multi Dept Raw Budget Data.xlsx</div><div class="ref-desc">66 rows of raw expenditure data across 5 departments and 3 months, with columns for cost centre, sub-category, headcount, budgeted and actual amounts, PO number, vendor, approver, and notes</div></div></div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -581,8 +578,13 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       </div>
       <div class="lesson-box" style="margin-top:0.75rem;border-color:#7EC8F4;background:rgba(126,200,244,0.12)">
         <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
-        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Open <strong>REF 2A</strong> (Budget Tracker) directly in Excel.<br>2. Select any cell in the data, then open Copilot from the ribbon — it works on the open workbook automatically, no file upload needed.<br>3. Use the prompt above. Copilot will analyse the raw data and generate the tracker in a new sheet.</div>
+        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Open <strong>REF 2A</strong> (Budget Tracker) directly in Excel.<br>2. Select any cell in the data, then open Copilot from the ribbon — it works on the open workbook automatically, no file upload needed.<br>3. Use the prompt above. Copilot will analyse the raw data and generate the tracker in a new sheet.<br><br><span style="font-size:11px;color:rgba(255,255,255,0.45);font-style:italic">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</span></div>
       </div>
+
+      <div class="ref-bar" style="margin-top:0.75rem">
+      <div class="ref-label">Reference files required to try it yourself</div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 2 Multi Dept Raw Budget Data.xlsx</div><div class="ref-desc">66 rows of raw expenditure data across 5 departments and 3 months, with columns for cost centre, sub-category, headcount, budgeted and actual amounts, PO number, vendor, approver, and notes</div></div></div>
+    </div>
 
       <div class="common-thread">Every challenge here follows the same pattern: a clear prompt, your M365 data, and Copilot doing the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution.</div>
     </div>
@@ -605,8 +607,8 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
   <div class="challenge-hero">
     <div class="challenge-num">Challenge #3 &nbsp;·&nbsp; Difficulty: Hard</div>
     <div class="challenge-title">Which app made this? What was the prompt?</div>
-    <div class="challenge-sub">This one is tricky — things are not quite what they seem. Try to recreate it in Copilot using the reference files.</div>
-    <div class="challenge-sub-tip">No Copilot device? Try the multiple choice below. Got Copilot? The questions make good hints.</div>
+    <div class="challenge-sub">This one is tricky — things are not quite what they seem.</div>
+    <div class="challenge-sub-tip">Scroll down for the multiple choice — the answer reveal has the prompt and steps to try it yourself.</div>
     <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
   </div>
   <div class="challenge-wave"></div>
@@ -615,8 +617,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <!-- OUTPUT -->
     <div class="output-intro">
       <div class="output-intro-eyebrow">The mystery output</div>
-      <div class="output-intro-title">Take a look — how would you recreate this in Copilot?</div>
-      <div style="font-size:12px;color:#888;font-style:italic;margin-top:0.4rem;line-height:1.55">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</div>
+      <div class="output-intro-title">Take a look — what's your verdict?</div>
     </div>
     <div class="output-card">
       <div class="output-card-titlebar">
@@ -661,12 +662,6 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <div style="font-size:11px;color:#333;padding:3px 12px;border:0.5px solid #d0cece;border-radius:2px 2px 0 0;background:#fff;font-weight:500">Sheet 2</div>
         <div style="font-size:11px;color:#666;padding:3px 12px;border:0.5px solid #d0cece;border-radius:2px 2px 0 0;background:#f3f2f1">Sheet 3</div>
       </div>
-    </div>
-
-    <!-- REF FILES -->
-    <div class="ref-bar">
-      <div class="ref-label">Reference files provided</div>
-      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 3 Internal Staff Survey Results.xlsx</div><div class="ref-desc">Apex staff pulse survey on hybrid working — 287 respondents across 5 departments, covering 10 Likert-scale questions, department satisfaction scores and preferred office arrangements, and open-response themes</div></div></div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -723,8 +718,13 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       </div>
       <div class="lesson-box" style="margin-top:0.75rem;border-color:#7EC8F4;background:rgba(126,200,244,0.12)">
         <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
-        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Open <strong>REF 3A</strong> (Hybrid Working Survey) directly in Excel.<br>2. Open Copilot from the ribbon — it will analyse the data in the active workbook automatically.<br>3. Use the prompt above. For deeper insights, follow up with prompts like "Now break the results down by department" to explore further.</div>
+        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Open <strong>REF 3A</strong> (Hybrid Working Survey) directly in Excel.<br>2. Open Copilot from the ribbon — it will analyse the data in the active workbook automatically.<br>3. Use the prompt above. For deeper insights, follow up with prompts like "Now break the results down by department" to explore further.<br><br><span style="font-size:11px;color:rgba(255,255,255,0.45);font-style:italic">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</span></div>
       </div>
+
+      <div class="ref-bar" style="margin-top:0.75rem">
+      <div class="ref-label">Reference files required to try it yourself</div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 3 Internal Staff Survey Results.xlsx</div><div class="ref-desc">Apex staff pulse survey on hybrid working — 287 respondents across 5 departments, covering 10 Likert-scale questions, department satisfaction scores and preferred office arrangements, and open-response themes</div></div></div>
+    </div>
 
       <div class="common-thread">Every challenge here follows the same pattern: a clear prompt, your M365 data, and Copilot doing the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution.</div>
     </div>
@@ -747,8 +747,8 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
   <div class="challenge-hero">
     <div class="challenge-num">Challenge #4 &nbsp;·&nbsp; Difficulty: Hard</div>
     <div class="challenge-title">Which app made this? What was the prompt?</div>
-    <div class="challenge-sub">Take a look at the output below, then try to recreate it in Copilot using the reference files.</div>
-    <div class="challenge-sub-tip">No Copilot device? Try the multiple choice below. Got Copilot? The questions make good hints.</div>
+    <div class="challenge-sub">Take a look — the app and the prompt are the mystery.</div>
+    <div class="challenge-sub-tip">Scroll down for the multiple choice — the answer reveal has the prompt and steps to try it yourself.</div>
     <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
   </div>
   <div class="challenge-wave"></div>
@@ -757,8 +757,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <!-- OUTPUT -->
     <div class="output-intro">
       <div class="output-intro-eyebrow">The mystery output</div>
-      <div class="output-intro-title">Take a look — how would you recreate this in Copilot?</div>
-      <div style="font-size:12px;color:#888;font-style:italic;margin-top:0.4rem;line-height:1.55">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</div>
+      <div class="output-intro-title">Take a look — what's your verdict?</div>
     </div>
     <div class="output-card">
       <div class="output-card-titlebar">
@@ -845,16 +844,6 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       </div>
     </div>
 
-    <!-- REF FILES -->
-    <div class="ref-bar">
-      <div class="ref-label">Reference files provided</div>
-      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 4A Bloom et al (2024) Nature How hybrid working from home works out.pdf</div><div class="ref-desc">Full academic article from Nature (2024) reporting a 6-month randomised trial on hybrid working — covering productivity, retention, and job satisfaction findings</div></div></div>
-      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 4B McKinsey (2023) Empty spaces and hybrid places.pdf</div><div class="ref-desc">McKinsey's global analysis of office attendance patterns and the economics of hybrid working</div></div></div>
-      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 4C Choudhury (2022) HBS Hybrid Work the Best of Both Worlds.pdf</div><div class="ref-desc">HBS field experiment on how the number of in-office days affects output novelty, collaboration, and career outcomes</div></div></div>
-      <div class="ref-item"><span class="ref-icon">D</span><div><div class="ref-text">REF 4D Internal Staff Survey Results.xlsx</div><div class="ref-desc">Apex internal hybrid work survey (Q4 FY2024) — 287 respondents across five departments, covering satisfaction scores, productivity impact, and retention intent</div></div></div>
-      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
-    </div>
-
     <!-- MULTIPLE CHOICE -->
     <div class="mc-section">
       <div class="mc-eyebrow">Not near a Copilot device?</div>
@@ -909,8 +898,17 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       </div>
       <div class="lesson-box" style="margin-top:0.75rem;border-color:#7EC8F4;background:rgba(126,200,244,0.12)">
         <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
-        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Open PowerPoint and create a new blank presentation.<br>2. Open Copilot from the ribbon and upload all four reference files: <strong>REF 4A</strong>, <strong>REF 4B</strong>, <strong>REF 4C</strong> (academic and consulting PDFs), and <strong>REF 4D</strong> (internal survey).<br>3. Use the prompt above. Note: the exact layout will vary with every attempt — getting the stat boxes and column structure typically takes a few iterations and follow-up prompts.</div>
+        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Open PowerPoint and choose <strong>Create with Copilot</strong>.<br>2. Attach all four reference files: <strong>REF 4A</strong>, <strong>REF 4B</strong>, <strong>REF 4C</strong> (academic and consulting PDFs), and <strong>REF 4D</strong> (internal survey).<br>3. Enter the prompt above. Note: you likely won't replicate the exact format — PowerPoint still has limitations with complex layouts. But you will get the relevant content organised into the right sections, which is the hard part.<br><br><span style="font-size:11px;color:rgba(255,255,255,0.45);font-style:italic">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</span></div>
       </div>
+
+      <div class="ref-bar" style="margin-top:0.75rem">
+      <div class="ref-label">Reference files required to try it yourself</div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 4A Bloom et al (2024) Nature How hybrid working from home works out.pdf</div><div class="ref-desc">Full academic article from Nature (2024) reporting a 6-month randomised trial on hybrid working — covering productivity, retention, and job satisfaction findings</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 4B McKinsey (2023) Empty spaces and hybrid places.pdf</div><div class="ref-desc">McKinsey's global analysis of office attendance patterns and the economics of hybrid working</div></div></div>
+      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 4C Choudhury (2022) HBS Hybrid Work the Best of Both Worlds.pdf</div><div class="ref-desc">HBS field experiment on how the number of in-office days affects output novelty, collaboration, and career outcomes</div></div></div>
+      <div class="ref-item"><span class="ref-icon">D</span><div><div class="ref-text">REF 4D Internal Staff Survey Results.xlsx</div><div class="ref-desc">Apex internal hybrid work survey (Q4 FY2024) — 287 respondents across five departments, covering satisfaction scores, productivity impact, and retention intent</div></div></div>
+      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
+    </div>
 
       <div class="common-thread">Every challenge here follows the same pattern: a clear prompt, your M365 data, and Copilot doing the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution.</div>
     </div>
@@ -933,8 +931,8 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
   <div class="challenge-hero">
     <div class="challenge-num">Challenge #5 &nbsp;·&nbsp; Difficulty: Hard</div>
     <div class="challenge-title">Which app made this? What was the prompt?</div>
-    <div class="challenge-sub">Three files, one prompt, five sections of spoken-word content. The files are in the sidebar — try to recreate this in Copilot.</div>
-    <div class="challenge-sub-tip">No Copilot device? Try the multiple choice below. Got Copilot? The questions make good hints.</div>
+    <div class="challenge-sub">One prompt produced five sections of spoken-word content. Take a look.</div>
+    <div class="challenge-sub-tip">Scroll down for the multiple choice — the answer reveal has the prompt and steps to try it yourself.</div>
     <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
   </div>
   <div class="challenge-wave"></div>
@@ -943,8 +941,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <!-- OUTPUT -->
     <div class="output-intro">
       <div class="output-intro-eyebrow">The mystery output</div>
-      <div class="output-intro-title">Take a look — how would you recreate this in Copilot?</div>
-      <div style="font-size:12px;color:#888;font-style:italic;margin-top:0.4rem;line-height:1.55">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</div>
+      <div class="output-intro-title">Take a look — what's your verdict?</div>
     </div>
     <div class="output-card">
       <div class="output-card-titlebar">
@@ -952,9 +949,10 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <span class="oc-fname">copilot.microsoft.com</span>
       </div>
       <!-- three-column Copilot Notebook layout -->
-      <div style="display:flex;background:#fff">
+      <div class="nb-layout" style="display:flex;background:#fff">
+        <button class="nb-toggle" onclick="toggleNbSidebar(this)">▼ References</button>
         <!-- left sidebar: references panel -->
-        <div style="width:160px;min-width:160px;background:#f8f5fc;border-right:0.5px solid #e0d4ec;padding:12px 10px;flex-shrink:0">
+        <div class="nb-sidebar" style="width:160px;min-width:160px;background:#f8f5fc;border-right:0.5px solid #e0d4ec;padding:12px 10px;flex-shrink:0">
           <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9b6ab5;margin-bottom:8px">References</div>
           <div style="font-size:10px;color:#444;padding:5px 7px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;margin-bottom:5px;line-height:1.4">📊 REF 5A Board Strategy Presentation.pptx</div>
           <div style="font-size:10px;color:#444;padding:5px 7px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;margin-bottom:5px;line-height:1.4">📄 REF 5B Digital Readiness Diagnostic Report.docx</div>
@@ -988,15 +986,6 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         </div><!-- end main content -->
       </div><!-- end three-column layout -->
     </div><!-- end output-card -->
-
-    <!-- REF FILES -->
-    <div class="ref-bar">
-      <div class="ref-label">Reference files provided</div>
-      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 5A Board Strategy Presentation.pptx</div><div class="ref-desc">Detailed talking points prepared for the Board covering the strategic rationale, three pillars, financial summary, and governance for the FY2025–2027 transformation programme</div></div></div>
-      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 5B Digital Readiness Diagnostic Report.docx</div><div class="ref-desc">Internal digital readiness diagnostic report covering process fragmentation, data silo risks, AI readiness gaps, technology debt, and change readiness scores by department</div></div></div>
-      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 5C Leadership Email Thread.msg</div><div class="ref-desc">An email exchange between five senior leaders discussing AI rollout priorities, Finance migration concerns, the AI Champions programme design, and Q2 planning ahead of the strategy offsite</div></div></div>
-      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
-    </div>
 
     <!-- MULTIPLE CHOICE -->
     <div class="mc-section">
@@ -1052,8 +1041,16 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       </div>
       <div class="lesson-box" style="margin-top:0.75rem;border-color:#7EC8F4;background:rgba(126,200,244,0.12)">
         <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
-        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Go to <strong>copilot.microsoft.com/notebook</strong> in your browser.<br>2. Upload all three reference files: <strong>REF 5A</strong> (board presentation), <strong>REF 5B</strong> (diagnostic report), and <strong>REF 5C</strong> (leadership email thread).<br>3. Use the prompt above. Copilot will draw on all three documents simultaneously and generate a grounded, structured address — no file-by-file instructions needed.</div>
+        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Go to <strong>copilot.microsoft.com/notebook</strong> in your browser.<br>2. Upload all three reference files: <strong>REF 5A</strong> (board presentation), <strong>REF 5B</strong> (diagnostic report), and <strong>REF 5C</strong> (leadership email thread).<br>3. Use the prompt above. Copilot will draw on all three documents simultaneously and generate a grounded, structured address — no file-by-file instructions needed.<br><br><span style="font-size:11px;color:rgba(255,255,255,0.45);font-style:italic">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</span></div>
       </div>
+
+      <div class="ref-bar" style="margin-top:0.75rem">
+      <div class="ref-label">Reference files required to try it yourself</div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 5A Board Strategy Presentation.pptx</div><div class="ref-desc">Detailed talking points prepared for the Board covering the strategic rationale, three pillars, financial summary, and governance for the FY2025–2027 transformation programme</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 5B Digital Readiness Diagnostic Report.docx</div><div class="ref-desc">Internal digital readiness diagnostic report covering process fragmentation, data silo risks, AI readiness gaps, technology debt, and change readiness scores by department</div></div></div>
+      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 5C Leadership Email Thread.msg</div><div class="ref-desc">An email exchange between five senior leaders discussing AI rollout priorities, Finance migration concerns, the AI Champions programme design, and Q2 planning ahead of the strategy offsite</div></div></div>
+      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
+    </div>
 
       <div class="common-thread">Every challenge here follows the same pattern: a clear prompt, your M365 data, and Copilot doing the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution.</div>
     </div>
@@ -1076,8 +1073,8 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
   <div class="challenge-hero">
     <div class="challenge-num">Challenge #6 &nbsp;·&nbsp; Difficulty: Medium</div>
     <div class="challenge-title">Which app made this? What was the prompt?</div>
-    <div class="challenge-sub">Take a look at the output below, then try to recreate it in Copilot using the reference files.</div>
-    <div class="challenge-sub-tip">No Copilot device? Try the multiple choice below. Got Copilot? The questions make good hints.</div>
+    <div class="challenge-sub">Take a look — the app and the prompt are the mystery.</div>
+    <div class="challenge-sub-tip">Scroll down for the multiple choice — the answer reveal has the prompt and steps to try it yourself.</div>
     <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
   </div>
   <div class="challenge-wave"></div>
@@ -1086,8 +1083,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <!-- OUTPUT -->
     <div class="output-intro">
       <div class="output-intro-eyebrow">The mystery output</div>
-      <div class="output-intro-title">Take a look — how would you recreate this in Copilot?</div>
-      <div style="font-size:12px;color:#888;font-style:italic;margin-top:0.4rem;line-height:1.55">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</div>
+      <div class="output-intro-title">Take a look — what's your verdict?</div>
     </div>
     <div class="output-card">
       <div class="output-card-titlebar">
@@ -1141,15 +1137,6 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- REF FILES -->
-    <div class="ref-bar">
-      <div class="ref-label">Reference files provided</div>
-      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 6A Q3 Planning  Budget Review.msg</div><div class="ref-desc">Pre-meeting email thread — Sandra's agenda, Marcus's flag on the contractor cost overrun, and Jason's heads-up on the CRM compatibility issue</div></div></div>
-      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 6B Meeting Transcript.docx</div><div class="ref-desc">Auto-generated Teams transcript of the 37-minute meeting, covering all agenda items, discussion, and decisions. In a real Teams meeting this is generated automatically — it has been exported here for the demo.</div></div></div>
-      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 6C Post-Meeting Chat Log.docx</div><div class="ref-desc">Teams channel chat exported from the 48 minutes following the meeting — includes Derek's middleware cost confirmation and Sandra's full action item summary</div></div></div>
-      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -1206,8 +1193,16 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       </div>
       <div class="lesson-box" style="margin-top:0.75rem;border-color:#7EC8F4;background:rgba(126,200,244,0.12)">
         <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
-        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">For real use: enable meeting transcription in Teams settings before your next meeting — Copilot generates the recap automatically in the Recap tab when the meeting ends, no prompt needed.<br><br>For this demo: upload <strong>REF 6A</strong> (pre-meeting email), <strong>REF 6B</strong> (meeting transcript), and <strong>REF 6C</strong> (post-meeting chat) into Copilot chat in Teams and use the prompt above.</div>
+        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">For real use: enable meeting transcription in Teams settings before your next meeting — Copilot generates the recap automatically in the Recap tab when the meeting ends, no prompt needed.<br><br>For this demo: upload <strong>REF 6A</strong> (pre-meeting email), <strong>REF 6B</strong> (meeting transcript), and <strong>REF 6C</strong> (post-meeting chat) into Copilot chat in Teams and use the prompt above.<br><br><span style="font-size:11px;color:rgba(255,255,255,0.45);font-style:italic">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</span></div>
       </div>
+
+      <div class="ref-bar" style="margin-top:0.75rem">
+      <div class="ref-label">Reference files required to try it yourself</div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 6A Q3 Planning  Budget Review.msg</div><div class="ref-desc">Pre-meeting email thread — Sandra's agenda, Marcus's flag on the contractor cost overrun, and Jason's heads-up on the CRM compatibility issue</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 6B Meeting Transcript.docx</div><div class="ref-desc">Auto-generated Teams transcript of the 37-minute meeting, covering all agenda items, discussion, and decisions. In a real Teams meeting this is generated automatically — it has been exported here for the demo.</div></div></div>
+      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 6C Post-Meeting Chat Log.docx</div><div class="ref-desc">Teams channel chat exported from the 48 minutes following the meeting — includes Derek's middleware cost confirmation and Sandra's full action item summary</div></div></div>
+      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
+    </div>
 
       <div class="common-thread">Every challenge here follows the same pattern: a clear prompt, your M365 data, and Copilot doing the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution.</div>
     </div>
@@ -1230,8 +1225,8 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
   <div class="challenge-hero">
     <div class="challenge-num">Challenge #7 &nbsp;·&nbsp; Difficulty: Medium</div>
     <div class="challenge-title">Which app made this? What was the prompt?</div>
-    <div class="challenge-sub">The output looks simple. What's impressive is what went into making it — try to recreate it in Copilot.</div>
-    <div class="challenge-sub-tip">No Copilot device? Try the multiple choice below. Got Copilot? The questions make good hints.</div>
+    <div class="challenge-sub">The output looks simple. What's impressive is what went into making it.</div>
+    <div class="challenge-sub-tip">Scroll down for the multiple choice — the answer reveal has the prompt and steps to try it yourself.</div>
     <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
   </div>
   <div class="challenge-wave"></div>
@@ -1240,8 +1235,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <!-- OUTPUT -->
     <div class="output-intro">
       <div class="output-intro-eyebrow">The mystery output</div>
-      <div class="output-intro-title">Take a look — how would you recreate this in Copilot?</div>
-      <div style="font-size:12px;color:#888;font-style:italic;margin-top:0.4rem;line-height:1.55">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</div>
+      <div class="output-intro-title">Take a look — what's your verdict?</div>
     </div>
     <div class="output-card">
       <div class="output-card-titlebar">
@@ -1279,14 +1273,6 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
           +65 6438 2201 &nbsp;·&nbsp; s.lim@apexcorp.com
         </div>
       </div>
-    </div>
-
-    <!-- REF FILES -->
-    <div class="ref-bar">
-      <div class="ref-label">Reference files provided</div>
-      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 7A Customer Complaint.msg</div><div class="ref-desc">A formal complaint from Pine Street Group's COO demanding written acknowledgement of a project delay, a revised schedule, and senior escalation — with a response deadline of Wednesday 9 April</div></div></div>
-      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 7B Internal Coord.msg</div><div class="ref-desc">An internal email thread: the project manager flags the root causes of the delay and the revised delivery estimate; the senior leader replies with instructions on how to handle the formal complaint — not intended for the client</div></div></div>
-      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
     </div>
 
     <!-- MULTIPLE CHOICE -->
@@ -1343,8 +1329,15 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       </div>
       <div class="lesson-box" style="margin-top:0.75rem;border-color:#7EC8F4;background:rgba(126,200,244,0.12)">
         <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
-        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Open Outlook and open the client complaint email (or start a reply).<br>2. Open Copilot from the compose window and upload both reference files: <strong>REF 7A</strong> (customer complaint) and <strong>REF 7B</strong> (internal email thread).<br>3. Use the prompt above. Copilot will draft the reply in the compose window for you to review and edit before sending.</div>
+        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Open Outlook and open the client complaint email (or start a reply).<br>2. Open Copilot from the compose window and upload both reference files: <strong>REF 7A</strong> (customer complaint) and <strong>REF 7B</strong> (internal email thread).<br>3. Use the prompt above. Copilot will draft the reply in the compose window for you to review and edit before sending.<br><br><span style="font-size:11px;color:rgba(255,255,255,0.45);font-style:italic">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</span></div>
       </div>
+
+      <div class="ref-bar" style="margin-top:0.75rem">
+      <div class="ref-label">Reference files required to try it yourself</div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 7A Customer Complaint.msg</div><div class="ref-desc">A formal complaint from Pine Street Group's COO demanding written acknowledgement of a project delay, a revised schedule, and senior escalation — with a response deadline of Wednesday 9 April</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 7B Internal Coord.msg</div><div class="ref-desc">An internal email thread: the project manager flags the root causes of the delay and the revised delivery estimate; the senior leader replies with instructions on how to handle the formal complaint — not intended for the client</div></div></div>
+      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
+    </div>
 
       <div class="common-thread">Every challenge here follows the same pattern: a clear prompt, your M365 data, and Copilot doing the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution.</div>
     </div>
@@ -1367,8 +1360,8 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
   <div class="challenge-hero">
     <div class="challenge-num">Challenge #8 &nbsp;·&nbsp; Difficulty: Hard</div>
     <div class="challenge-title">Which app made this? What was the prompt?</div>
-    <div class="challenge-sub">Four sources. Four files. One output. The most ambitious of all eight — try to recreate it in Copilot.</div>
-    <div class="challenge-sub-tip">No Copilot device? Try the multiple choice below. Got Copilot? The questions make good hints.</div>
+    <div class="challenge-sub">The most ambitious challenge of all eight. Take a look.</div>
+    <div class="challenge-sub-tip">Scroll down for the multiple choice — the answer reveal has the prompt and steps to try it yourself.</div>
     <div style="display:flex;gap:10px;margin-top:0.85rem;justify-content:center"><button class="back-btn" onclick="goHome()">← Home</button><button class="back-btn" onclick="nextChallenge()" style="background:rgba(126,200,244,0.18);border-color:rgba(126,200,244,0.5);color:#7EC8F4">Try another →</button></div>
   </div>
   <div class="challenge-wave"></div>
@@ -1377,8 +1370,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     <!-- OUTPUT -->
     <div class="output-intro">
       <div class="output-intro-eyebrow">The mystery output</div>
-      <div class="output-intro-title">Take a look — how would you recreate this in Copilot?</div>
-      <div style="font-size:12px;color:#888;font-style:italic;margin-top:0.4rem;line-height:1.55">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</div>
+      <div class="output-intro-title">Take a look — what's your verdict?</div>
     </div>
     <div class="output-card">
       <div class="output-card-titlebar">
@@ -1386,9 +1378,10 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
         <span class="oc-fname">AI_Productivity_Briefing — workspace</span>
       </div>
       <!-- three-column Copilot Notebook layout -->
-      <div style="display:flex;background:#fff">
+      <div class="nb-layout" style="display:flex;background:#fff">
+        <button class="nb-toggle" onclick="toggleNbSidebar(this)">▼ References</button>
         <!-- left sidebar: references panel -->
-        <div style="width:160px;min-width:160px;background:#f8f5fc;border-right:0.5px solid #e0d4ec;padding:12px 10px;flex-shrink:0">
+        <div class="nb-sidebar" style="width:160px;min-width:160px;background:#f8f5fc;border-right:0.5px solid #e0d4ec;padding:12px 10px;flex-shrink:0">
           <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9b6ab5;margin-bottom:8px">References</div>
           <div style="font-size:10px;color:#444;padding:5px 7px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;margin-bottom:5px;line-height:1.4">📄 REF 8A Generative AI at Work.pdf</div>
           <div style="font-size:10px;color:#444;padding:5px 7px;background:#fff;border:0.5px solid #d4bce8;border-radius:4px;margin-bottom:5px;line-height:1.4">📄 REF 8B Generative AI FRBSL.pdf</div>
@@ -1423,16 +1416,6 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
     </div><!-- end three-column layout -->
     </div><!-- end output-card -->
 
-    <!-- REF FILES -->
-    <div class="ref-bar">
-      <div class="ref-label">Reference files provided</div>
-      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 8A Generative AI at Work.pdf</div><div class="ref-desc">NBER working paper by Brynjolfsson, Li & Raymond (2023) — randomised study of 5,179 customer support agents reporting 14–34% productivity gains from AI assistance</div></div></div>
-      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 8B Generative AI FRBSL.pdf</div><div class="ref-desc">St. Louis Fed article (2025) summarising Bick et al. research on AI adoption rates and time savings across the US workforce — approximately 40% adoption within two years and average 5.4% time savings per worker</div></div></div>
-      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 8C 2024_Work_Trend_Index_Annual_Report.pdf</div><div class="ref-desc">Microsoft's 2024 Work Trend Index — 75% of knowledge workers now use AI, 78% bring their own tools to work (BYOAI), and 60% of leaders say their organisation lacks a plan to implement AI</div></div></div>
-      <div class="ref-item"><span class="ref-icon">D</span><div><div class="ref-text">REF 8D Apex AI Pulse Survey.xlsx</div><div class="ref-desc">Apex internal AI readiness survey (Q1 FY2025, n=287) — confidence scores by department, top use cases, estimated automatable hours per week, and barriers to adoption</div></div></div>
-      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
-    </div>
-
     <!-- MULTIPLE CHOICE -->
     <div class="mc-section">
       <div class="mc-eyebrow">Not near a Copilot device?</div>
@@ -1448,7 +1431,7 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       <div class="mc-feedback wrong-fb" id="q1c8-fb-wrong">A completely understandable guess — the output is indistinguishable from a Word document in terms of content and layout. The tell is the left sidebar: a purple-tinted References panel listing the four uploaded source files. That's the Copilot Notebook interface — a three-column workspace with references on the left, generated content in the centre, and chat on the right. Unlike Word's Copilot, Notebook is built specifically for long-context synthesis — it can hold and reason across much larger volumes of source material simultaneously.</div>
       <button class="mc-reset" id="reset-q1c8" onclick="resetQ('q1c8','q1c8-fb-correct','q1c8-fb-wrong','reset-q1c8')">Try again</button>
 
-      <div class="mc-question" style="margin-top:1.1rem">Q2: The "Recommended next steps" section suggests prioritising Finance and Operations for AI support. That recommendation didn't come from any of the academic or corporate research. Where did it come from?</div>
+      <div class="mc-question" style="margin-top:1.1rem"><span style="display:inline-block;background:#7F77DD;color:#fff;font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-bottom:6px">Plot twist</span><br>Q2: The "Recommended next steps" section suggests prioritising Finance and Operations for AI support. That recommendation didn't come from any of the academic or corporate research. Where did it come from?</div>
       <div class="mc-options" id="q2c8">
         <button class="mc-opt" onclick="answer(this,'q2c8',false,'q2c8-fb-correct','q2c8-fb-wrong')">Copilot generated a logical recommendation based on the types of tasks typically found in Finance and Operations roles</button>
         <button class="mc-opt" onclick="answer(this,'q2c8',true,'q2c8-fb-correct','q2c8-fb-wrong')">It came from the Apex internal survey — which showed Finance and Operations had the lowest AI confidence scores and the highest volume of manual workflows</button>
@@ -1488,8 +1471,17 @@ html,body{width:100%;height:100%;font-family:'Segoe UI',Arial,sans-serif;backgro
       </div>
       <div class="lesson-box" style="margin-top:0.75rem;border-color:#7EC8F4;background:rgba(126,200,244,0.12)">
         <div class="lesson-label" style="color:#7EC8F4">How to try this yourself</div>
-        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Go to <strong>copilot.microsoft.com/notebook</strong> in your browser.<br>2. Upload all four reference files: <strong>REF 8A</strong> and <strong>REF 8B</strong> (academic PDFs), <strong>REF 8C</strong> (Work Trend Index), and <strong>REF 8D</strong> (internal AI pulse survey).<br>3. Use the prompt above. Copilot will also auto-generate a summary page on upload — a useful overview before you start prompting.</div>
+        <div class="lesson-text" style="color:rgba(255,255,255,0.82)">1. Go to <strong>copilot.microsoft.com/notebook</strong> in your browser.<br>2. Upload all four reference files: <strong>REF 8A</strong> and <strong>REF 8B</strong> (academic PDFs), <strong>REF 8C</strong> (Work Trend Index), and <strong>REF 8D</strong> (internal AI pulse survey).<br>3. Use the prompt above. Copilot will also auto-generate a summary page on upload — a useful overview before you start prompting.<br><br><span style="font-size:11px;color:rgba(255,255,255,0.45);font-style:italic">No two Copilot outputs are identical — that's how generative AI works. Focus on whether your output captures the same structure and main sections, rather than matching every detail exactly.</span></div>
       </div>
+
+      <div class="ref-bar" style="margin-top:0.75rem">
+      <div class="ref-label">Reference files required to try it yourself</div>
+      <div class="ref-item"><span class="ref-icon">A</span><div><div class="ref-text">REF 8A Generative AI at Work.pdf</div><div class="ref-desc">NBER working paper by Brynjolfsson, Li & Raymond (2023) — randomised study of 5,179 customer support agents reporting 14–34% productivity gains from AI assistance</div></div></div>
+      <div class="ref-item"><span class="ref-icon">B</span><div><div class="ref-text">REF 8B Generative AI FRBSL.pdf</div><div class="ref-desc">St. Louis Fed article (2025) summarising Bick et al. research on AI adoption rates and time savings across the US workforce — approximately 40% adoption within two years and average 5.4% time savings per worker</div></div></div>
+      <div class="ref-item"><span class="ref-icon">C</span><div><div class="ref-text">REF 8C 2024_Work_Trend_Index_Annual_Report.pdf</div><div class="ref-desc">Microsoft's 2024 Work Trend Index — 75% of knowledge workers now use AI, 78% bring their own tools to work (BYOAI), and 60% of leaders say their organisation lacks a plan to implement AI</div></div></div>
+      <div class="ref-item"><span class="ref-icon">D</span><div><div class="ref-text">REF 8D Apex AI Pulse Survey.xlsx</div><div class="ref-desc">Apex internal AI readiness survey (Q1 FY2025, n=287) — confidence scores by department, top use cases, estimated automatable hours per week, and barriers to adoption</div></div></div>
+      <div class="ref-note">For this demo, files are uploaded manually. In practice, Copilot in Microsoft 365 already has access to your emails, documents, meetings, and chats — no upload needed. File uploads are most useful when you want to ground Copilot in something specific.</div>
+    </div>
 
       <div class="common-thread">Every challenge here follows the same pattern: a clear prompt, your M365 data, and Copilot doing the synthesis. The expertise that makes the output useful is yours — the hours it saves are Copilot's contribution.</div>
     </div>
@@ -1555,6 +1547,12 @@ function showPage(id){
 function goHome(){
   currentChallenge = null;
   showPage('landing');
+}
+
+function toggleNbSidebar(btn){
+  var sidebar = btn.nextElementSibling;
+  var isOpen = sidebar.classList.toggle('nb-open');
+  btn.textContent = isOpen ? '▲ References' : '▼ References';
 }
 
 
